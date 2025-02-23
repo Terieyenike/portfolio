@@ -28,27 +28,25 @@ const menu = [
 
 <header
   id='site-header'
-  class:list={[
-    "flex items-center w-full transition duration-300 z-[999] border-[var(--soft-border-color)]",
-  ]}>
+  class:list={["flex items-center w-full transition duration-300 z-[999]"]}>
   <div class='container'>
     <nav class='flex gap-4 items-center justify-between py-3'>
       <h2 class='m-0'>
         <a
           href='/'
           class='flex gap-4 items-center text-xl font-black uppercase'>
-          <div id='logo-container'>
+          <div id='logo-container' class='p-2 bg-transparent'>
             <Image
               src={LogoBlack}
               id='lightLogo'
               alt='Oteri Eyenike'
-              class='w-11 border-white border-2 shadow-lg'
+              class='w-11 shadow-lg'
             />
             <Image
               src={LogoWhite}
               id='darkLogo'
               alt='Oteri Eyenike'
-              class='w-11 border-white border-2 shadow-lg'
+              class='w-11 shadow-lg'
             />
           </div>
         </a>
