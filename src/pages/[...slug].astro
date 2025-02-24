@@ -100,24 +100,45 @@ const { Content, headings } = await post.render();
         </Prose>
         {
           GISCUS_REPO && (
-            <script
-              id='giscus-script'
-              is:inline
-              src='https://giscus.app/client.js'
-              data-repo='Terieyenike/portfolio'
-              data-repo-id='R_kgDOI9dVFw'
-              data-category='Announcements'
-              data-category-id='DIC_kwDOI9dVF84CnRUL'
-              data-mapping='pathname'
-              data-strict='0'
-              data-reactions-enabled='1'
-              data-emit-metadata='0'
-              data-input-position='bottom'
-              data-theme='preferred_color_scheme'
-              data-lang='en'
-              crossorigin='anonymous'
-              async
-            />
+            // <script
+            //   id='giscus-script'
+            //   is:inline
+            //   src='https://giscus.app/client.js'
+            //   data-repo='Terieyenike/portfolio'
+            //   data-repo-id='R_kgDOI9dVFw'
+            //   data-category='Announcements'
+            //   data-category-id='DIC_kwDOI9dVF84CnRUL'
+            //   data-mapping='pathname'
+            //   data-strict='0'
+            //   data-reactions-enabled='1'
+            //   data-emit-metadata='0'
+            //   data-input-position='bottom'
+            //   data-theme='preferred_color_scheme'
+            //   data-lang='en'
+            //   crossorigin='anonymous'
+            //   async
+            // />
+            <script>
+  let giscusTheme = localStorage.getItem("giscus-theme");
+  let giscusAttributes = {
+    "src": "https://giscus.app/client.js",
+      "data-repo":'Terieyenike/portfolio',
+              "data-repo-id":'R_kgDOI9dVFw',
+              "data-category":'Announcements',
+              "data-category-id":'DIC_kwDOI9dVF84CnRUL',
+    "data-mapping": "pathname",
+    "data-reactions-enabled": "1",
+    "data-emit-metadata": "0",
+    "data-theme": giscusTheme,
+    "data-lang": "en",
+    "crossorigin": "anonymous",
+    "async": "",
+  };
+
+  let giscusScript = document.createElement("script");
+  Object.entries(giscusAttributes).forEach(([key, value]) => giscusScript.setAttribute(key, value));
+  document.body.appendChild(giscusScript);
+</script>
           )
         }
       </article>
