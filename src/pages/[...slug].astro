@@ -14,7 +14,7 @@ const {
   PUBLIC_GISCUS_REPO_ID,
   PUBLIC_GISCUS_CATEGORY,
   PUBLIC_GISCUS_CATEGORY_ID,
-} = import.meta.env;
+} = loadEnv(process.env.NODE_ENV || "production", process.cwd(), "");
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
