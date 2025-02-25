@@ -9,8 +9,12 @@ import TableOfContent from "../components/widgets/TableOfContent.astro";
 import { slugify } from "../utils";
 import { loadEnv } from "vite";
 
-const { GISCUS_REPO, GISCUS_REPO_ID, GISCUS_CATEGORY, GISCUS_CATEGORY_ID } =
-  loadEnv(process.env.NODE_ENV || "production", process.cwd(), "");
+const {
+  PUBLIC_GISCUS_REPO,
+  PUBLIC_GISCUS_REPO_ID,
+  PUBLIC_GISCUS_CATEGORY,
+  PUBLIC_GISCUS_CATEGORY_ID,
+} = import.meta.env;
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -99,15 +103,15 @@ const { Content, headings } = await post.render();
           <Content />
         </Prose>
         {
-          GISCUS_REPO && (
+          PUBLIC_GISCUS_REPO && (
             <script
               id='giscus-script'
               is:inline
               src='https://giscus.app/client.js'
-              data-repo={GISCUS_REPO}
-              data-repo-id={GISCUS_REPO_ID}
-              data-category={GISCUS_CATEGORY}
-              data-category-id={GISCUS_CATEGORY_ID}
+              data-repo={PUBLIC_GISCUS_REPO}
+              data-repo-id={PUBLIC_GISCUS_REPO_ID}
+              data-category={PUBLIC_GISCUS_CATEGORY}
+              data-category-id={PUBLIC_GISCUS_CATEGORY_ID}
               data-mapping='pathname'
               data-strict='0'
               data-reactions-enabled='1'
