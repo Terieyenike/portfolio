@@ -7,14 +7,16 @@ import FormattedDate from "../components/FormattedDate.astro";
 import AboutTheAuthor from "../components/widgets/AboutTheAuthor.astro";
 import TableOfContent from "../components/widgets/TableOfContent.astro";
 import { slugify } from "../utils";
-import { loadEnv } from "vite";
+// import { loadEnv } from "vite";
 
-const {
-  PUBLIC_GISCUS_REPO,
-  PUBLIC_GISCUS_REPO_ID,
-  PUBLIC_GISCUS_CATEGORY,
-  PUBLIC_GISCUS_CATEGORY_ID,
-} = loadEnv(process.env.NODE_ENV || "production", process.cwd(), "");
+const { PUBLIC_GISCUS_REPO } = import.meta.env;
+
+// const {
+//   PUBLIC_GISCUS_REPO,
+//   PUBLIC_GISCUS_REPO_ID,
+//   PUBLIC_GISCUS_CATEGORY,
+//   PUBLIC_GISCUS_CATEGORY_ID,
+// } = loadEnv(process.env.NODE_ENV || "production", process.cwd(), "");
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -108,10 +110,10 @@ const { Content, headings } = await post.render();
               id='giscus-script'
               is:inline
               src='https://giscus.app/client.js'
-              data-repo={PUBLIC_GISCUS_REPO}
-              data-repo-id={PUBLIC_GISCUS_REPO_ID}
-              data-category={PUBLIC_GISCUS_CATEGORY}
-              data-category-id={PUBLIC_GISCUS_CATEGORY_ID}
+              data-repo='Terieyenike/portfolio'
+              data-repo-id='R_kgDOI9dVFw'
+              data-category='Announcements'
+              data-category-id='DIC_kwDOI9dVF84CnRUL'
               data-mapping='pathname'
               data-strict='0'
               data-reactions-enabled='1'
