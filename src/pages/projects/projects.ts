@@ -12,54 +12,23 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    name: 'Devaradise.com',
-    description: 'A blog that sharing web development resources and tutorials',
-    demoLink: 'https://devaradise.com',
-    tags: ['Blog']
+    name: 'SQL notes',
+    description: 'SQL notes - setup, creating databases, and many more',
+    demoLink: 'https://github.com/Terieyenike/SQL-notes',
+    tags: ['Database', 'PostgreSQL']
   },
   {
-    name: 'Sellercraft App',
-    description: 'An Ecommerce omnichannel platform in Southeast Asia',
-    demoLink: 'https://sellercraft.co',
-    demoLinkRel: 'nofollow noopener noreferrer',
-    tags: ['ECommerce', 'Saas']
+    ...(await getRepositoryDetails('Terieyenike/track-trip-dashboard-with-xata-next')),
+    name: 'Track Trips',
+    description: 'Keep track of all your adventures, never forget the amazing memories',
+    demoLink: 'https://track-trip-dashboard-with-xata-next.vercel.app/',
+    tags: ['Saas']
   },
   {
-    name: 'Gaji.id App',
-    description: 'Payroll and HR Management Information System',
-    demoLink: 'https://sellercraft.co',
-    demoLinkRel: 'nofollow noopener noreferrer',
-    tags: ['HRIS', 'Saas']
+    ...(await getRepositoryDetails('Terieyenike/v2')),
+    name: 'Teri\'s Portfolio',
+    description: 'An open source personal portfolio site for the community to use freely',
+    demoLink: 'https://github.com/Terieyenike/v2',
+    tags: ['React', 'Portfolio']
   },
-  {
-    ...(await getRepositoryDetails('devaradise/paradise-ui')),
-    name: 'Paradise UI',
-    demoLink: 'https://paradise-ui.com',
-    postLink: 'https://devaradise.com/how-i-build-paradise-ui-react-component-library/',
-    tags: ['React', 'UI Library']
-  },
-  {
-    ...(await getRepositoryDetails('syakirurahman/react-lab')),
-    name: 'React Lab',
-    demoLink: 'https://devaradise.com/lab/react/',
-    tags: ['React']
-  },
-  {
-    ...(await getRepositoryDetails('syakirurahman/pokemon-catcher')),
-    name: 'Pokemon Catcher',
-    demoLink: 'https://pokemon-catcher-18636.web.app/',
-    tags: ['Hobby']
-  },
-  {
-    ...(await getRepositoryDetails('syakirurahman/movie-nominations')),
-    name: 'Movie Nominations',
-    demoLink: 'https://movie-nominations-c21c3.web.app/',
-    tags: ['Hobby']
-  },
-  {
-    ...(await getRepositoryDetails('syakirurahman/organization-tree')),
-    name: 'Organization tree',
-    demoLink: 'https://organization-tree-2a446.web.app/',
-    tags: ['Hobby']
-  }
 ]
