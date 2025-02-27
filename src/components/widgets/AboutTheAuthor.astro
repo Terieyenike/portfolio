@@ -1,5 +1,8 @@
 ---
 import Author from "../Author.astro";
+import { Image } from "astro:assets";
+import LinkedInBlack from "@src/assets/img/linkedin-mark.svg";
+import LinkedInWhite from "@src/assets/img/linkedin-mark-white.svg";
 ---
 
 <div class='about-the-author py-4 border-b'>
@@ -7,11 +10,32 @@ import Author from "../Author.astro";
   <Author picSize='md' />
   <div class='author-desc text-[.825rem] my-4'>
     <p class='mb-3'>
-      Teri is a Data Analyst with experiences in turning data into insights.
+      Teri is a Data Analyst with experience in turning data into insights.
     </p>
     <p>
-      I am open to work and collaborate in any project as a data and software
-      engineer guy.
+      I am open to work and collaborate on any project as a data and software
+      engineer.
     </p>
+  </div>
+
+  <!-- "Let's connect" text and LinkedIn logo -->
+  <div class='flex flex-col gap-2 mt-4'>
+    <span class='text-sm font-semibold'>Let's connect</span>
+    <a href='https://www.linkedin.com/in/terieyenike' target='_blank'>
+      <Image
+        src={LinkedInBlack}
+        width={24}
+        height={24}
+        alt='LinkedIn logo'
+        class='dark:hidden'
+      />
+      <Image
+        src={LinkedInWhite}
+        width={24}
+        height={24}
+        alt='LinkedIn logo'
+        class='hidden dark:block'
+      />
+    </a>
   </div>
 </div>

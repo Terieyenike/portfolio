@@ -1,12 +1,23 @@
 ---
 const today = new Date();
+import { Image } from "astro:assets";
+import LinkedInBlack from "@src/assets/img/linkedin-mark.svg";
+import LinkedInWhite from "@src/assets/img/linkedin-mark-white.svg";
 ---
 
 <footer class='container mt-8'>
-  <div class='justify-center flex gap-4 py-8 prose dark:prose-invert text-sm'>
+  <div
+    class='justify-center flex gap-4 py-8 prose dark:prose-invert text-sm items-center'>
     <!-- <a href='#'>Newsletter</a> -->
-    <a href='https://buymeacoffee.com/teyenike1l' target='_blank'
-      >Buy me a Coffee</a
+    <a
+      href='https://www.buymeacoffee.com/teyenike1l'
+      target='_blank'
+      class='flex items-center'
+      ><img
+        src='https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png'
+        alt='Buy Me A Coffee'
+        class='h-10 w-auto'
+      /></a
     >
     <!-- <a href='#'>RSS</a> -->
   </div>
@@ -15,14 +26,13 @@ const today = new Date();
     <div
       class='md:flex text-sm text-zinc-500 dark:text-zinc-300 prose dark:prose-invert justify-between'>
       <div>Copyright © {today.getFullYear()} Teri.</div>
-      <!-- Please leave the credit if you dont make a significant changes to the template. It's just a nofollow link :)  -->
-      <!-- <div>
-        Template crafted with &hearts; by <a
+      <div>
+        Template created by <a
           href='https://devaradise.com'
           target='_blank'
           rel='nofollow noopener'>Syakir @ Devaradise</a
         >
-      </div> -->
+      </div>
     </div>
   </div>
 </footer>
