@@ -152,51 +152,9 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"blog": {
-"2022-07-08-first-post/index.md": {
-	id: "2022-07-08-first-post/index.md";
-  slug: "first-post";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".md"] };
-"2022-07-15-second-post/index.md": {
-	id: "2022-07-15-second-post/index.md";
-  slug: "second-post";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".md"] };
-"2022-07-2-third-post/index.md": {
-	id: "2022-07-2-third-post/index.md";
-  slug: "third-post";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".md"] };
-"2023-08-16-sagittis-purus/index.md": {
-	id: "2023-08-16-sagittis-purus/index.md";
-  slug: "sagittis-purus";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".md"] };
-"2023-08-17-lorem-ipsum/index.md": {
-	id: "2023-08-17-lorem-ipsum/index.md";
-  slug: "lorem-ipsum";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".md"] };
-"2024-08-17-using-mdx/index.mdx": {
-	id: "2024-08-17-using-mdx/index.mdx";
-  slug: "using-mdx";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
-"2024-08-18-markdown-style-guide/index.md": {
-	id: "2024-08-18-markdown-style-guide/index.md";
-  slug: "markdown-style-guide";
+"2025-03-03-aws/index.md": {
+	id: "2025-03-03-aws/index.md";
+  slug: "aws-with-amplify";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">
