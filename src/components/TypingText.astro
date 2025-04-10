@@ -1,0 +1,30 @@
+---
+interface Props {
+  text: string;
+  delay?: number;
+}
+
+const { text, delay = 100 } = Astro.props;
+---
+
+<div class="typing-container">
+  <span class="typing-text">{text}</span>
+</div>
+
+<style>
+  .typing-container {
+    display: inline-block;
+  }
+  
+  .typing-text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 2s steps(40, end);
+  }
+
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+</style> 
