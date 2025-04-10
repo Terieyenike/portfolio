@@ -154,7 +154,7 @@ declare module 'astro:content' {
 		"blog": {
 "2025-03-03-aws/index.md": {
 	id: "2025-03-03-aws/index.md";
-  slug: "aws-with-amplify";
+  slug: "cloud-101-guide-to-aws-concepts";
   body: string;
   collection: "blog";
   data: InferEntrySchema<"blog">
