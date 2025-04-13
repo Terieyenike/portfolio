@@ -7,7 +7,7 @@ import PostsByYear from "../../components/PostsByYear.astro";
 type BlogPost = CollectionEntry<"blog">;
 const title = "All posts";
 const description =
-  "Articles, guides, tutorials about SWE and DevOps.";
+  "Articles, guides, tutorials about SWE, Cloud and DevOps.";
 
 const posts = (await getCollection("blog")).sort(
   (a: BlogPost, b: BlogPost) =>
@@ -16,11 +16,31 @@ const posts = (await getCollection("blog")).sort(
 ---
 
 <BaseLayout title={title} description={description}>
-  <div class='container'>
-    <div class='mb-10'>
-      <h1 class='text-3xl font-bold mb-2'>{title}</h1>
-      <p class='text-zinc-700 dark:text-zinc-300 text-lg'>{description}</p>
+  <div class="container mx-auto px-4 py-8 max-w-4xl">
+    <div class="mb-12 text-center">
+      <h1 class="text-4xl font-bold mb-4 text-[#00a7a7]">{title}</h1>
+      <p class="text-zinc-700 dark:text-zinc-300 text-lg max-w-2xl mx-auto">{description}</p>
     </div>
-    <PostsByYear posts={posts} />
+    
+    <div class="bg-white dark:bg-zinc-900 rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl">
+      <PostsByYear posts={posts} />
+    </div>
   </div>
 </BaseLayout>
+
+<style>
+  .container {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

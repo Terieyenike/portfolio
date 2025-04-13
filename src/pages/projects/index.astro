@@ -9,11 +9,33 @@ import { projects } from './projects';
 	title="All My Projects"
 	description="All my project portfolio from real projects to open source projects."
 >
-  <div class='container'>
-    <div class="mb-10">
-      <h1 class="text-3xl font-bold mb-2">All My Projects</h1>
-      <p class="text-zinc-700 dark:text-zinc-300 text-lg">All my project portfolio from real projects to open source projects.</p>
+  <div class="container mx-auto px-4 py-12">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4 text-[#00a7a7]">All My Projects</h1>
+      <p class="text-zinc-600 dark:text-zinc-300 text-lg max-w-2xl mx-auto">
+        A collection of my projects, from real-world applications to open source contributions.
+      </p>
     </div>
-    <ProjectList projects={projects}/>
+
+    <div class="bg-white dark:bg-zinc-900 rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl">
+      <ProjectList projects={projects}/>
+    </div>
   </div>
 </BaseLayout>
+
+<style>
+  .container {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

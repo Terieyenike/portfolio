@@ -46,37 +46,150 @@ for (const post of allPosts) {
 		}
 	}
 }
-const groupedTags  = groupTagsByFirstLetter(Object.values(mappedTags))
+const groupedTags = groupTagsByFirstLetter(Object.values(mappedTags));
 const title = `All Tags`;
-const description = 'Post tags: concise keywords categorizing content for easy navigation and improved searchability'
+const description = 'Browse all blog post tags to find content by topic';
 ---
 
 <BaseLayout title={title} description={description}>
-	<div class='container'>
-    <div class="mb-10">
-      <h1 class="text-3xl font-bold mb-2">{title}</h1>
-      <p class="text-zinc-700 dark:text-zinc-300 text-lg">{description}</p>
+	<div class="container mx-auto px-4 py-12">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4 text-[#00a7a7]">{title}</h1>
+      <p class="text-zinc-600 dark:text-zinc-300 text-lg max-w-2xl mx-auto">
+        {description}
+      </p>
     </div>
-    <div>
-      {groupedTags.map(({ letter, tags }) => (
-        <div class="flex gap-2 border-b dark:border-b-zinc-700 py-3 mb-5 capitalize">
-          <h2 class="text-2xl font-bold text-zinc-800 dark:text-zinc-200 w-7 shrink-0">{letter}</h2>
-          <div class='flex gap-2 flex-wrap'>
-            {
-              (tags || [] )?.map((tag: Tag) => (
+
+    <div class="bg-white dark:bg-zinc-900 rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl">
+      <!-- Tag Search -->
+      <div class="mb-8 relative">
+        <input
+          type="text"
+          id="tagSearch"
+          placeholder="Search tags..."
+          class="w-full px-4 py-2 rounded-lg border border-zinc-200 dark:border-zinc-700 
+                 bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200
+                 focus:outline-none focus:ring-2 focus:ring-[#00a7a7] focus:border-transparent
+                 transition-all duration-300 pr-10"
+        />
+        <button
+          id="clearSearch"
+          class="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 
+                 dark:hover:text-zinc-200 transition-colors duration-300 hidden"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" 
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+               stroke-linejoin="round" class="lucide lucide-x">
+            <path d="M18 6 6 18"/>
+            <path d="m6 6 12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- No Results Message -->
+      <div id="noResults" class="hidden text-center py-8">
+        <p class="text-zinc-600 dark:text-zinc-400">
+          No tags found matching your search. Try a different term.
+        </p>
+      </div>
+
+      <!-- Tags List -->
+      <div id="tagsList" class="space-y-6">
+        {groupedTags.map(({ letter, tags }) => (
+          <div class="flex gap-4 py-4 border-b border-zinc-200 dark:border-zinc-700 last:border-b-0">
+            <h2 class="text-2xl font-bold text-[#00a7a7] w-8 shrink-0">{letter}</h2>
+            <div class="flex flex-wrap gap-2">
+              {tags.map((tag: Tag) => (
                 <a
-                  class='border border-zinc-300 dark:border-zinc-700 rounded-2xl
-                    text-sm text-zinc-700 dark:text-zinc-300 no-underline px-3 py-1
-                    transition-all duration-700
-                  hover:border-zinc-700 dark:hover:border-zinc-300'
-                  href={`/tags/${slugify(tag.value)}/`}>
-                  {tag.label} ({tag.postCount})
+                  href={`/tags/${slugify(tag.value)}/`}
+                  class="group flex items-center gap-2 border border-zinc-200 dark:border-zinc-700 
+                         rounded-full px-4 py-2 text-sm text-zinc-600 dark:text-zinc-400
+                         hover:bg-[#00a7a7] hover:border-[#00a7a7] hover:text-white
+                         dark:hover:text-white transition-all duration-300"
+                >
+                  <span>{tag.label}</span>
+                  <span class="text-xs bg-zinc-100 dark:bg-zinc-800 group-hover:bg-white/20 
+                              rounded-full px-2 py-0.5 transition-colors duration-300">
+                    {tag.postCount}
+                  </span>
                 </a>
-              ))
-            }
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
 	</div>
 </BaseLayout>
+
+<script>
+  // Tag search functionality
+  const tagSearch = document.getElementById('tagSearch');
+  const clearSearch = document.getElementById('clearSearch');
+  const tagLinks = document.querySelectorAll('a[href^="/tags/"]');
+  const noResults = document.getElementById('noResults');
+  const tagsList = document.getElementById('tagsList');
+
+  function updateSearchUI(searchTerm: string) {
+    let hasVisibleTags = false;
+    
+    tagLinks.forEach(link => {
+      const tagText = link.textContent?.toLowerCase() || '';
+      const parentDiv = link.closest('div.flex.flex-wrap');
+      const letterSection = parentDiv?.closest('div.flex.gap-4');
+      
+      if (tagText.includes(searchTerm)) {
+        link.classList.remove('hidden');
+        letterSection?.classList.remove('hidden');
+        hasVisibleTags = true;
+      } else {
+        link.classList.add('hidden');
+        // Hide the letter section if all tags are hidden
+        const visibleTags = parentDiv?.querySelectorAll('a:not(.hidden)');
+        if (visibleTags?.length === 0) {
+          letterSection?.classList.add('hidden');
+        }
+      }
+    });
+
+    // Show/hide clear button
+    if (clearSearch) {
+      clearSearch.classList.toggle('hidden', !searchTerm);
+    }
+
+    // Show/hide no results message
+    if (noResults && tagsList) {
+      noResults.classList.toggle('hidden', hasVisibleTags);
+      tagsList.classList.toggle('hidden', !hasVisibleTags);
+    }
+  }
+
+  tagSearch?.addEventListener('input', (e) => {
+    const searchTerm = (e.target as HTMLInputElement).value.toLowerCase();
+    updateSearchUI(searchTerm);
+  });
+
+  clearSearch?.addEventListener('click', () => {
+    if (tagSearch) {
+      (tagSearch as HTMLInputElement).value = '';
+      updateSearchUI('');
+    }
+  });
+</script>
+
+<style>
+  .container {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

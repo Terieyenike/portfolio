@@ -28,13 +28,42 @@ const groupedPosts = groupPostsByYear(posts);
 
 ---
 
-{groupedPosts.map(({ year, posts }) => (
-  <div class="mb-8">
-    <h2 class="text-2xl font-bold mb-4">{year}</h2>
-    <div>
-      {posts.map((post: BlogPost, i: number) => (
-        <PostItem post={post} />
-      ))}
+<div class="space-y-8">
+  {groupedPosts.map(({ year, posts }, index) => (
+    <div class="group">
+      <h2 class="text-2xl font-bold mb-4 text-[#00a7a7] dark:text-[#00a7a7] flex items-center">
+        <span class="w-2 h-2 bg-[#00a7a7] rounded-full mr-2 group-hover:w-4 transition-all duration-300"></span>
+        {year}
+      </h2>
+      <div class="space-y-2">
+        {posts.map((post: BlogPost, i: number) => (
+          <PostItem post={post} />
+        ))}
+      </div>
     </div>
-  </div>
-))}
+  ))}
+</div>
+
+<style>
+  .group {
+    animation: slideIn 0.5s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .group:nth-child(1) { animation-delay: 0.1s; }
+  .group:nth-child(2) { animation-delay: 0.2s; }
+  .group:nth-child(3) { animation-delay: 0.3s; }
+  .group:nth-child(4) { animation-delay: 0.4s; }
+  .group:nth-child(5) { animation-delay: 0.5s; }
+</style>

@@ -6,14 +6,88 @@ import NotFoundImage from '@src/assets/img/404-not-found.png';
 ---
 
 <BaseLayout title={'404 Page Not Found - ' + SITE_TITLE} description={SITE_DESCRIPTION + ' 404 Page Not Found'}>
-	<div class='container text-center'>
-		<Image width={300} class='my-8 mx-auto' src={NotFoundImage} alt='404 Page Not Found' />
-		<div class='p-4'>
-			<h1 class='text-5xl font-bold my-4'>Page Not Found</h1>
-			<p class='text-xl'>
-				The page you're looking for is either moved or no longer exists. <br />
-				Please contact the site owner that linked you to the original URL and let them know their link is broken.
-			</p>
+	<div class="min-h-[80vh] flex flex-col items-center justify-center px-4">
+		<div class="max-w-2xl w-full text-center space-y-8">
+			<div class="relative">
+				<Image 
+					width={400} 
+					class="mx-auto transform hover:scale-105 transition-transform duration-300" 
+					src={NotFoundImage} 
+					alt="404 Page Not Found" 
+				/>
+			</div>
+			
+			<div class="space-y-4">
+				<h1 class="text-6xl font-bold bg-gradient-to-r from-[#00a7a7] to-[#00c7c7] bg-clip-text text-transparent">
+					Oops! Page Not Found
+				</h1>
+				
+				<p class="text-xl text-gray-600 dark:text-gray-300">
+					The page you're looking for seems to have vanished into the digital void.
+				</p>
+				
+				<div class="pt-6 space-y-4">
+					<p class="text-lg text-gray-500 dark:text-gray-400">
+						Don't worry! Here's what you can do:
+					</p>
+					<ul class="space-y-2 text-left max-w-md mx-auto">
+						<li class="flex items-center gap-2">
+							<svg class="w-5 h-5 text-[#00a7a7]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+							</svg>
+							Double-check the URL for typos
+						</li>
+						<li class="flex items-center gap-2">
+							<svg class="w-5 h-5 text-[#00a7a7]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+							</svg>
+							Go back to the previous page
+						</li>
+						<li class="flex items-center gap-2">
+							<svg class="w-5 h-5 text-[#00a7a7]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+							</svg>
+							Visit our homepage
+						</li>
+					</ul>
+				</div>
+				
+				<div class="pt-8">
+					<a 
+						href="/" 
+						class="inline-block px-8 py-3 text-lg font-semibold text-white bg-[#00a7a7] hover:bg-[#00c7c7] rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-[#00a7a7]/20"
+					>
+						Return Home
+					</a>
+				</div>
+			</div>
 		</div>
 	</div>
 </BaseLayout>
+
+<style>
+	/* Add smooth scrolling behavior */
+	html {
+		scroll-behavior: smooth;
+	}
+	
+	/* Add subtle animation to the 404 image */
+	@keyframes float {
+		0% { transform: translateY(0px); }
+		50% { transform: translateY(-10px); }
+		100% { transform: translateY(0px); }
+	}
+	
+	img {
+		animation: float 3s ease-in-out infinite;
+	}
+
+	/* Add custom glow effect for the brand color */
+	.bg-[#00a7a7] {
+		box-shadow: 0 0 15px rgba(0, 167, 167, 0.3);
+	}
+
+	.hover\:bg-[#00c7c7]:hover {
+		box-shadow: 0 0 20px rgba(0, 199, 199, 0.4);
+	}
+</style>

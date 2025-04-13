@@ -3,6 +3,10 @@ import Author from "../Author.astro";
 import { Image } from "astro:assets";
 import LinkedInBlack from "@src/assets/img/linkedin-mark.svg";
 import LinkedInWhite from "@src/assets/img/linkedin-mark-white.svg";
+import GitHubBlack from "@src/assets/img/github-mark.svg";
+import GitHubWhite from "@src/assets/img/github-mark-white.svg";
+// import TwitterBlack from "@src/assets/img/twitter-mark.svg";
+// import TwitterWhite from "@src/assets/img/twitter-mark-white.svg";
 ---
 
 <div class='about-the-author py-4 border-b'>
@@ -12,29 +16,82 @@ import LinkedInWhite from "@src/assets/img/linkedin-mark-white.svg";
     <p class='mb-3'>
       Teri is a software and devops engineer. This is my digital garden. 🌱
     </p>
-    <p>
+    <p class='mb-3'>
       Open to collaborations and new opportunities in developer relations, writing, and open-source.
     </p>
   </div>
 
-  <!-- "Let's connect" text and LinkedIn logo -->
+  <!-- Social Links -->
   <div class='flex flex-col gap-2 mt-4'>
     <span class='text-sm font-semibold'>Let's connect</span>
-    <a href='https://www.linkedin.com/in/terieyenike' target='_blank'>
-      <Image
-        src={LinkedInBlack}
-        width={24}
-        height={24}
-        alt='LinkedIn logo'
-        class='dark:hidden'
-      />
-      <Image
-        src={LinkedInWhite}
-        width={24}
-        height={24}
-        alt='LinkedIn logo'
-        class='hidden dark:block'
-      />
-    </a>
+    <div class='flex gap-4'>
+      <a href='https://www.linkedin.com/in/terieyenike' target='_blank' class='hover:opacity-80 transition-opacity'>
+        <Image
+          src={LinkedInBlack}
+          width={24}
+          height={24}
+          alt='LinkedIn logo'
+          class='dark:hidden'
+        />
+        <Image
+          src={LinkedInWhite}
+          width={24}
+          height={24}
+          alt='LinkedIn logo'
+          class='hidden dark:block'
+        />
+      </a>
+      <a href='https://github.com/terieyenike' target='_blank' class='hover:opacity-80 transition-opacity'>
+        <Image
+          src={GitHubBlack}
+          width={24}
+          height={24}
+          alt='GitHub logo'
+          class='dark:hidden'
+        />
+        <Image
+          src={GitHubWhite}
+          width={24}
+          height={24}
+          alt='GitHub logo'
+          class='hidden dark:block'
+        />
+      </a>
+      <!-- <a href='https://twitter.com/terieyenike' target='_blank' class='hover:opacity-80 transition-opacity'>
+        <Image
+          src={TwitterBlack}
+          width={24}
+          height={24}
+          alt='Twitter logo'
+          class='dark:hidden'
+        />
+        <Image
+          src={TwitterWhite}
+          width={24}
+          height={24}
+          alt='Twitter logo'
+          class='hidden dark:block'
+        />
+      </a> -->
+    </div>
   </div>
+
+  <!-- Newsletter Signup -->
+  <!-- <div class='newsletter-signup mt-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg'>
+    <h4 class='text-sm font-semibold mb-2'>Stay Updated</h4>
+    <p class='text-xs mb-3'>Get notified about new articles and updates</p>
+    <form class='flex flex-col gap-2'>
+      <input
+        type='email'
+        placeholder='Your email'
+        class='w-full px-3 py-2 text-sm rounded border dark:bg-gray-700 dark:border-gray-600'
+      />
+      <button
+        type='submit'
+        class='w-full px-4 py-2 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 transition-colors'
+      >
+        Subscribe
+      </button>
+    </form>
+  </div> -->
 </div>

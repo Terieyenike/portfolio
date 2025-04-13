@@ -7,28 +7,30 @@ type BlogPost = CollectionEntry<"blog">;
 const { post }: Record<string, any> | { post: BlogPost } = Astro.props;
 ---
 
-<div
-  class='flex flex-col sm:flex-row gap-2 sm:items-center border-b py-2 mb-1 capitalize dark:border-b-zinc-700'>
-  <div class='text-zinc-700 text-sm w-24 dark:text-zinc-300 shrink-0'>
+<div class="flex flex-col sm:flex-row gap-3 sm:items-center p-3 rounded-lg transition-all duration-300 hover:bg-zinc-50 dark:hover:bg-zinc-800">
+  <div class="text-zinc-600 text-sm w-24 dark:text-zinc-400 shrink-0">
     <FormattedDate date={post.data.pubDate} />
   </div>
-  <h3 class='font-medium grow'>
-    <a href={`/${post.slug}/`}>
+  <h3 class="font-medium grow group">
+    <a 
+      href={`/${post.slug}/`}
+      class="text-zinc-800 dark:text-zinc-200 hover:text-[#00a7a7] dark:hover:text-[#00a7a7] transition-colors duration-300"
+    >
       {post.data.title}
     </a>
   </h3>
-  <div class='flex gap-2 shrink-0'>
-    {
-      (post.data.tags || [])?.map((tag: string) => (
-        <a
-          class='border border-zinc-300 dark:border-zinc-700 rounded-2xl
-          text-sm text-zinc-700 dark:text-zinc-300 no-underline px-2 py-0.5
-          transition-all duration-700
-          hover:border-zinc-700 dark:hover:border-zinc-300'
-          href={`/tags/${slugify(tag)}`}>
-          {tag}
-        </a>
-      ))
-    }
+  <div class="flex flex-wrap gap-2 shrink-0">
+    {(post.data.tags || [])?.map((tag: string) => (
+      <a
+        class="border border-zinc-200 dark:border-zinc-700 rounded-full
+        text-xs text-zinc-600 dark:text-zinc-400 no-underline px-3 py-1
+        transition-all duration-300
+        hover:bg-[#00a7a7] hover:border-[#00a7a7]
+        hover:text-white dark:hover:text-white"
+        href={`/tags/${slugify(tag)}`}
+      >
+        {tag}
+      </a>
+    ))}
   </div>
 </div>
