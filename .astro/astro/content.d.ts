@@ -159,13 +159,6 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
-"2025-04-13-iam/index.md": {
-	id: "2025-04-13-iam/index.md";
-  slug: "iam-aws-identity-access-management";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".md"] };
 };
 
 	};
