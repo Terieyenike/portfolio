@@ -6,7 +6,7 @@ import { Image } from "astro:assets";
 import FormattedDate from "../components/FormattedDate.astro";
 import AboutTheAuthor from "../components/widgets/AboutTheAuthor.astro";
 import TableOfContent from "../components/widgets/TableOfContent.astro";
-import { slugify } from "../utils";
+import { slugify, calculateReadingTime } from "../utils";
 import { loadEnv } from "vite";
 
 const { GISCUS_REPO, GISCUS_REPO_ID, GISCUS_CATEGORY, GISCUS_CATEGORY_ID } =
@@ -33,65 +33,101 @@ const {
   },
 } = post;
 const { Content, headings } = await post.render();
+const readingTime = calculateReadingTime(post.body);
 ---
 
 <BaseLayout
   title={seoTitle || title}
   description={description}
-  image={coverImage?.src || undefined}>
-  <div class='container lg:flex gap-10'>
-    <main class='overflow-hidden grow'>
+  image={coverImage?.src || undefined}
+>
+  <div class="container lg:flex gap-10">
+    <main class="overflow-hidden grow">
       <article>
         <Prose>
           <div>
-            <h1 class='!my-1 leading-tight'>{title}</h1>
+            <h1 class="!my-1 leading-tight">{title}</h1>
             <div
-              class='text-sm font-[500] mt-2 sm:mt-0 py-1 md:text-right flex flex-col sm:flex-row gap-3 sm:justify-between sm:items-center'>
+              class="text-sm font-[500] mt-2 sm:mt-0 py-1 md:text-right flex flex-col sm:flex-row gap-3 sm:justify-between sm:items-center"
+            >
               {
                 (
-                  <div class='flex gap-2'>
+                  <div class="flex gap-2">
                     {(tags || [])?.map((tag: string) => (
                       <a
-                        class='border border-zinc-300 dark:border-zinc-700 rounded-2xl
+                        class="border border-zinc-300 dark:border-zinc-700 rounded-2xl
                           text-sm text-zinc-700 dark:text-zinc-300 no-underline px-2 py-0.5
                           transition-all duration-700
-                        hover:border-zinc-700 dark:hover:border-zinc-300'
-                        href={`/tags/${slugify(tag)}`}>
+                        hover:border-zinc-700 dark:hover:border-zinc-300"
+                        href={`/tags/${slugify(tag)}`}
+                      >
                         {tag}
                       </a>
                     ))}
                   </div>
                 )
               }
-              <div>
-                {
-                  updatedDate ? (
-                    <>
-                      Updated on{" "}
-                      <strong>
-                        <FormattedDate date={updatedDate} />
-                      </strong>
-                    </>
-                  ) : (
-                    <>
-                      Published on{" "}
-                      <strong>
-                        <FormattedDate date={pubDate} />
-                      </strong>
-                    </>
-                  )
-                }
+              <div class="flex flex-col sm:flex-row gap-4 sm:items-center">
+                <div class="flex flex-wrap items-center gap-3">
+                  <div
+                    class="flex items-center gap-1.5 px-2.5 py-1 bg-zinc-100 dark:bg-zinc-800 rounded-lg"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="lucide lucide-clock text-[#00a7a7]"
+                    >
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span
+                      class="text-xs sm:text-sm font-medium text-zinc-700 dark:text-zinc-300"
+                      >{readingTime} min read</span
+                    >
+                  </div>
+
+                  <div class="flex items-center gap-1.5 text-xs sm:text-sm">
+                    <span class="text-zinc-600 dark:text-zinc-400"
+                      >Posted on</span
+                    >
+                    <span class="font-medium text-zinc-700 dark:text-zinc-300">
+                      <FormattedDate date={pubDate} />
+                    </span>
+                    {
+                      updatedDate && (
+                        <>
+                          <span class="text-zinc-400 dark:text-zinc-600">
+                            •
+                          </span>
+                          <span class="text-zinc-600 dark:text-zinc-400">
+                            Edited on
+                          </span>
+                          <span class="font-medium text-zinc-700 dark:text-zinc-300">
+                            <FormattedDate date={updatedDate} />
+                          </span>
+                        </>
+                      )
+                    }
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class='py-3 overflow-hidden'>
+          <div class="py-3 overflow-hidden">
             {
               coverImage && (
                 <Image
-                  class='rounded-3xl w-full m-0 lg:mb-2'
+                  class="rounded-3xl w-full m-0 lg:mb-2"
                   src={coverImage}
                   alt={title}
-                  loading='eager'
+                  loading="eager"
                 />
               )
             }
@@ -101,29 +137,29 @@ const { Content, headings } = await post.render();
         {
           GISCUS_REPO && (
             <script
-              id='giscus-script'
+              id="giscus-script"
               is:inline
-              src='https://giscus.app/client.js'
+              src="https://giscus.app/client.js"
               data-repo={GISCUS_REPO}
               data-repo-id={GISCUS_REPO_ID}
               data-category={GISCUS_CATEGORY}
               data-category-id={GISCUS_CATEGORY_ID}
-              data-mapping='pathname'
-              data-strict='0'
-              data-reactions-enabled='1'
-              data-emit-metadata='0'
-              data-input-position='bottom'
-              data-theme='preferred_color_scheme'
-              data-lang='en'
-              crossorigin='anonymous'
+              data-mapping="pathname"
+              data-strict="0"
+              data-reactions-enabled="1"
+              data-emit-metadata="0"
+              data-input-position="bottom"
+              data-theme="preferred_color_scheme"
+              data-lang="en"
+              crossorigin="anonymous"
               async
             />
           )
         }
       </article>
     </main>
-    <div class='shrink-0 w-[280px] hidden md:block'>
-      <div class='mb-4'>
+    <div class="shrink-0 w-[280px] hidden md:block">
+      <div class="mb-4">
         <AboutTheAuthor />
       </div>
       <TableOfContent headings={headings} />
@@ -131,17 +167,12 @@ const { Content, headings } = await post.render();
   </div>
 </BaseLayout>
 
-<script async is:inline>
-  const anchors = document.querySelectorAll(".prose h2[id], .prose h3[id]");
-  const links = document.querySelectorAll("nav.toc ul li a");
-
+<script>
   function observeToc() {
-    if (
-      typeof anchors != "undefined" &&
-      anchors != null &&
-      typeof links != "undefined" &&
-      links != null
-    ) {
+    const anchors = document.querySelectorAll(".prose h2[id], .prose h3[id]");
+    const links = document.querySelectorAll("nav.toc ul li a");
+    
+    if (anchors && links) {
       let scrollTop = window.scrollY;
 
       // highlight the last scrolled-to: set everything inactive first
@@ -155,7 +186,8 @@ const { Content, headings } = await post.render();
       }
       // then iterate backwards, on the first match highlight it and break
       for (var i = anchors.length - 1; i >= 0; i--) {
-        if (scrollTop > anchors[i].offsetTop - 80) {
+        const anchor = anchors[i] as HTMLElement;
+        if (scrollTop > anchor.offsetTop - 80) {
           links[i].classList.remove("border-transparent", "text-inherit");
           links[i].classList.add(
             "bg-[var(--background-surface-color)]",
@@ -168,10 +200,6 @@ const { Content, headings } = await post.render();
     }
   }
 
-  window.addEventListener("scroll", (event) => {
-    observeToc(event);
-  });
-  window.addEventListener("hashchange", (event) => {
-    observeToc(event);
-  });
+  window.addEventListener("scroll", observeToc);
+  window.addEventListener("hashchange", observeToc);
 </script>

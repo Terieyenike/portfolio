@@ -38,3 +38,9 @@ export const getRepositoryDetails = async (repositoryFullname: string) => {
 	const response = await repoDetails.json();
 	return response;
 };
+
+export function calculateReadingTime(content: string): number {
+	const wordsPerMinute = 200; // Average reading speed
+	const wordCount = content.trim().split(/\s+/).length;
+	return Math.ceil(wordCount / wordsPerMinute);
+}
