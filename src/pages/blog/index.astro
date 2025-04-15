@@ -18,11 +18,11 @@ const posts = (await getCollection("blog")).sort(
 <BaseLayout title={title} description={description}>
   <div class="container mx-auto px-4 py-8 max-w-4xl">
     <div class="mb-12 text-center">
-      <h1 class="text-4xl font-bold mb-4 text-[#00a7a7]">{title}</h1>
-      <p class="text-zinc-700 dark:text-zinc-300 text-lg max-w-2xl mx-auto">{description}</p>
+      <h1 class="text-4xl font-bold mb-4 text-[#005353] dark:text-[#00E0E0]">{title}</h1>
+      <p class="text-zinc-800 dark:text-zinc-300 text-lg max-w-2xl mx-auto">{description}</p>
     </div>
     
-    <div class="bg-white dark:bg-zinc-900 rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl">
+    <div class="bg-white dark:bg-[#003939] rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl">
       <PostsByYear posts={posts} />
     </div>
   </div>

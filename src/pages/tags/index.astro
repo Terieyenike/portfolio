@@ -54,8 +54,8 @@ const description = 'Browse all blog post tags to find content by topic';
 <BaseLayout title={title} description={description}>
 	<div class="container mx-auto px-4 py-12">
     <div class="text-center mb-12">
-      <h1 class="text-4xl font-bold mb-4 text-[#00a7a7]">{title}</h1>
-      <p class="text-zinc-600 dark:text-zinc-300 text-lg max-w-2xl mx-auto">
+      <h1 class="text-4xl font-bold mb-4 text-[#005353] dark:text-[#00E0E0]">{title}</h1>
+      <p class="text-zinc-800 dark:text-zinc-300 text-lg max-w-2xl mx-auto">
         {description}
       </p>
     </div>
@@ -69,7 +69,7 @@ const description = 'Browse all blog post tags to find content by topic';
           placeholder="Search tags..."
           class="w-full px-4 py-2 rounded-lg border border-zinc-200 dark:border-zinc-700 
                  bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200
-                 focus:outline-none focus:ring-2 focus:ring-[#00a7a7] focus:border-transparent
+                 focus:outline-none focus:ring-2 focus:ring-[#005353] dark:focus:ring-[#00E0E0] focus:border-transparent
                  transition-all duration-300 pr-10"
         />
         <button
@@ -97,14 +97,14 @@ const description = 'Browse all blog post tags to find content by topic';
       <div id="tagsList" class="space-y-6">
         {groupedTags.map(({ letter, tags }) => (
           <div class="flex gap-4 py-4 border-b border-zinc-200 dark:border-zinc-700 last:border-b-0">
-            <h2 class="text-2xl font-bold text-[#00a7a7] w-8 shrink-0">{letter}</h2>
+            <h2 class="text-2xl font-bold text-[#005353] dark:text-[#00E0E0] w-8 shrink-0">{letter}</h2>
             <div class="flex flex-wrap gap-2">
               {tags.map((tag: Tag) => (
                 <a
                   href={`/tags/${slugify(tag.value)}/`}
                   class="group flex items-center gap-2 border border-zinc-200 dark:border-zinc-700 
-                         rounded-full px-4 py-2 text-sm text-zinc-600 dark:text-zinc-400
-                         hover:bg-[#00a7a7] hover:border-[#00a7a7] hover:text-white
+                         rounded-full px-4 py-2 text-sm text-zinc-800 dark:text-zinc-300
+                         hover:bg-[#005353] dark:hover:bg-[#00D0D0] hover:border-[#005353] dark:hover:border-[#00D0D0] hover:text-white
                          dark:hover:text-white transition-all duration-300"
                 >
                   <span>{tag.label}</span>
