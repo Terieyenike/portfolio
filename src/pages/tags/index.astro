@@ -103,13 +103,14 @@ const description = 'Browse all blog post tags to find content by topic';
                 <a
                   href={`/tags/${slugify(tag.value)}/`}
                   class="group flex items-center gap-2 border border-zinc-200 dark:border-zinc-700 
-                         rounded-full px-4 py-2 text-sm text-zinc-800 dark:text-zinc-300
-                         hover:bg-[#005353] dark:hover:bg-[#00D0D0] hover:border-[#005353] dark:hover:border-[#00D0D0] hover:text-white
-                         dark:hover:text-white transition-all duration-300"
+                         rounded-full px-4 py-2 text-sm text-zinc-800 dark:text-zinc-200
+                         hover:bg-[#005353] dark:hover:bg-[#00E0E0] hover:border-[#005353] dark:hover:border-[#00E0E0] 
+                         hover:text-white dark:hover:text-zinc-900 transition-all duration-300"
                 >
                   <span>{tag.label}</span>
                   <span class="text-xs bg-zinc-100 dark:bg-zinc-800 group-hover:bg-white/20 
-                              rounded-full px-2 py-0.5 transition-colors duration-300">
+                              rounded-full px-2 py-0.5 transition-colors duration-300
+                              text-zinc-700 dark:text-zinc-200 group-hover:text-zinc-900">
                     {tag.postCount}
                   </span>
                 </a>

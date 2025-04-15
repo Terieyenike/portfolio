@@ -23,10 +23,10 @@ const { post }: Record<string, any> | { post: BlogPost } = Astro.props;
     {(post.data.tags || [])?.map((tag: string) => (
       <a
         class="border border-zinc-200 dark:border-zinc-700 rounded-full
-        text-xs text-zinc-600 dark:text-zinc-400 no-underline px-3 py-1
+        text-xs text-zinc-600 dark:text-zinc-200 no-underline px-3 py-1
         transition-all duration-300
-        hover:bg-[#00a7a7] hover:border-[#00a7a7]
-        hover:text-white dark:hover:text-white"
+        hover:bg-[#005353] dark:hover:bg-[#00E0E0] hover:border-[#005353] dark:hover:border-[#00E0E0]
+        hover:text-white dark:hover:text-zinc-900"
         href={`/tags/${slugify(tag)}`}
       >
         {tag}

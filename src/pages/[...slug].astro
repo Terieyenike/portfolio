@@ -56,9 +56,10 @@ const readingTime = calculateReadingTime(post.body);
                     {(tags || [])?.map((tag: string) => (
                       <a
                         class="border border-zinc-300 dark:border-zinc-700 rounded-2xl
-                          text-sm text-zinc-700 dark:text-zinc-300 no-underline px-2 py-0.5
+                          text-sm text-zinc-700 dark:text-zinc-200 no-underline px-2 py-0.5
                           transition-all duration-700
-                        hover:border-zinc-700 dark:hover:border-zinc-300"
+                          hover:bg-[#005353] dark:hover:bg-[#00E0E0] hover:border-[#005353] dark:hover:border-[#00E0E0]
+                          hover:text-white dark:hover:text-zinc-900"
                         href={`/tags/${slugify(tag)}`}
                       >
                         {tag}
