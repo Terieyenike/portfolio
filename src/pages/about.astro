@@ -4,25 +4,40 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Teri from "@src/assets/img/profile.png";
 ---
 
-<BaseLayout title="About Me | Teri Eyenike" description="Software Engineer & Technical Writer">
+<BaseLayout
+  title="About Me | Teri Eyenike"
+  description="Software Engineer & Technical Writer"
+>
   <div class="container mx-auto px-4">
     <main class="prose dark:prose-invert max-w-none">
       <article>
         <!-- Hero Section -->
-        <section class="min-h-[80vh] flex flex-col md:flex-row items-center gap-8 md:gap-12 mb-16">
+        <section
+          class="min-h-[60vh] md:min-h-[70vh] flex flex-col md:flex-row items-center gap-6 md:gap-12 mb-6 md:mb-8"
+        >
           <div class="md:w-1/2 space-y-6 md:space-y-8">
             <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold">
               <span class="text-[#00a7a7]">I'm so glad to meet you.</span>
             </h1>
             <div class="space-y-4 md:space-y-6 text-base md:text-lg">
               <p class="text-gray-700 dark:text-gray-300">
-                I'm Teri and enjoy solving technical challenges and working with databases, PostgreSQL to be precise. Beyond coding, I love sharing knowledge through technical writing, whether it's breaking down complex topics, creating tutorials, or offering practical tips for developers and creating video content when possible.
+                I'm Teri and enjoy solving technical challenges and working with
+                databases, PostgreSQL to be precise. Beyond coding, I love
+                sharing knowledge through technical writing, whether it's
+                breaking down complex topics, creating tutorials, or offering
+                practical tips for developers and creating video content when
+                possible.
               </p>
               <p class="text-gray-700 dark:text-gray-300">
-                Here, you'll find content on software development, DevOps, SQL databases, and tech career insights. My goal is to make learning easier and help others grow in their careers.
+                Here, you'll find content on software development, DevOps, SQL
+                databases, and tech career insights. My goal is to make learning
+                easier and help others grow in their careers.
               </p>
               <div class="flex gap-4">
-                <a href="mailto:developedbyteri@gmail.com" class="px-6 py-3 bg-[#00a7a7] text-white rounded-lg hover:bg-[#008787] transition-all hover:scale-105">
+                <a
+                  href="mailto:developedbyteri@gmail.com"
+                  class="px-6 py-3 bg-[#00a7a7] text-white rounded-lg hover:bg-[#008787] transition-all hover:scale-105"
+                >
                   Get in Touch
                 </a>
               </div>
@@ -30,7 +45,10 @@ import Teri from "@src/assets/img/profile.png";
           </div>
           <div class="md:w-1/2 mt-8 md:mt-0">
             <div class="relative">
-              <div class="absolute -inset-4 bg-[#00a7a7] rounded-2xl blur-xl opacity-10"></div>
+              <div
+                class="absolute -inset-4 bg-[#00a7a7] rounded-2xl blur-xl opacity-10"
+              >
+              </div>
               <Image
                 src={Teri}
                 alt="Teri Eyenike"
@@ -41,20 +59,178 @@ import Teri from "@src/assets/img/profile.png";
           </div>
         </section>
 
+        <!-- Tech Stack Section -->
+        <section class="mb-10 md:mb-12">
+          <h2
+            class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center text-[#00a7a7]"
+          >
+            Technologies I Work With
+          </h2>
+
+          <div class="relative overflow-hidden mx-auto max-w-6xl">
+            <div class="scroller">
+              <div class="scroller-inner">
+                <!-- First set of logos -->
+                <div
+                  class="flex items-center justify-center min-w-[90px] md:min-w-[100px] px-2 md:px-3"
+                >
+                  <img
+                    src="https://www.python.org/static/community_logos/python-logo-generic.svg"
+                    alt="Python"
+                    class="h-6 md:h-7 object-contain opacity-70 hover:opacity-100 transition-all duration-300"
+                  />
+                </div>
+                <div
+                  class="flex items-center justify-center min-w-[90px] md:min-w-[100px] px-2 md:px-3"
+                >
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png"
+                    alt="JavaScript"
+                    class="h-6 md:h-7 object-contain opacity-70 hover:opacity-100 transition-all duration-300"
+                  />
+                </div>
+                <div
+                  class="flex items-center justify-center min-w-[90px] md:min-w-[100px] px-2 md:px-3"
+                >
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg"
+                    alt="AWS"
+                    class="h-6 md:h-7 object-contain opacity-70 hover:opacity-100 transition-all duration-300"
+                  />
+                </div>
+                <div
+                  class="flex items-center justify-center min-w-[90px] md:min-w-[100px] px-2 md:px-3"
+                >
+                  <img
+                    src="https://git-scm.com/images/logos/downloads/Git-Logo-2Color.svg"
+                    alt="Git"
+                    class="h-6 md:h-7 object-contain opacity-70 hover:opacity-100 transition-all duration-300"
+                  />
+                </div>
+                <div
+                  class="flex items-center justify-center min-w-[90px] md:min-w-[100px] px-2 md:px-3"
+                >
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg"
+                    alt="Node.js"
+                    class="h-6 md:h-7 object-contain opacity-70 hover:opacity-100 transition-all duration-300"
+                  />
+                </div>
+                <div
+                  class="flex items-center justify-center min-w-[90px] md:min-w-[100px] px-2 md:px-3"
+                >
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg"
+                    alt="PostgreSQL"
+                    class="h-6 md:h-7 object-contain opacity-70 hover:opacity-100 transition-all duration-300"
+                  />
+                </div>
+                <div
+                  class="flex items-center justify-center min-w-[90px] md:min-w-[100px] px-2 md:px-3"
+                >
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg"
+                    alt="OpenAI"
+                    class="h-6 md:h-7 object-contain opacity-70 hover:opacity-100 transition-all duration-300"
+                  />
+                </div>
+                <!-- Duplicate set for seamless loop -->
+                <div
+                  class="flex items-center justify-center min-w-[90px] md:min-w-[100px] px-2 md:px-3"
+                >
+                  <img
+                    src="https://www.python.org/static/community_logos/python-logo-generic.svg"
+                    alt="Python"
+                    class="h-6 md:h-7 object-contain opacity-70 hover:opacity-100 transition-all duration-300"
+                  />
+                </div>
+                <div
+                  class="flex items-center justify-center min-w-[90px] md:min-w-[100px] px-2 md:px-3"
+                >
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png"
+                    alt="JavaScript"
+                    class="h-6 md:h-7 object-contain opacity-70 hover:opacity-100 transition-all duration-300"
+                  />
+                </div>
+                <div
+                  class="flex items-center justify-center min-w-[90px] md:min-w-[100px] px-2 md:px-3"
+                >
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg"
+                    alt="AWS"
+                    class="h-6 md:h-7 object-contain opacity-70 hover:opacity-100 transition-all duration-300"
+                  />
+                </div>
+                <div
+                  class="flex items-center justify-center min-w-[90px] md:min-w-[100px] px-2 md:px-3"
+                >
+                  <img
+                    src="https://git-scm.com/images/logos/downloads/Git-Logo-2Color.svg"
+                    alt="Git"
+                    class="h-6 md:h-7 object-contain opacity-70 hover:opacity-100 transition-all duration-300"
+                  />
+                </div>
+                <div
+                  class="flex items-center justify-center min-w-[90px] md:min-w-[100px] px-2 md:px-3"
+                >
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg"
+                    alt="Node.js"
+                    class="h-6 md:h-7 object-contain opacity-70 hover:opacity-100 transition-all duration-300"
+                  />
+                </div>
+                <div
+                  class="flex items-center justify-center min-w-[90px] md:min-w-[100px] px-2 md:px-3"
+                >
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg"
+                    alt="PostgreSQL"
+                    class="h-6 md:h-7 object-contain opacity-70 hover:opacity-100 transition-all duration-300"
+                  />
+                </div>
+                <div
+                  class="flex items-center justify-center min-w-[90px] md:min-w-[100px] px-2 md:px-3"
+                >
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg"
+                    alt="OpenAI"
+                    class="h-6 md:h-7 object-contain opacity-70 hover:opacity-100 transition-all duration-300"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <!-- Contact Section -->
-        <section class="mb-16">
-          <div class="relative overflow-hidden rounded-2xl bg-gray-50 dark:bg-gray-800 p-8 md:p-12">
+        <section class="mb-10 md:mb-12">
+          <div
+            class="relative overflow-hidden rounded-2xl bg-gray-50 dark:bg-gray-800 p-8 md:p-12"
+          >
             <div class="absolute inset-0 bg-[#00a7a7] opacity-5"></div>
             <div class="relative z-10 text-center">
-              <h2 class="text-2xl md:text-3xl font-bold mb-4 text-[#00a7a7]">Let's Connect</h2>
-              <p class="mb-6 md:mb-8 max-w-2xl mx-auto text-gray-700 dark:text-gray-300">
-                If you'd like to connect, collaborate, or just chat about tech, feel free to reach out!
+              <h2 class="text-2xl md:text-3xl font-bold mb-4 text-[#00a7a7]">
+                Let's Connect
+              </h2>
+              <p
+                class="mb-6 md:mb-8 max-w-2xl mx-auto text-gray-700 dark:text-gray-300"
+              >
+                If you'd like to connect, collaborate, or just chat about tech,
+                feel free to reach out!
               </p>
               <div class="flex flex-wrap gap-4 justify-center">
-                <a href="mailto:developedbyteri@gmail.com" class="px-6 md:px-8 py-3 bg-[#00a7a7] text-white rounded-lg hover:bg-[#008787] transition-all hover:scale-105">
+                <a
+                  href="mailto:developedbyteri@gmail.com"
+                  class="px-6 md:px-8 py-3 bg-[#00a7a7] text-white rounded-lg hover:bg-[#008787] transition-all hover:scale-105"
+                >
                   developedbyteri@gmail.com
                 </a>
-                <a href="https://www.linkedin.com/in/terieyenike" target="_blank" class="px-6 md:px-8 py-3 border border-[#00a7a7] text-[#00a7a7] rounded-lg hover:bg-[#00a7a7] hover:text-white transition-all hover:scale-105">
+                <a
+                  href="https://www.linkedin.com/in/terieyenike"
+                  target="_blank"
+                  class="px-6 md:px-8 py-3 border border-[#00a7a7] text-[#00a7a7] rounded-lg hover:bg-[#00a7a7] hover:text-white transition-all hover:scale-105"
+                >
                   LinkedIn
                 </a>
               </div>
@@ -67,13 +243,79 @@ import Teri from "@src/assets/img/profile.png";
 
   <style>
     @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
-      100% { transform: translateY(0px); }
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
     }
 
     .float-animation {
       animation: float 6s ease-in-out infinite;
+    }
+
+    /* Scroller styles */
+    .scroller {
+      mask: linear-gradient(
+        90deg,
+        transparent,
+        white 5%,
+        white 95%,
+        transparent
+      );
+      -webkit-mask: linear-gradient(
+        90deg,
+        transparent,
+        white 5%,
+        white 95%,
+        transparent
+      );
+    }
+
+    .scroller-inner {
+      display: flex;
+      gap: 0;
+      flex-wrap: nowrap;
+      animation: scroll 20s linear infinite;
+      width: fit-content;
+      padding: 0.25rem 0;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-50% - 0px));
+      }
+    }
+
+    /* Ensure smooth animation on all devices */
+    @media (prefers-reduced-motion: no-preference) {
+      .scroller-inner {
+        animation-timing-function: linear;
+        will-change: transform;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
+    }
+
+    /* Responsive adjustments */
+    @media (min-width: 768px) and (max-width: 1024px) {
+      .min-h-[60vh] {
+        min-height: 50vh;
+      }
+    }
+
+    /* Dark mode adjustments */
+    @media (prefers-color-scheme: dark) {
+      .scroller img {
+        filter: brightness(0.9) contrast(1.1);
+      }
     }
   </style>
 </BaseLayout>
