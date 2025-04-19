@@ -1,0 +1,209 @@
+---
+interface Props {
+  formspreeEndpoint?: string;
+}
+
+const { formspreeEndpoint = "mqapvnkv" } = Astro.props;
+---
+
+<div class="max-w-3xl mx-auto">
+  <div class="text-center mb-12">
+    <h1 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#005353] to-[#00E0E0] bg-clip-text text-transparent">
+      Get in Touch
+    </h1>
+    <p class="text-xl text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto">
+      Have a question or want to work together? I'd love to hear from you. 
+      Send me a message and I'll respond as soon as possible.
+    </p>
+  </div>
+
+  <div class="bg-white dark:bg-zinc-900 rounded-2xl shadow-lg p-8 md:p-12 border border-zinc-200 dark:border-zinc-800">
+    <form 
+      id="contact-form"
+      action={`https://formspree.io/f/${formspreeEndpoint}`}
+      method="POST"
+      class="space-y-6"
+    >
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="space-y-2">
+          <label for="name" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
+            Name <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            minlength="2"
+            class="w-full px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-[#005353] dark:focus:ring-[#00E0E0] transition-all duration-300"
+            placeholder="Your name"
+          />
+          <p class="text-sm text-red-500 hidden" data-error="name"></p>
+        </div>
+
+        <div class="space-y-2">
+          <label for="email" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
+            Email <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="w-full px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-[#005353] dark:focus:ring-[#00E0E0] transition-all duration-300"
+            placeholder="your@email.com"
+          />
+          <p class="text-sm text-red-500 hidden" data-error="email"></p>
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <label for="subject" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
+          Subject
+        </label>
+        <input
+          type="text"
+          id="subject"
+          name="subject"
+          class="w-full px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-[#005353] dark:focus:ring-[#00E0E0] transition-all duration-300"
+          placeholder="What's this about?"
+        />
+      </div>
+
+      <div class="space-y-2">
+        <label for="message" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
+          Message <span class="text-red-500">*</span>
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          required
+          minlength="10"
+          rows="6"
+          class="w-full px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-[#005353] dark:focus:ring-[#00E0E0] transition-all duration-300 resize-none"
+          placeholder="Your message..."
+        ></textarea>
+        <p class="text-sm text-red-500 hidden" data-error="message"></p>
+      </div>
+
+      <div class="flex justify-center">
+        <button
+          type="submit"
+          class="group relative px-8 py-3 bg-[#005353] dark:bg-[#00E0E0] text-white dark:text-zinc-900 rounded-lg font-medium hover:bg-[#003939] dark:hover:bg-[#00D0D0] transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#005353] dark:focus:ring-[#00E0E0] focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          disabled
+        >
+          <span class="flex items-center gap-2">
+            <span>Send Message</span>
+            <span class="loading-spinner hidden">
+              <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            </span>
+          </span>
+        </button>
+      </div>
+    </form>
+
+    <div id="form-status" class="mt-6 hidden">
+      <div class="success-message hidden rounded-lg p-4 text-sm" role="alert">
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <svg class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <div class="ml-3">
+            <p class="font-medium text-green-800 dark:text-green-200">Message sent successfully!</p>
+            <p class="mt-1 text-green-700 dark:text-green-300">I'll get back to you soon.</p>
+          </div>
+        </div>
+      </div>
+      <div class="error-message hidden rounded-lg p-4 text-sm" role="alert">
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <div class="ml-3">
+            <p class="font-medium text-red-800 dark:text-red-200">There was an error sending your message</p>
+            <p class="mt-1 text-red-700 dark:text-red-300">Please try again or contact me directly via email.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement;
+  const formStatus = document.getElementById("form-status");
+  const submitButton = form?.querySelector('button[type="submit"]') as HTMLButtonElement;
+  const loadingSpinner = submitButton?.querySelector('.loading-spinner');
+  const successMessage = formStatus?.querySelector(".success-message");
+  const errorMessage = formStatus?.querySelector(".error-message");
+
+  // Enable submit button only when form is valid
+  const validateForm = () => {
+    if (!form) return;
+    
+    const isValid = form.checkValidity();
+    if (submitButton) {
+      submitButton.disabled = !isValid;
+    }
+  };
+
+  // Add validation listeners to required fields
+  const requiredFields = form?.querySelectorAll('[required]');
+  requiredFields?.forEach(field => {
+    field.addEventListener('input', validateForm);
+    field.addEventListener('change', validateForm);
+  });
+
+  // Initialize form validation
+  validateForm();
+
+  if (form && formStatus && successMessage && errorMessage && loadingSpinner) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      
+      // Show loading state
+      submitButton.disabled = true;
+      loadingSpinner.classList.remove('hidden');
+      formStatus.classList.add('hidden');
+      
+      try {
+        const formData = new FormData(form);
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          },
+        });
+
+        if (!response.ok) {
+          const responseData = await response.json().catch(() => ({}));
+          throw new Error(responseData.error || `Submission failed with status ${response.status}`);
+        }
+
+        // Handle success
+        formStatus.classList.remove("hidden");
+        successMessage.classList.remove("hidden");
+        errorMessage.classList.add("hidden");
+        form.reset();
+        validateForm();
+      } catch (error) {
+        formStatus.classList.remove("hidden");
+        successMessage.classList.add("hidden");
+        errorMessage.classList.remove("hidden");
+        
+        // Re-enable submit button on error
+        submitButton.disabled = false;
+      } finally {
+        loadingSpinner.classList.add('hidden');
+      }
+    });
+  }
+</script> 

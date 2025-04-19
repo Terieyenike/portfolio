@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<BaseLayout title={`Contact - ${SITE_TITLE}`} description="Get in touch with Teri Eyenike">
+  <main class="container mx-auto px-4 py-8">
+    <ContactForm />
+  </main>
+</BaseLayout>

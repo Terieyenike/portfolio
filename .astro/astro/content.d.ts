@@ -159,13 +159,6 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
-"2025-04-15-sec/index.md": {
-	id: "2025-04-15-sec/index.md";
-  slug: "aws-shared-responsibility-model";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".md"] };
 };
 
 	};
