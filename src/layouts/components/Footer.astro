@@ -5,94 +5,110 @@ const today = new Date();
 // import LinkedInWhite from "@src/assets/img/linkedin-mark-white.svg";
 ---
 
-<footer
-  class="bg-white dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800"
->
+<footer class="bg-white dark:bg-zinc-900 border-t border-zinc-200 dark:border-zinc-800">
   <div class="container mx-auto px-4 py-12">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-      <!-- Quick Links -->
-      <div>
-        <h3 class="text-lg font-semibold text-[#005353] dark:text-[#00E0E0] mb-4">Quick Links</h3>
-        <ul class="space-y-2">
-          <li>
-            <a
-              href="/"
-              class="text-zinc-800 dark:text-zinc-300 hover:text-[#005353] dark:hover:text-[#00E0E0] transition-colors duration-300"
-              >Home</a
-            >
-          </li>
-          <li>
-            <a
-              href="/blog"
-              class="text-zinc-800 dark:text-zinc-300 hover:text-[#005353] dark:hover:text-[#00E0E0] transition-colors duration-300"
-              >Blog</a
-            >
-          </li>
-          <li>
-            <a
-              href="/projects"
-              class="text-zinc-800 dark:text-zinc-300 hover:text-[#005353] dark:hover:text-[#00E0E0] transition-colors duration-300"
-              >Projects</a
-            >
-          </li>
-          <li>
-            <a
-              href="/about"
-              class="text-zinc-800 dark:text-zinc-300 hover:text-[#005353] dark:hover:text-[#00E0E0] transition-colors duration-300"
-              >About</a
-            >
-          </li>
-        </ul>
+      <!-- Brand Section -->
+      <div class="space-y-3">
+        <h2 class="text-base md:text-lg font-semibold text-zinc-900 dark:text-white">
+          Teri Eyenike
+        </h2>
+        <p class="text-sm md:text-base text-zinc-600 dark:text-zinc-400 font-normal">
+          Full time developer making a difference
+        </p>
       </div>
 
-      <!-- Connect -->
-      <div>
-        <h3 class="text-lg font-semibold text-[#005353] dark:text-[#00E0E0] mb-4">Connect</h3>
-        <ul class="space-y-2">
-          <li>
-            <a
-              href="https://github.com/terieyenike"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-zinc-800 dark:text-zinc-300 hover:text-[#005353] dark:hover:text-[#00E0E0] transition-colors duration-300"
-              >GitHub</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://linkedin.com/in/terieyenike"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-zinc-800 dark:text-zinc-300 hover:text-[#005353] dark:hover:text-[#00E0E0] transition-colors duration-300"
-              >LinkedIn</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://instagram.com/terieyenike"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-zinc-800 dark:text-zinc-300 hover:text-[#005353] dark:hover:text-[#00E0E0] transition-colors duration-300"
-              >Instagram</a
-            >
-          </li>
-        </ul>
+      <!-- Quick Links and Connect Combined -->
+      <div class="grid grid-cols-2 gap-8">
+        <!-- Quick Links -->
+        <div>
+          <h3 class="text-lg font-semibold text-[#005353] dark:text-[#00E0E0] mb-6">Quick Links</h3>
+          <ul class="space-y-3">
+            <li>
+              <a
+                href="/blog"
+                class="text-zinc-700 dark:text-zinc-300 hover:text-[#005353] dark:hover:text-[#00E0E0] transition-colors duration-300 flex items-center group"
+              >
+                <span class="w-1 h-1 bg-[#005353] dark:bg-[#00E0E0] rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                Blog
+              </a>
+            </li>
+            <li>
+              <a
+                href="/projects"
+                class="text-zinc-700 dark:text-zinc-300 hover:text-[#005353] dark:hover:text-[#00E0E0] transition-colors duration-300 flex items-center group"
+              >
+                <span class="w-1 h-1 bg-[#005353] dark:bg-[#00E0E0] rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                Projects
+              </a>
+            </li>
+            <li>
+              <a
+                href="/about"
+                class="text-zinc-700 dark:text-zinc-300 hover:text-[#005353] dark:hover:text-[#00E0E0] transition-colors duration-300 flex items-center group"
+              >
+                <span class="w-1 h-1 bg-[#005353] dark:bg-[#00E0E0] rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                About
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Connect -->
+        <div>
+          <h3 class="text-lg font-semibold text-[#005353] dark:text-[#00E0E0] mb-6">Connect</h3>
+          <ul class="space-y-3">
+            <li>
+              <a
+                href="https://github.com/terieyenike"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-zinc-700 dark:text-zinc-300 hover:text-[#005353] dark:hover:text-[#00E0E0] transition-colors duration-300 flex items-center group"
+              >
+                <span class="w-1 h-1 bg-[#005353] dark:bg-[#00E0E0] rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                GitHub
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://linkedin.com/in/terieyenike"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-zinc-700 dark:text-zinc-300 hover:text-[#005353] dark:hover:text-[#00E0E0] transition-colors duration-300 flex items-center group"
+              >
+                <span class="w-1 h-1 bg-[#005353] dark:bg-[#00E0E0] rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                LinkedIn
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://instagram.com/terieyenike"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-zinc-700 dark:text-zinc-300 hover:text-[#005353] dark:hover:text-[#00E0E0] transition-colors duration-300 flex items-center group"
+              >
+                <span class="w-1 h-1 bg-[#005353] dark:bg-[#00E0E0] rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                Instagram
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <!-- Support -->
       <div>
-        <h3 class="text-lg font-semibold text-[#005353] dark:text-[#00E0E0] mb-4">Support</h3>
+        <h3 class="text-lg font-semibold text-[#005353] dark:text-[#00E0E0] mb-6">Support My Work</h3>
         <div class="space-y-4">
           <a
             href="https://www.buymeacoffee.com/eyenike"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-block"
+            class="inline-block transform hover:scale-105 transition-transform duration-300"
           >
             <img
               src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
               alt="Buy Me A Coffee"
-              class="h-10 w-auto hover:opacity-90 transition-opacity duration-300"
+              class="h-12 w-auto"
             />
           </a>
         </div>
@@ -101,20 +117,21 @@ const today = new Date();
 
     <!-- Copyright -->
     <div class="pt-8 border-t border-zinc-200 dark:border-zinc-800">
-      <div
-        class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-zinc-500 dark:text-zinc-400"
-      >
-        <div>© {today.getFullYear()} Teri. All rights reserved.</div>
-        <div class="flex items-center gap-2">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-sm text-zinc-500 dark:text-zinc-400">
+          © {today.getFullYear()} Teri Eyenike. All rights reserved.
+        </div>
+        <div class="flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400">
           <span>Built with</span>
           <a
             href="https://astro.build"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-[#005353] dark:text-[#00E0E0] hover:underline"
+            class="text-[#005353] dark:text-[#00E0E0] hover:underline font-medium"
           >
-            Astro•
+            Astro
           </a>
+          <span class="text-[#005353] dark:text-[#00E0E0]">•</span>
         </div>
       </div>
     </div>
