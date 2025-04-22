@@ -7,135 +7,147 @@ import GithubWhite from "@src/assets/img/github-mark-white.svg";
 import GithubBlack from "@src/assets/img/github-mark.svg";
 
 const menu = [
-  {
-    link: "/about/",
-    label: "About",
-  },
-  {
-    link: "/blog/",
-    label: "Blog",
-  },
-  {
-    link: "/projects/",
-    label: "Projects",
-  },
-  {
-    link: "/contact/",
-    label: "Contact",
-  },
-  {
-    link: "/tags/",
-    label: "Tags",
-  },
+  { link: "/about/", label: "About" },
+  { link: "/blog/", label: "Blog" },
+  { link: "/projects/", label: "Projects" },
+  { link: "/contact/", label: "Contact" },
+  { link: "/tags/", label: "Tags" },
 ];
 ---
 
 <header
-  id='site-header'
-  class:list={["flex items-center w-full transition duration-300 z-[999]"]}>
-  <div class='container'>
-    <nav class='flex gap-4 items-center justify-between py-3'>
-      <h2 class='m-0'>
+  id="site-header"
+  class:list={[
+    "fixed top-0 left-0 right-0 flex items-center w-full transition duration-300 z-[999]",
+  ]}
+>
+  <div class="container">
+    <nav class="flex gap-4 items-center justify-between py-2 transition-opacity duration-300">
+      <h2 class="m-0">
         <a
-          href='/'
-          class='flex gap-4 items-center text-xl font-black uppercase'>
-          <div id='logo-container' class='p-2 bg-transparent'>
+          href="/"
+          class="flex gap-4 items-center text-xl font-black uppercase"
+        >
+          <div class="relative w-11 h-11">
             <Image
               src={LogoBlack}
-              id='lightLogo'
-              alt='Oteri Eyenike'
-              class='w-11 shadow-lg'
+              alt="Oteri Eyenike Logo"
+              class="absolute inset-0 w-11 h-11 transition-opacity duration-300 dark:opacity-0"
             />
             <Image
               src={LogoWhite}
-              id='darkLogo'
-              alt='Oteri Eyenike'
-              class='w-11 shadow-lg'
+              alt="Oteri Eyenike Logo"
+              class="absolute inset-0 w-11 h-11 transition-opacity duration-300 opacity-0 dark:opacity-100"
             />
           </div>
         </a>
       </h2>
-      <div class='flex'>
+      <div class="flex items-center">
         <a
-          class='p-3 dark:hidden'
-          href='https://github.com/terieyenike'
-          target='_blank'>
-          <Image src={GithubBlack} width={24} height={24} alt='Github logo' />
+          class="p-3 dark:hidden hidden md:block"
+          href="https://github.com/terieyenike"
+          target="_blank"
+        >
+          <Image src={GithubBlack} width={24} height={24} alt="Github logo" />
         </a>
         <a
-          class='p-3 hidden dark:block'
-          href='https://github.com/terieyenike'
-          target='_blank'>
-          <Image src={GithubWhite} width={24} height={24} alt='Github logo' />
+          class="p-3 hidden dark:md:block"
+          href="https://github.com/terieyenike"
+          target="_blank"
+        >
+          <Image src={GithubWhite} width={24} height={24} alt="Github logo" />
         </a>
-        <button class='p-3' id='themeToggle' aria-label='Theme mode'>
+        <button class="p-3" id="themeToggle" aria-label="Theme mode">
           <svg
-            class='sun'
-            xmlns='http://www.w3.org/2000/svg'
-            width='24'
-            height='24'
-            viewBox='0 0 24 24'
-            fill='none'
-            stroke='currentColor'
-            stroke-width='2'
-            stroke-linecap='round'
-            stroke-linejoin='round'
-            class='lucide lucide-sun'>
-            <circle cx='12' cy='12' r='4'></circle>
-            <path d='M12 2v2'></path>
-            <path d='M12 20v2'></path>
-            <path d='m4.93 4.93 1.41 1.41'></path>
-            <path d='m17.66 17.66 1.41 1.41'></path>
-            <path d='M2 12h2'></path>
-            <path d='M20 12h2'></path>
-            <path d='m6.34 17.66-1.41 1.41'></path>
-            <path d='m19.07 4.93-1.41 1.41'></path>
+            class="sun"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
           </svg>
           <svg
-            class='moon'
-            xmlns='http://www.w3.org/2000/svg'
-            width='24'
-            height='24'
-            viewBox='0 0 24 24'
-            fill='none'
-            stroke='currentColor'
-            stroke-width='2'
-            stroke-linecap='round'
-            stroke-linejoin='round'
-            class='lucide lucide-moon'>
-            <path d='M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z'></path>
+            class="moon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+        <!-- Hamburger Menu Button -->
+        <button id="hamburger" class="p-3 md:hidden" aria-label="Menu">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="hamburger-icon"
+          >
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
           </svg>
         </button>
       </div>
     </nav>
+
+    <!-- Desktop Navigation -->
     <div
-      class='fixed top-3 w-auto max-w-full px-3 left-1/2 -translate-x-1/2 z-[999]'>
+      class="fixed top-3 w-auto max-w-full px-3 left-1/2 -translate-x-1/2 z-[999] hidden md:block"
+    >
       <div
-        class='flex px-2.5 bg-white/90 dark:bg-zinc-900/75 backdrop-blur-md leading-tight rounded-full border dark:border-zinc-700'>
-        <div class='px-2.5 text-sm'>
-          <HeaderLink class='py-3 flex items-center' href='/' aria-label='Home'>
+        class="flex px-2.5 bg-white/90 dark:bg-zinc-900/75 backdrop-blur-md leading-tight rounded-full border dark:border-zinc-700"
+      >
+        <div class="px-2.5 text-sm">
+          <HeaderLink class="py-3 flex items-center" href="/" aria-label="Home">
             <svg
-              xmlns='http://www.w3.org/2000/svg'
-              width='20'
-              height='20'
-              viewBox='0 0 24 24'
-              fill='none'
-              stroke='currentColor'
-              stroke-width='1.7'
-              stroke-linecap='round'
-              stroke-linejoin='round'
-              class='lucide lucide-house'>
-              <path d='M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8'></path>
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-house"
+            >
+              <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
               <path
-                d='M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'
+                d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
               ></path>
             </svg>
           </HeaderLink>
         </div>
         {
           menu.map((item) => (
-            <div class='px-2.5 text-sm'>
-              <HeaderLink class='py-3 flex items-center' href={item.link}>
+            <div class="px-2.5 text-sm">
+              <HeaderLink class="py-3 flex items-center" href={item.link}>
                 {item.label}
               </HeaderLink>
             </div>
@@ -143,9 +155,63 @@ const menu = [
         }
       </div>
     </div>
+
+    <!-- Mobile Navigation -->
+    <div
+      id="mobile-menu"
+      class="fixed inset-y-0 right-0 transform translate-x-full transition-transform duration-300 ease-in-out w-64 bg-white dark:bg-zinc-900 shadow-lg z-50 md:hidden"
+    >
+      <div class="p-6">
+        <div class="flex flex-col space-y-4">
+          <HeaderLink href="/" class="flex items-center space-x-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-house"
+            >
+              <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+              <path
+                d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+              ></path>
+            </svg>
+            <span>Home</span>
+          </HeaderLink>
+          {
+            menu.map((item) => (
+              <HeaderLink href={item.link} class="block py-2">
+                {item.label}
+              </HeaderLink>
+            ))
+          }
+          <!-- GitHub Links in Mobile Menu -->
+          <a
+            href="https://github.com/terieyenike"
+            target="_blank"
+            class="flex items-center gap-2 py-2 md:hidden dark:hidden"
+          >
+            <Image src={GithubBlack} width={20} height={20} alt="Github logo" class="inline-block" />
+            <span class="inline-block">GitHub</span>
+          </a>
+          <a
+            href="https://github.com/terieyenike"
+            target="_blank"
+            class="flex items-center gap-2 py-2 md:hidden hidden dark:block"
+          >
+            <Image src={GithubWhite} width={20} height={20} alt="Github logo" class="inline-block" />
+            <span class="inline-block">GitHub</span>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
+
   <style is:global>
-    /* Theme toggle styles */
     #themeToggle .moon {
       display: none;
     }
@@ -156,34 +222,74 @@ const menu = [
       display: block;
     }
 
-    /* Logo styles */
-    #logo-container {
-      position: relative;
-      width: 2.75rem; /* w-11 equivalent */
-      height: 2.75rem;
+    /* Header scroll styles */
+    @media (max-width: 767px) {
+      #site-header::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(8px);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: -1;
+      }
+
+      .dark #site-header::before {
+        background-color: rgba(24, 24, 27, 0.9);
+      }
+
+      #site-header.scrolled::before {
+        opacity: 1;
+      }
     }
 
-    #lightLogo,
-    #darkLogo {
-      position: absolute;
-      top: 0;
-      left: 0;
-      transition: opacity 0.3s ease;
+    @media (min-width: 768px) {
+      #site-header.scrolled nav > * {
+        opacity: 0;
+        pointer-events: none;
+      }
+      
+      /* Keep hamburger menu visible */
+      #site-header.scrolled nav #hamburger {
+        opacity: 1;
+        pointer-events: auto;
+      }
     }
 
-    #darkLogo {
+    /* Mobile menu overlay */
+    .mobile-menu-open {
+      transform: translateX(0) !important;
+    }
+
+    /* Backdrop when mobile menu is open */
+    .menu-backdrop {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 40;
       opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease-in-out;
     }
 
-    .dark #lightLogo {
-      opacity: 0;
-    }
-
-    .dark #darkLogo {
+    .menu-backdrop.active {
       opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Hamburger icon animation */
+    .hamburger-icon {
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .hamburger-active .hamburger-icon {
+      transform: rotate(90deg);
     }
   </style>
+
   <script is:inline>
+    // Theme toggle logic
     const theme = (() => {
       if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
         return "dark";
@@ -218,24 +324,62 @@ const menu = [
       const element = document.documentElement;
       element.classList.toggle("dark");
       const isDark = element.classList.contains("dark");
-      if (isDark) {
-        sendMessage({
-          setConfig: {
-            theme: "dark_dimmed",
-          },
-        });
-      } else {
-        sendMessage({
-          setConfig: {
-            theme: "light",
-          },
-        });
-      }
+      sendMessage({ setConfig: { theme: isDark ? "dark_dimmed" : "light" } });
       localStorage.setItem("theme", isDark ? "dark" : "light");
     };
 
     document
       .getElementById("themeToggle")
       ?.addEventListener("click", handleToggleClick);
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const hamburger = document.getElementById("hamburger");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const header = document.getElementById("site-header");
+
+      // Create backdrop element
+      const backdrop = document.createElement("div");
+      backdrop.className = "menu-backdrop";
+      document.body.appendChild(backdrop);
+
+      // Handle scroll
+      window.addEventListener("scroll", () => {
+        if (window.pageYOffset > 50) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+
+      function toggleMenu() {
+        mobileMenu.classList.toggle("mobile-menu-open");
+        hamburger.classList.toggle("hamburger-active");
+        backdrop.classList.toggle("active");
+        document.body.style.overflow = mobileMenu.classList.contains(
+          "mobile-menu-open"
+        )
+          ? "hidden"
+          : "";
+      }
+
+      hamburger.addEventListener("click", toggleMenu);
+      backdrop.addEventListener("click", toggleMenu);
+
+      // Close menu when clicking on a link
+      const mobileLinks = mobileMenu.getElementsByTagName("a");
+      Array.from(mobileLinks).forEach((link) => {
+        link.addEventListener("click", toggleMenu);
+      });
+
+      // Close menu on window resize if screen becomes larger than mobile breakpoint
+      window.addEventListener("resize", () => {
+        if (
+          window.innerWidth >= 768 &&
+          mobileMenu.classList.contains("mobile-menu-open")
+        ) {
+          toggleMenu();
+        }
+      });
+    });
   </script>
 </header>

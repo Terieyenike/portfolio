@@ -6,6 +6,7 @@ import { Image } from "astro:assets";
 import FormattedDate from "../components/FormattedDate.astro";
 import AboutTheAuthor from "../components/widgets/AboutTheAuthor.astro";
 import TableOfContent from "../components/widgets/TableOfContent.astro";
+import TLDR from "../components/widgets/TLDR.astro";
 import { slugify, calculateReadingTime } from "../utils";
 import { loadEnv } from "vite";
 
@@ -30,6 +31,7 @@ const {
     pubDate,
     updatedDate,
     tags,
+    tldr,
   },
 } = post;
 const { Content, headings } = await post.render();
@@ -133,6 +135,7 @@ const readingTime = calculateReadingTime(post.body);
               )
             }
           </div>
+          <TLDR summary={tldr} />
           <Content />
         </Prose>
         {

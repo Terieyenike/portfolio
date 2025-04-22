@@ -11,6 +11,7 @@ const blog = defineCollection({
 		pubDate: z.coerce.date(),
 		updatedDate: z.coerce.date().optional(),
     tags: z.array(z.string()).optional(),
+    tldr: z.string().optional(),
 		coverImage: image()
       .refine((img) => img.width >= 960, {
         message: 'Cover image must be at least 960 pixels wide!'
