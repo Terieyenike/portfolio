@@ -5,13 +5,13 @@ import Footer from './components/Footer.astro';
 import { loadEnv } from 'vite';
 
 const { GTAG_MEASUREMENT_ID } = loadEnv(process.env.NODE_ENV || 'production', process.cwd(), '');
-const { title, description, image } = Astro.props;
+const { title, description, image, canonicalUrl } = Astro.props;
 ---
 
 <!doctype html>
 <html lang='en'>
 	<head>
-		<BaseHead title={title} description={description} image={image} />
+		<BaseHead title={title} description={description} image={image} canonicalUrl={canonicalUrl} />
 	</head>
 	<body
 		class="bg-white dark:bg-zinc-900 dark:text-zinc-100 pt-16"

@@ -6,16 +6,17 @@ import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import Teri from "@src/assets/img/teri.png";
 import Prose from "../components/Prose.astro";
-import { projects } from "./projects/projects";
+import { getProjects } from "./projects/projects";
 import ProjectList from "../components/ProjectList.astro";
 import PostItem from "../components/PostItem.astro";
 import TypingText from "../components/TypingText.astro";
 
 type BlogPost = CollectionEntry<"blog">;
 
+const projects = await getProjects();
 const top6Projects = projects.slice(0, 6);
 const posts = (await getCollection("blog"))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .sort((a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 5);
 ---
 
