@@ -4,6 +4,7 @@ description: "Discover how mastering Vim can dramatically boost your coding spee
 slug: "vim-boost-productivity"
 tags: ["Vim"]
 pubDate: "2025-05-03"
+updatedDate: 2025-05-04
 coverImage: "./vim.jpg"
 tldr: Mastering Vim boosts productivity with fast, keyboard-only editing. Learn key modes (normal, insert, visual), navigation (hjkl, w, b), editing (i, a, x), text changes (d, c), new lines (o, O), and motions (gg, G, $). The article also covers Vim setup in VS Code. Embrace a keyboard-first workflow for efficient coding.
 ---
@@ -51,10 +52,10 @@ Copy and paste the following into your <mark style="background-color: #ffd54f; c
  - the normal mode to navigate around the editor 
  - the insert mode to type and change your code 
  - save and quit 
-    - <mark style="background-color: #ffd54f; color: #1a1a1a;">:w:</mark> write (save) the file 
-    - <mark style="background-color: #ffd54f; color: #1a1a1a;">:q:</mark> quit 
-    - <mark style="background-color: #ffd54f; color: #1a1a1a;">:q!:</mark> quit without saving changes 
-    - <mark style="background-color: #ffd54f; color: #1a1a1a;">:wq:</mark> write then quit
+    - <mark style="background-color: #ffd54f; color: #1a1a1a;">:w</mark>: write (save) the file 
+    - <mark style="background-color: #ffd54f; color: #1a1a1a;">:q</mark>: quit 
+    - <mark style="background-color: #ffd54f; color: #1a1a1a;">:q!</mark>: quit without saving changes 
+    - <mark style="background-color: #ffd54f; color: #1a1a1a;">:wq</mark>: write then quit
 
 ### Core Motions in Vim
 
