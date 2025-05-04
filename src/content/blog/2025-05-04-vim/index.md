@@ -103,7 +103,7 @@ Note that not all editing requires entering the insert mode. Sometimes, still in
 
 ### Deleting and Changing Text in Vim
 
-Just like your regular delete key on your keyboard, Vim has a special command (<mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">d</mark>) that handles deleting text combined with a [motion](http://localhost:4321/vim-boost-productivity/#core-motions-in-vim) based on cursor movement. 
+Just like your regular delete key on your keyboard, Vim has a special command (<mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">d</mark>) that handles deleting text combined with a [motion](#core-motions-in-vim) based on cursor movement. 
 
 - <mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">dw</mark>: delete from the cursor until the next word
 - <mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">de</mark>: delete from the cursor until the end of the current word
