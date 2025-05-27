@@ -2,6 +2,7 @@
 import BaseHead from './components/BaseHead.astro';
 import Header from './components/Header.astro';
 import Footer from './components/Footer.astro';
+import BackToTop from '../components/BackToTop.astro';
 import { loadEnv } from 'vite';
 
 const { GTAG_MEASUREMENT_ID } = loadEnv(process.env.NODE_ENV || 'production', process.cwd(), '');
@@ -21,6 +22,7 @@ const { title, description, image, canonicalUrl } = Astro.props;
 			<slot />
 		</div>
 		<Footer />
+    <BackToTop />
 		<!-- Google tag (gtag.js) -->
     {
       GTAG_MEASUREMENT_ID &&
