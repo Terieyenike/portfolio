@@ -11,7 +11,7 @@ interface Props {
   canonicalUrl?: string;
 }
 
-const { title = "Creative Technologist and Educator | Building future tools", description = "Combining software engineering and education to build interactive tools, creative experiences, and engaging ways to learn through tech", image = "/src/assets/img/profile.png", canonicalUrl } = Astro.props;
+const { title = "Creative Technologist & Educator | Building future tools", description = "Combining software engineering and education to build interactive tools, creative experiences, and engaging ways to learn through tech", image = "/src/assets/img/profile.png", canonicalUrl } = Astro.props;
 
 // Use the provided canonical URL or generate one from the current path
 const finalCanonicalURL = canonicalUrl ? new URL(canonicalUrl) : new URL(Astro.url.pathname, Astro.site);
