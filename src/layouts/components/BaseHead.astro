@@ -11,10 +11,17 @@ interface Props {
   canonicalUrl?: string;
 }
 
-const { title = "Creative Technologist & Educator | Building future tools", description = "Combining software engineering and education to build interactive tools, creative experiences, and engaging ways to learn through tech", image = "/src/assets/img/profile.png", canonicalUrl } = Astro.props;
+const {
+  title = "Creative Technologist & Educator | Building future tools",
+  description = "Combining software engineering and education to build interactive tools, creative experiences, and engaging ways to learn through tech",
+  image = "https://res.cloudinary.com/terieyenike/image/upload/v1748796012/teri_eyenike_skwuyb.png",
+  canonicalUrl,
+} = Astro.props;
 
 // Use the provided canonical URL or generate one from the current path
-const finalCanonicalURL = canonicalUrl ? new URL(canonicalUrl) : new URL(Astro.url.pathname, Astro.site);
+const finalCanonicalURL = canonicalUrl
+  ? new URL(canonicalUrl)
+  : new URL(Astro.url.pathname, Astro.site);
 
 // Generate structured data
 const structuredData = {
@@ -29,7 +36,7 @@ const structuredData = {
     "https://linkedin.com/in/terieyenike",
     "https://x.com/terieyenike",
     "https://www.instagram.com/terieyenike",
-    "https://www.youtube.com/@terieyenike"
+    "https://www.youtube.com/@terieyenike",
   ],
 };
 ---
@@ -65,7 +72,7 @@ const structuredData = {
 />
 
 <!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
+<meta name="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={finalCanonicalURL} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
