@@ -24,16 +24,16 @@ const posts = (await getCollection("blog"))
   title={`${SITE_TITLE} - ${SITE_TAGLINE}`}
   description={SITE_DESCRIPTION}
 >
-  <div class="container mx-auto px-4 py-8 md:py-10">
+  <div class="container mx-auto px-4 py-12 md:py-16">
     <!-- Hero Section -->
     <section
-      class="flex flex-col-reverse md:flex-row items-center gap-8 min-h-[calc(100vh-6rem)] md:min-h-[600px] lg:min-h-[550px] xl:min-h-[calc(100vh-8rem)] py-6 md:py-4 lg:py-8"
+      class="flex flex-col-reverse md:flex-row items-center gap-12 min-h-[calc(100vh-6rem)] md:min-h-[600px] xl:min-h-[calc(100vh-8rem)]"
     >
-      <div class="flex-1 space-y-4 md:space-y-6">
-        <h1 class="text-5xl font-bold">
+      <div class="flex-1 space-y-6">
+        <h1 class="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight bg-gradient-to-r from-[#005353] to-[#00E0E0] bg-clip-text text-transparent drop-shadow-lg">
           <TypingText text="Hey, I'm Teri!" />
         </h1>
-        <div class="text-xl leading-9 space-y-4">
+        <div class="text-xl md:text-2xl leading-9 space-y-6 text-zinc-700 dark:text-zinc-300">
           <Prose>
             <p class="fade-in">
               I'm a software and devops engineer specializing in building
@@ -45,44 +45,48 @@ const posts = (await getCollection("blog"))
             </p>
           </Prose>
         </div>
+        <div class="flex gap-4 mt-6">
+          <a href="/contact" class="px-6 py-3 rounded-lg font-semibold bg-[#005353] dark:bg-[#00E0E0] text-white dark:text-zinc-900 shadow-lg hover:bg-[#003939] dark:hover:bg-[#00D0D0] transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#005353] dark:focus:ring-[#00E0E0]">
+            Let's Connect
+          </a>
+        </div>
       </div>
       <div class="flex-1 flex justify-center items-center">
-        <Image
-          src={Teri}
-          alt="Oteri on vacation sitting on a boat in Ganvie, Benin Republic"
-          width={300}
-          loading="eager"
-          class="rounded-3xl rotate-3 hover:rotate-0 transition-transform duration-300"
-        />
+        <div class="relative group">
+          <span class="absolute -inset-4 bg-[#00E0E0]/20 dark:bg-[#005353]/20 rounded-3xl blur-xl opacity-70 group-hover:opacity-100 transition-all duration-500"></span>
+          <Image
+            src={Teri}
+            alt="Oteri on vacation sitting on a boat in Ganvie, Benin Republic"
+            width={340}
+            loading="eager"
+            class="rounded-3xl shadow-2xl relative z-10 rotate-3 group-hover:rotate-0 transition-transform duration-500"
+          />
+        </div>
       </div>
     </section>
 
     <!-- Recent Posts -->
-    <section class="mt-12 md:mt-14">
-      <div
-        class="flex justify-between items-center border-b border-zinc-200 dark:border-zinc-700 mb-4"
-      >
-        <h2 class="text-lg font-bold">Recent Posts</h2>
+    <section class="mt-20 md:mt-24">
+      <div class="flex justify-between items-center border-b border-zinc-200 dark:border-zinc-700 mb-6">
+        <h2 class="text-2xl md:text-3xl font-bold text-[#005353] dark:text-[#00E0E0] tracking-tight">Recent Posts</h2>
         <a
           href="/blog/"
-          class="text-sm underline hover:text-[#005353] dark:hover:text-[#00E0E0]"
-          >All posts &raquo;</a
-        >
+          class="text-base underline hover:text-[#005353] dark:hover:text-[#00E0E0] transition-colors"
+        >All posts &raquo;</a>
       </div>
-      <div class="space-y-6">
+      <div class="grid gap-8 md:grid-cols-2">
         {posts.map((post: BlogPost) => <PostItem post={post} />)}
       </div>
     </section>
 
     <!-- Projects -->
-    <section class="mt-16">
-      <div class="flex justify-between items-center mb-4">
-        <h2 class="text-lg font-bold">My Projects</h2>
+    <section class="mt-20">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl md:text-3xl font-bold text-[#005353] dark:text-[#00E0E0] tracking-tight">My Projects</h2>
         <a
           href="/projects/"
-          class="text-sm underline hover:text-[#005353] dark:hover:text-[#00E0E0]"
-          >All projects &raquo;</a
-        >
+          class="text-base underline hover:text-[#005353] dark:hover:text-[#00E0E0] transition-colors"
+        >All projects &raquo;</a>
       </div>
       <ProjectList projects={top6Projects} />
     </section>
@@ -94,11 +98,9 @@ const posts = (await getCollection("blog"))
     animation: fadeIn 0.8s ease-out forwards;
     opacity: 0;
   }
-
   .delay-300 {
     animation-delay: 300ms;
   }
-
   @keyframes fadeIn {
     from {
       opacity: 0;

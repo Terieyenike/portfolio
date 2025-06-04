@@ -3,8 +3,6 @@ import HeaderLink from "./HeaderLink.astro";
 import { Image } from "astro:assets";
 import LogoBlack from "@src/assets/img/logo.svg";
 import LogoWhite from "@src/assets/img/logo-inverted.svg";
-import GithubWhite from "@src/assets/img/github-mark-white.svg";
-import GithubBlack from "@src/assets/img/github-mark.svg";
 
 const menu = [
   { link: "/about/", label: "About" },
@@ -43,19 +41,20 @@ const menu = [
         </a>
       </h2>
       <div class="flex items-center">
+        <!-- Buy Me a Coffee GIF (light and dark, always visible on desktop) -->
         <a
-          class="p-3 dark:hidden hidden md:block"
-          href="https://github.com/terieyenike"
+          class="p-3 hidden md:block"
+          href="https://www.buymeacoffee.com/eyenike"
           target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Buy me a coffee"
         >
-          <Image src={GithubBlack} width={24} height={24} alt="Github logo" />
-        </a>
-        <a
-          class="p-3 hidden dark:md:block"
-          href="https://github.com/terieyenike"
-          target="_blank"
-        >
-          <Image src={GithubWhite} width={24} height={24} alt="Github logo" />
+          <img
+            src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTZ1aXBkNzNwZXZvNnpkbHVibGhrMzA4Zm5oeGtvNjA1MWNqMTVrNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/TDQOtnWgsBx99cNoyH/giphy.gif"
+            alt="Buy me a coffee"
+            class="w-8 h-8 object-contain"
+            style="border-radius: 6px;"
+          />
         </a>
         <button class="p-3" id="themeToggle" aria-label="Theme mode">
           <svg
@@ -189,22 +188,21 @@ const menu = [
               </HeaderLink>
             ))
           }
-          <!-- GitHub Links in Mobile Menu -->
+          <!-- Buy Me a Coffee GIF in Mobile Menu -->
           <a
-            href="https://github.com/terieyenike"
+            href="https://www.buymeacoffee.com/terieyenike"
             target="_blank"
-            class="flex items-center gap-2 py-2 md:hidden dark:hidden"
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 py-2 md:hidden"
+            aria-label="Buy me a coffee"
           >
-            <Image src={GithubBlack} width={20} height={20} alt="Github logo" class="inline-block" />
-            <span class="inline-block">GitHub</span>
-          </a>
-          <a
-            href="https://github.com/terieyenike"
-            target="_blank"
-            class="flex items-center gap-2 py-2 md:hidden hidden dark:block"
-          >
-            <Image src={GithubWhite} width={20} height={20} alt="Github logo" class="inline-block" />
-            <span class="inline-block">GitHub</span>
+            <img
+              src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTZ1aXBkNzNwZXZvNnpkbHVibGhrMzA4Zm5oeGtvNjA1MWNqMTVrNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/TDQOtnWgsBx99cNoyH/giphy.gif"
+              alt="Buy me a coffee"
+              class="w-8 h-8 object-contain"
+              style="border-radius: 6px;"
+            />
+            <span class="inline-block">Buy me a coffee</span>
           </a>
         </div>
       </div>

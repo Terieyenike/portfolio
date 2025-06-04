@@ -7,19 +7,22 @@ type BlogPost = CollectionEntry<"blog">;
 const { post }: Record<string, any> | { post: BlogPost } = Astro.props;
 ---
 
-<div class="flex flex-col sm:flex-row gap-3 sm:items-center p-3 rounded-lg transition-all duration-300 hover:bg-zinc-50 dark:hover:bg-zinc-800">
-  <div class="text-zinc-600 text-sm w-24 dark:text-zinc-400 shrink-0">
+<article class="bg-white dark:bg-zinc-900 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 p-6 flex flex-col h-full">
+  <header class="mb-2 text-xs text-zinc-500 dark:text-zinc-400 font-medium flex items-center justify-between">
     <FormattedDate date={post.data.pubDate} />
-  </div>
-  <h3 class="font-medium grow group">
+    {post.data.readingTime && (
+      <span class="ml-2 text-xs text-zinc-400 dark:text-zinc-500">{post.data.readingTime} min read</span>
+    )}
+  </header>
+  <h3 class="text-lg font-bold text-zinc-900 dark:text-white mb-2 leading-snug">
     <a 
       href={`/${post.slug}/`}
-      class="text-zinc-800 dark:text-zinc-200 hover:text-[#005353] dark:hover:text-[#00E0E0] transition-colors duration-300"
+      class="hover:text-[#005353] dark:hover:text-[#00E0E0] transition-colors duration-300"
     >
       {post.data.title}
     </a>
   </h3>
-  <div class="flex flex-wrap gap-2 shrink-0">
+  <div class="flex flex-wrap gap-2 mb-3">
     {(post.data.tags || [])?.map((tag: string) => (
       <a
         class="border border-zinc-200 dark:border-zinc-700 rounded-full
@@ -33,4 +36,5 @@ const { post }: Record<string, any> | { post: BlogPost } = Astro.props;
       </a>
     ))}
   </div>
-</div>
+  <p class="text-sm text-zinc-700 dark:text-zinc-300 line-clamp-3 flex-1">{post.data.description}</p>
+</article>
