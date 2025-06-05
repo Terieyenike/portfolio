@@ -51,27 +51,35 @@ const readingTime = calculateReadingTime(post.body);
         <Prose>
           <div>
             <h1 class="!my-1 leading-tight">{title}</h1>
-            
+
             <!-- Post metadata -->
-            <div class="flex flex-wrap items-center justify-between gap-4 mt-4 mb-6">
+            <div
+              class="flex flex-wrap items-center justify-between gap-4 mt-4 mb-6"
+            >
               <!-- Left side: Tags -->
               <div class="flex flex-wrap gap-2">
-                {(tags || [])?.map((tag: string) => (
-                  <a
-                    class="inline-flex px-3 py-1 text-sm bg-zinc-100 dark:bg-zinc-800 
+                {
+                  (tags || [])?.map((tag: string) => (
+                    <a
+                      class="inline-flex px-3 py-1 text-sm bg-zinc-100 dark:bg-zinc-800 
                     text-zinc-600 dark:text-zinc-400 rounded-full no-underline 
                     hover:bg-[#005353] dark:hover:bg-[#00E0E0] hover:text-white 
                     dark:hover:text-zinc-900 transition-all duration-300"
-                    href={`/tags/${slugify(tag)}`}
-                  >
-                    {tag}
-                  </a>
-                ))}
+                      href={`/tags/${slugify(tag)}`}
+                    >
+                      {tag}
+                    </a>
+                  ))
+                }
               </div>
 
               <!-- Right side: Reading time and dates -->
-              <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-zinc-600 dark:text-zinc-400">
-                <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-zinc-100 dark:bg-zinc-800 rounded-full">
+              <div
+                class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-zinc-600 dark:text-zinc-400"
+              >
+                <div
+                  class="inline-flex items-center gap-1.5 px-3 py-1 bg-zinc-100 dark:bg-zinc-800 rounded-full"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="14"
@@ -84,36 +92,52 @@ const readingTime = calculateReadingTime(post.body);
                     stroke-linejoin="round"
                     class="text-[#00a7a7]"
                   >
-                    <circle cx="12" cy="12" r="10" />
-                    <polyline points="12 6 12 12 16 14" />
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
                   </svg>
                   <span>{readingTime} min read</span>
                 </div>
                 <span>Posted on <FormattedDate date={pubDate} /></span>
-                {updatedDate && (
-                  <span>Updated on <FormattedDate date={updatedDate} /></span>
-                )}
+                {
+                  updatedDate && (
+                    <span>
+                      Updated on <FormattedDate date={updatedDate} />
+                    </span>
+                  )
+                }
               </div>
             </div>
 
             <!-- Canonical URL -->
-            {canonicalUrl && (
-              <div class="text-sm text-zinc-600 dark:text-zinc-400 mb-6">
-                Originally published at <a href={canonicalUrl} class="text-[#005353] dark:text-[#00E0E0] no-underline hover:opacity-80 transition-opacity" target="_blank" rel="noopener noreferrer">{new URL(canonicalUrl).hostname}</a>
-              </div>
-            )}
+            {
+              canonicalUrl && (
+                <div class="text-sm text-zinc-600 dark:text-zinc-400 mb-6">
+                  Originally published at{" "}
+                  <a
+                    href={canonicalUrl}
+                    class="text-[#005353] dark:text-[#00E0E0] no-underline hover:opacity-80 transition-opacity"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {new URL(canonicalUrl).hostname}
+                  </a>
+                </div>
+              )
+            }
 
             <!-- Cover Image -->
-            {coverImage && (
-              <div class="mb-6">
-                <Image
-                  class="rounded-2xl w-full"
-                  src={coverImage}
-                  alt={title}
-                  loading="eager"
-                />
-              </div>
-            )}
+            {
+              coverImage && (
+                <div class="mb-6">
+                  <Image
+                    class="rounded-2xl w-full"
+                    src={coverImage}
+                    alt={title}
+                    loading="eager"
+                  />
+                </div>
+              )
+            }
 
             <!-- Content -->
             <TLDR summary={tldr} />
@@ -160,7 +184,7 @@ const readingTime = calculateReadingTime(post.body);
   function observeToc() {
     const anchors = document.querySelectorAll(".prose h2[id], .prose h3[id]");
     const links = document.querySelectorAll("nav.toc ul li a");
-    
+
     if (anchors && links) {
       let scrollTop = window.scrollY;
 

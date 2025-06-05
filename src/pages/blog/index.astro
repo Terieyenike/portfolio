@@ -7,7 +7,7 @@ import PostsByYear from "../../components/PostsByYear.astro";
 type BlogPost = CollectionEntry<"blog">;
 const title = "All posts";
 const description =
-  "Articles, guides, tutorials about SWE, Cloud and DevOps.";
+  "Articles, guides, tutorials about SWE, AI, Cloud and DevOps.";
 
 const posts = (await getCollection("blog")).sort(
   (a: BlogPost, b: BlogPost) =>

@@ -4,11 +4,13 @@ import ProjectList from '../../components/ProjectList.astro';
 import { getProjects } from './projects';
 
 const projects = await getProjects();
+const featured = projects.filter((p) => p.featured).slice(0, 2);
+const others = projects.filter((p) => !p.featured);
 ---
 
 <BaseLayout
-	title="All My Projects"
-	description="All my project portfolio from real projects to open source projects."
+    title="All My Projects"
+    description="All my project portfolio from real projects to open source projects."
 >
   <div class="container mx-auto px-4 py-12">
     <div class="text-center mb-12">
@@ -18,8 +20,46 @@ const projects = await getProjects();
       </p>
     </div>
 
+    {featured.length > 0 && (
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold mb-6 text-[#005353] dark:text-[#00E0E0] text-center">Featured Projects</h2>
+        <div class="grid gap-8 md:grid-cols-2">
+          {featured.map((project) => (
+            <div class="group bg-gradient-to-br from-[#e0f7fa] to-[#f0fafd] dark:from-[#003939] dark:to-[#005353] rounded-2xl shadow-xl p-6 flex flex-col md:flex-row items-center gap-6 hover:scale-[1.02] transition">
+              {project.thumbnail && (
+                <img src={project.thumbnail} alt={project.title + " screenshot"} class="w-40 h-40 object-cover rounded-xl shadow-md mb-4 md:mb-0" loading="lazy" />
+              )}
+              <div class="flex-1">
+                <h3 class="text-xl font-bold mb-2 text-[#005353] dark:text-[#00E0E0]">{project.title}</h3>
+                <p class="text-zinc-700 dark:text-zinc-300 mb-3">{project.description}</p>
+                <div class="flex flex-wrap gap-2 mb-3">
+                  {project.techStack?.map((tech: string) => (
+                    <span class="inline-block bg-[#00E0E0]/10 dark:bg-[#005353]/30 text-[#005353] dark:text-[#00E0E0] px-2 py-1 rounded text-xs font-semibold">{tech}</span>
+                  ))}
+                </div>
+                <div class="flex gap-3">
+                  {project.demo && (
+                    <a href={project.demo} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-3 py-1 rounded bg-[#00E0E0] text-[#003939] font-semibold text-sm shadow hover:bg-[#00bcbc] focus:outline-none focus:ring-2 focus:ring-[#00E0E0] transition" aria-label="View Demo">
+                      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" class="inline"><path d="M5 12l7-7M5 5h7v7"/></svg>
+                      Demo
+                    </a>
+                  )}
+                  {project.github && (
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 px-3 py-1 rounded border border-[#00E0E0] text-[#00E0E0] font-semibold text-sm hover:bg-[#00E0E0]/10 focus:outline-none focus:ring-2 focus:ring-[#00E0E0] transition" aria-label="View on GitHub">
+                      <svg width="16" height="16" fill="currentColor" class="inline"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.1 0 0 .67-.21 2.2.82a7.65 7.65 0 012 0c1.53-1.03 2.2-.82 2.2-.82.44 1.09.16 1.9.08 2.1.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.19 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                      GitHub
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
     <div class="bg-white dark:bg-[#003939] rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl">
-      <ProjectList projects={projects}/>
+      <ProjectList projects={others}/>
     </div>
   </div>
 </BaseLayout>
@@ -28,15 +68,16 @@ const projects = await getProjects();
   .container {
     animation: fadeIn 0.5s ease-out;
   }
-
   @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(10px);}
+    to { opacity: 1; transform: translateY(0);}
+  }
+  @media (max-width: 768px) {
+    .grid.md\:grid-cols-2 { grid-template-columns: 1fr !important; }
+    .p-6 { padding: 1rem !important; }
+  }
+  a:focus-visible {
+    outline: 2px solid #00E0E0;
+    outline-offset: 2px;
   }
 </style>
