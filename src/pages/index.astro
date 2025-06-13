@@ -16,8 +16,52 @@ type BlogPost = CollectionEntry<"blog">;
 const projects = await getProjects();
 const top6Projects = projects.slice(0, 6);
 const posts = (await getCollection("blog"))
-  .sort((a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .sort(
+    (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
+      b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  )
   .slice(0, 5);
+
+// --- Other Works Data & Inline Component ---
+type OtherWork = {
+  title: string;
+  image: string;
+  description: string;
+  url: string;
+  publication?: string;
+};
+
+const otherWorks: OtherWork[] = [
+  {
+    title: "How to Build a Quiz App With Nuxt and Xata",
+    image:
+      "https://cdn.thenewstack.io/media/2025/02/c221a25f-build-quiz-app-nuxt-xata-1024x576.png",
+    description:
+      "Life is a continuous test of your knowledge. This tutorial delves into how to build a question-answering (quiz) application with Nuxt and Xata as the data store.",
+    url: "https://thenewstack.io/how-to-build-a-quiz-app-with-nuxt-and-xata/",
+    publication: "The New Stack",
+  },
+  {
+    title: "Display AI-Generated Images in a Jupyter Notebook",
+    image:
+      "https://cdn.thenewstack.io/media/2024/11/20d1e8e3-reefs-1024x576.jpg",
+    description:
+      "AI and its associated technologies, such as OpenAI, can make many processes effortless. With the right tools, you can transform thoughts into creative ideas, by turning text into generated images and storing them in the cloud using Cloudinary, a digital media management tool.",
+    url: "https://thenewstack.io/display-ai-generated-images-in-a-jupyter-notebook/",
+    publication: "The New Stack",
+  },
+  {
+    title: "Building an AI Voice Application in Streamlit using OpenAI",
+    image:
+      "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F3q0mx98s0cxaxoyakd7i.png",
+    description:
+      "This guide showcases the power of AI in turning speech to text and at the same time, translate another audio recording from a different language into English. All using the OpenAI technology and its model called Whisper. Also, you would be able to download the transcribed content as a text file in the .txt format.",
+    url: "https://dev.to/terieyenike/building-a-voice-transcription-and-translation-app-with-openai-whisper-and-streamlit-43mm",
+    publication: "Dev.to",
+  },
+  // Add more articles as needed
+];
+// ---
 ---
 
 <BaseLayout
@@ -30,10 +74,14 @@ const posts = (await getCollection("blog"))
       class="flex flex-col-reverse md:flex-row items-center gap-12 min-h-[calc(100vh-6rem)] md:min-h-[600px] xl:min-h-[calc(100vh-8rem)]"
     >
       <div class="flex-1 space-y-6">
-        <h1 class="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight bg-gradient-to-r from-[#005353] to-[#00E0E0] bg-clip-text text-transparent drop-shadow-lg">
+        <h1
+          class="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight bg-gradient-to-r from-[#005353] to-[#00E0E0] bg-clip-text text-transparent drop-shadow-lg"
+        >
           <TypingText text="Hey, I'm Teri!" />
         </h1>
-        <div class="text-xl md:text-2xl leading-9 space-y-6 text-zinc-700 dark:text-zinc-300">
+        <div
+          class="text-xl md:text-2xl leading-9 space-y-6 text-zinc-700 dark:text-zinc-300"
+        >
           <Prose>
             <p class="fade-in">
               I'm a software and devops engineer specializing in building
@@ -46,14 +94,19 @@ const posts = (await getCollection("blog"))
           </Prose>
         </div>
         <div class="flex gap-4 mt-6">
-          <a href="/contact" class="px-6 py-3 rounded-lg font-semibold bg-[#005353] dark:bg-[#00E0E0] text-white dark:text-zinc-900 shadow-lg hover:bg-[#003939] dark:hover:bg-[#00D0D0] transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#005353] dark:focus:ring-[#00E0E0]">
+          <a
+            href="/contact"
+            class="px-6 py-3 rounded-lg font-semibold bg-[#005353] dark:bg-[#00E0E0] text-white dark:text-zinc-900 shadow-lg hover:bg-[#003939] dark:hover:bg-[#00D0D0] transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#005353] dark:focus:ring-[#00E0E0]"
+          >
             Let's Connect
           </a>
         </div>
       </div>
       <div class="flex-1 flex justify-center items-center">
         <div class="relative group">
-          <span class="absolute -inset-4 bg-[#00E0E0]/20 dark:bg-[#005353]/20 rounded-3xl blur-xl opacity-70 group-hover:opacity-100 transition-all duration-500"></span>
+          <span
+            class="absolute -inset-4 bg-[#00E0E0]/20 dark:bg-[#005353]/20 rounded-3xl blur-xl opacity-70 group-hover:opacity-100 transition-all duration-500"
+          ></span>
           <Image
             src={Teri}
             alt="Oteri on vacation sitting on a boat in Ganvie, Benin Republic"
@@ -67,12 +120,19 @@ const posts = (await getCollection("blog"))
 
     <!-- Recent Posts -->
     <section class="mt-20 md:mt-24">
-      <div class="flex justify-between items-center border-b border-zinc-200 dark:border-zinc-700 mb-6">
-        <h2 class="text-2xl md:text-3xl font-bold text-[#005353] dark:text-[#00E0E0] tracking-tight">Recent Posts</h2>
+      <div
+        class="flex justify-between items-center border-b border-zinc-200 dark:border-zinc-700 mb-6"
+      >
+        <h2
+          class="text-2xl md:text-3xl font-bold text-[#005353] dark:text-[#00E0E0] tracking-tight"
+        >
+          Recent Posts
+        </h2>
         <a
           href="/blog/"
           class="text-base underline hover:text-[#005353] dark:hover:text-[#00E0E0] transition-colors"
-        >All posts &raquo;</a>
+          >All posts &raquo;</a
+        >
       </div>
       <div class="grid gap-8 md:grid-cols-2">
         {posts.map((post: BlogPost) => <PostItem post={post} />)}
@@ -82,13 +142,62 @@ const posts = (await getCollection("blog"))
     <!-- Projects -->
     <section class="mt-20">
       <div class="flex justify-between items-center mb-6">
-        <h2 class="text-2xl md:text-3xl font-bold text-[#005353] dark:text-[#00E0E0] tracking-tight">My Projects</h2>
+        <h2
+          class="text-2xl md:text-3xl font-bold text-[#005353] dark:text-[#00E0E0] tracking-tight"
+        >
+          My Projects
+        </h2>
         <a
           href="/projects/"
           class="text-base underline hover:text-[#005353] dark:hover:text-[#00E0E0] transition-colors"
-        >All projects &raquo;</a>
+          >All projects &raquo;</a
+        >
       </div>
       <ProjectList projects={top6Projects} />
+    </section>
+
+    <!-- Other Publications Section -->
+    <section class="mt-20">
+      <h2
+        class="text-2xl md:text-3xl font-bold text-[#005353] dark:text-[#00E0E0] mb-6"
+      >
+        Other Publications
+      </h2>
+      <div class="grid gap-8 md:grid-cols-2">
+        {
+          otherWorks.map((work) => (
+            <a
+              href={work.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group block bg-white dark:bg-zinc-900 rounded-xl shadow hover:shadow-lg transition p-6 h-full"
+              style="height:100%;display:flex;flex-direction:column;"
+            >
+              <img
+                src={work.image}
+                alt={work.title}
+                class="w-full h-40 object-cover rounded-lg mb-4"
+                loading="lazy"
+              />
+              <h3 class="text-lg font-semibold mb-2 group-hover:text-[#005353] dark:group-hover:text-[#00E0E0] transition">
+                {work.title}
+              </h3>
+              <p class="text-zinc-700 dark:text-zinc-300 text-sm mb-2">
+                {work.description}
+              </p>
+              <div style="flex:1"></div>
+              {work.publication && (
+                <span class="text-xs text-zinc-500 dark:text-zinc-400 mt-4 pt-2 border-t border-zinc-100 dark:border-zinc-800 self-end flex items-center gap-1">
+                  {work.publication}
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 inline" fill="none" viewBox="0 0 20 20">
+                    <path fill="currentColor" d="M14.293 2.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-8.5 8.5a1 1 0 0 1-.325.217l-4 1.5a1 1 0 0 1-1.287-1.287l1.5-4a1 1 0 0 1 .217-.325l8.5-8.5ZM15 4.414 13.586 3 5.914 10.672l-.97 2.577 2.577-.97L15 4.414Z"/>
+                  </svg>
+                </span>
+              )}
+            </a>
+          ))
+        }
+      </div>
     </section>
   </div>
 </BaseLayout>
