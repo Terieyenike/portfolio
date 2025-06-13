@@ -145,6 +145,30 @@ const readingTime = calculateReadingTime(post.body);
           </div>
         </Prose>
 
+        <!-- Share buttons -->
+        <div class="flex gap-4 mt-8 mb-8">
+          <a
+            href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(canonicalUrl || "https://yourdomain.com" + Astro.url.pathname)}&text=${encodeURIComponent(title)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center px-4 py-2 rounded bg-[#00E0E0] text-white font-semibold hover:bg-[#00bcbc] transition"
+            aria-label="Share on Twitter"
+          >
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M22.46 6c-.77.35-1.6.58-2.47.69a4.3 4.3 0 0 0 1.88-2.37 8.59 8.59 0 0 1-2.72 1.04A4.28 4.28 0 0 0 16.11 4c-2.37 0-4.29 1.92-4.29 4.29 0 .34.04.67.11.99C7.69 9.13 4.07 7.2 1.64 4.16c-.37.64-.58 1.39-.58 2.19 0 1.51.77 2.85 1.95 3.63-.72-.02-1.39-.22-1.98-.55v.06c0 2.11 1.5 3.87 3.5 4.27-.36.1-.74.16-1.13.16-.28 0-.54-.03-.8-.08.54 1.7 2.12 2.94 3.99 2.97A8.6 8.6 0 0 1 2 19.54c-.34 0-.67-.02-1-.06A12.13 12.13 0 0 0 7.29 21.5c7.55 0 11.68-6.26 11.68-11.68 0-.18-.01-.36-.02-.54A8.18 8.18 0 0 0 24 4.59a8.36 8.36 0 0 1-2.54.7z"/></svg>
+            Share on Twitter
+          </a>
+          <a
+            href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(canonicalUrl || "https://yourdomain.com" + Astro.url.pathname)}&title=${encodeURIComponent(title)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center px-4 py-2 rounded bg-[#005353] text-white font-semibold hover:bg-[#003939] transition"
+            aria-label="Share on LinkedIn"
+          >
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-9h3v9zm-1.5-10.29c-.97 0-1.75-.79-1.75-1.75s.78-1.75 1.75-1.75 1.75.79 1.75 1.75-.78 1.75-1.75 1.75zm13.5 10.29h-3v-4.5c0-1.08-.02-2.47-1.5-2.47-1.5 0-1.73 1.17-1.73 2.39v4.58h-3v-9h2.89v1.23h.04c.4-.75 1.36-1.54 2.8-1.54 3 0 3.56 1.97 3.56 4.53v4.78z"/></svg>
+            Share on LinkedIn
+          </a>
+        </div>
+
         <!-- Comments -->
         {
           GISCUS_REPO && (
@@ -179,6 +203,20 @@ const readingTime = calculateReadingTime(post.body);
     </div>
   </div>
 </BaseLayout>
+
+<div id="reading-progress" class="fixed top-0 left-0 w-0 h-1 bg-[#00E0E0] z-50 transition-all duration-200"></div>
+<script>
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const scrollTop = doc.scrollTop || document.body.scrollTop;
+    const scrollHeight = doc.scrollHeight - doc.clientHeight;
+    const progress = (scrollTop / scrollHeight) * 100;
+    const progressBar = document.getElementById('reading-progress');
+    if (progressBar) {
+      progressBar.style.width = progress + '%';
+    }
+  });
+</script>
 
 <script>
   function observeToc() {
