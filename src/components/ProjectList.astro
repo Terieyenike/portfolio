@@ -4,149 +4,114 @@ import type { Project } from '../pages/projects/projects'
 import { kFormatter } from '../utils'
 import GithubWhite from '@src/assets/img/github-mark-white.svg';
 import GithubBlack from '@src/assets/img/github-mark.svg';
-import ScrollAnimation from './ScrollAnimation.astro';
 
 const { projects } = Astro.props
 ---
 
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
   {
-    projects.map((project: Project, index: number) => (
-      <ScrollAnimation>
-        <div 
-          class="group border dark:border-zinc-700 rounded-2xl shadow-lg p-6 
-                 hover:shadow-2xl transition-all duration-300
-                 hover:border-[#005353] dark:hover:border-[#00D0D0]
-                 bg-gradient-to-br from-[#f0fafd] to-[#e0f7fa] dark:from-[#003939] dark:to-[#005353]
-                 relative overflow-hidden"
-        >
-          {/* Project Thumbnail */}
-          {project.thumbnail && (
-            <div class="mb-4 flex justify-center">
-              <img 
-                src={project.thumbnail} 
-                alt={project.title + " screenshot"} 
-                class="w-28 h-28 object-cover rounded-xl shadow-md border border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-900 transition-transform duration-300 group-hover:scale-105"
-                loading="lazy"
-              />
-            </div>
-          )}
-
-          {/* Tags and Stars */}
-          <div class="flex flex-wrap justify-between items-center gap-2 mb-4">
-            <div class='flex flex-wrap gap-2'>
-              {
-                (project.tags || [] )?.map((tag: string) => (
-                  <span
-                    class='border border-zinc-200 dark:border-zinc-700 rounded-full
-                      text-xs text-zinc-800 dark:text-zinc-200 no-underline px-3 py-1
-                      transition-all duration-300
-                      hover:bg-[#005353] dark:hover:bg-[#00E0E0] hover:border-[#005353] dark:hover:border-[#00E0E0]
-                      hover:text-white dark:hover:text-zinc-900'
-                    >
-                    {tag}
-                  </span>
-                ))
-              }
-            </div>
-
-            {project.stargazers_count !== undefined && (
-              <div class='shrink-0'>
-                <a
-                  href={project.html_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class='border border-zinc-200 dark:border-zinc-700 rounded-full
-                      text-xs text-zinc-800 dark:text-zinc-400 no-underline px-3 py-1
-                      transition-all duration-300
-                      hover:bg-[#005353] dark:hover:bg-[#00D0D0] hover:border-[#005353] dark:hover:border-[#00D0D0]
-                      hover:text-white dark:hover:text-white
-                      flex items-center gap-1'
-                >
-                  <Image src={GithubBlack} height={12} class='dark:hidden' alt='Github stars' />
-                  <Image src={GithubWhite} height={12} class='hidden dark:block' alt='Github stars' />
-                  {kFormatter(project.stargazers_count)} stars
-                </a>
-              </div>
-            )}
+    projects.map((project: Project) => (
+      <div 
+        class="border dark:border-zinc-700 rounded-2xl shadow-lg p-6 
+               hover:shadow-2xl transition-all duration-300
+               hover:border-[#005353] dark:hover:border-[#00D0D0]
+               bg-gradient-to-br from-[#f0fafd] to-[#e0f7fa] dark:from-[#003939] dark:to-[#005353]
+               relative overflow-hidden flex flex-col"
+      >
+        {/* Tags and Stars */}
+        <div class="flex flex-wrap justify-between items-center gap-2 mb-3">
+          <div class="flex flex-wrap gap-2">
+            {(project.tags || []).map((tag: string) => (
+              <span
+                class="border border-zinc-200 dark:border-zinc-700 rounded-full
+                  text-xs text-zinc-800 dark:text-zinc-200 px-3 py-1
+                  transition-all duration-300
+                  hover:bg-[#005353] dark:hover:bg-[#00E0E0] hover:border-[#005353] dark:hover:border-[#00E0E0]
+                  hover:text-white dark:hover:text-zinc-900"
+              >
+                {tag}
+              </span>
+            ))}
           </div>
+          {project.stargazers_count !== undefined && (
+            <a
+              href={project.html_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="border border-zinc-200 dark:border-zinc-700 rounded-full
+                text-xs text-zinc-800 dark:text-zinc-400 px-3 py-1
+                transition-all duration-300
+                hover:bg-[#005353] dark:hover:bg-[#003939] hover:border-[#005353] dark:hover:border-[#00D0D0]
+                hover:text-white dark:hover:text-white flex items-center gap-1"
+            >
+              <Image src={GithubBlack} height={12} class="dark:hidden" alt="Github stars" />
+              <Image src={GithubWhite} height={12} class="hidden dark:block" alt="Github stars" />
+              {kFormatter(project.stargazers_count)} stars
+            </a>
+          )}
+        </div>
 
-          {/* Project Title */}
-          <h3 class="font-semibold text-lg mb-2 group-hover:text-[#005353] dark:group-hover:text-[#00E0E0] transition-colors duration-300">
+        {/* Project Title */}
+        <h3 class="font-semibold text-lg mb-2 hover:text-[#005353] dark:hover:text-[#00E0E0] transition-colors duration-300">
+          <a 
+            href={project.demoLink || project.html_url} 
+            target="_blank" 
+            rel={project.demoLinkRel}
+            class="hover:underline"
+          >
+            {project.name}
+          </a>
+        </h3>
+
+        {/* Description */}
+        <div class="line-clamp-2 text-zinc-800 dark:text-zinc-300 mb-4 min-h-[50px]">
+          <p>{project.description}</p>
+        </div>
+
+        {/* Action Links */}
+        <div class="flex flex-wrap gap-3 justify-end mt-auto">
+          {project.postLink && (
             <a 
-              href={project.demoLink || project.html_url} 
+              class="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#005353]/10 dark:bg-[#00E0E0]/10 text-[#005353] dark:text-[#00E0E0] font-semibold text-sm hover:bg-[#005353]/20 dark:hover:bg-[#00E0E0]/20 transition"
+              href={project.postLink}
+              aria-label="Read Article"
+            >
+              Article
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+            </a>
+          )}
+          {project.demoLink && (
+            <a 
+              class="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#00E0E0] text-[#003939] font-semibold text-sm shadow hover:bg-[#00bcbc] focus:outline-none focus:ring-2 focus:ring-[#00E0E0] transition"
+              href={project.demoLink} 
               target="_blank" 
               rel={project.demoLinkRel}
-              class="hover:underline"
+              aria-label="View Demo"
             >
-              {project.name}
+              Demo
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
             </a>
-          </h3>
-
-          {/* Tech Stack Badges */}
-          {project.techStack && project.techStack.length > 0 && (
-            <div class="flex flex-wrap gap-2 mb-3">
-              {project.techStack.map((tech: string) => (
-                <span class="inline-block bg-[#00E0E0]/10 dark:bg-[#005353]/30 text-[#005353] dark:text-[#00E0E0] px-2 py-1 rounded text-xs font-semibold">{tech}</span>
-              ))}
-            </div>
           )}
-
-          {/* Description */}
-          <div class="line-clamp-2 text-zinc-800 dark:text-zinc-300 mb-4 min-h-[50px]">
-            <p>{project.description}</p>
-          </div>
-
-          {/* Action Links */}
-          <div class="flex flex-wrap gap-3 justify-end mt-4">
-            {project.postLink && (
-              <a 
-                class="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#005353]/10 dark:bg-[#00E0E0]/10 text-[#005353] dark:text-[#00E0E0] font-semibold text-sm hover:bg-[#005353]/20 dark:hover:bg-[#00E0E0]/20 transition"
-                href={project.postLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Read Article"
-              >
-                Article
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-              </a>
-            )}
-            {project.demoLink && (
-              <a 
-                class="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#00E0E0] text-[#003939] font-semibold text-sm shadow hover:bg-[#00bcbc] focus:outline-none focus:ring-2 focus:ring-[#00E0E0] transition"
-                href={project.demoLink} 
-                target="_blank" 
-                rel={project.demoLinkRel}
-                aria-label="View Demo"
-              >
-                Demo
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-              </a>
-            )}
-            {project.github && (
-              <a 
-                class="inline-flex items-center gap-2 px-3 py-1 rounded border border-[#00E0E0] text-[#00E0E0] font-semibold text-sm hover:bg-[#00E0E0]/10 focus:outline-none focus:ring-2 focus:ring-[#00E0E0] transition"
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="View on GitHub"
-              >
-                <Image src={GithubBlack} height={16} class="dark:hidden" alt="GitHub" />
-                <Image src={GithubWhite} height={16} class="hidden dark:block" alt="GitHub" />
-                GitHub
-              </a>
-            )}
-          </div>
+          {project.github && (
+            <a 
+              class="inline-flex items-center gap-2 px-3 py-1 rounded border border-[#00E0E0] text-[#00E0E0] font-semibold text-sm hover:bg-[#00E0E0]/10 focus:outline-none focus:ring-2 focus:ring-[#00E0E0] transition"
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View on GitHub"
+            >
+              <Image src={GithubBlack} height={16} class="dark:hidden" alt="GitHub" />
+              <Image src={GithubWhite} height={16} class="hidden dark:block" alt="GitHub" />
+              GitHub
+            </a>
+          )}
         </div>
-      </ScrollAnimation>
+      </div>
     ))
   }
 </div>
 
 <style>
-  .grid > div {
-    opacity: 1;
-  }
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;

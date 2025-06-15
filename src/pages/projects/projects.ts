@@ -10,15 +10,21 @@ export interface Project {
   [key: string]: any;
 }
 
-// Define a function to get all projects with repository details
+// Cache variable
+let _projects: Project[] | null = null;
+
 export async function getProjects(): Promise<Project[]> {
-  const trackTripDetails = await getRepositoryDetails(
-    "Terieyenike/track-trip-dashboard-with-xata-next"
-  );
-  
-  const portfolioDetails = await getRepositoryDetails("Terieyenike/v2");
-  
-  return [
+  if (_projects) return _projects;
+
+  _projects = [
+    {
+      ...(await getRepositoryDetails("Terieyenike/py-file-organizer")),
+      name: "File Organizer",
+      description:
+        "A Python CLI tool to organize files into folders by type (extensions).",
+      demoLink: "https://pypi.org/project/py-file-organizer/",
+      tags: ["Python", "CLI"],
+    },
     {
       name: "SQL notes",
       description: "SQL notes - setup, creating databases, and many more",
@@ -26,7 +32,7 @@ export async function getProjects(): Promise<Project[]> {
       tags: ["Database", "PostgreSQL"],
     },
     {
-      ...trackTripDetails,
+      ...(await getRepositoryDetails("Terieyenike/track-trip-dashboard-with-xata-next")),
       name: "Track Trips",
       description:
         "Keep track of all your adventures, never forget the amazing memories",
@@ -34,7 +40,7 @@ export async function getProjects(): Promise<Project[]> {
       tags: ["Saas"],
     },
     {
-      ...portfolioDetails,
+      ...(await getRepositoryDetails("Terieyenike/v2")),
       name: "Teri's Portfolio",
       description:
         "An open source personal portfolio site for the community to use freely",
@@ -42,7 +48,6 @@ export async function getProjects(): Promise<Project[]> {
       tags: ["React", "Portfolio"],
     },
   ];
-}
 
-// For backward compatibility, export an empty array as the default projects
-export const projects: Project[] = [];
+  return _projects;
+}
