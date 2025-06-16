@@ -23,7 +23,7 @@ export async function getProjects(): Promise<Project[]> {
       description:
         "A Python CLI tool to organize files into folders by type (extensions).",
       demoLink: "https://pypi.org/project/py-file-organizer/",
-      tags: ["Python", "CLI"],
+      tags: ["Python", "Automation"],
     },
     {
       name: "SQL notes",
