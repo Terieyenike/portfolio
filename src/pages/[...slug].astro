@@ -180,20 +180,6 @@ const readingTime = calculateReadingTime(post.body);
   </div>
 </BaseLayout>
 
-<div id="reading-progress" class="fixed top-0 left-0 w-0 h-1 bg-[#00E0E0] z-50 transition-all duration-200"></div>
-<script>
-  window.addEventListener('scroll', () => {
-    const doc = document.documentElement;
-    const scrollTop = doc.scrollTop || document.body.scrollTop;
-    const scrollHeight = doc.scrollHeight - doc.clientHeight;
-    const progress = (scrollTop / scrollHeight) * 100;
-    const progressBar = document.getElementById('reading-progress');
-    if (progressBar) {
-      progressBar.style.width = progress + '%';
-    }
-  });
-</script>
-
 <script>
   function observeToc() {
     const anchors = document.querySelectorAll(".prose h2[id], .prose h3[id]");
