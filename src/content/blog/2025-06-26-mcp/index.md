@@ -14,7 +14,7 @@ I came across the Bright Data MCP (model context protocol) server from [Noah Kal
 
 The common problem I found worthy of solving was to scrape a public website like [Nike.com](https://nike.com) particularly sneakers for men and have it readily available for users to view showcasing details like the product item, price, availability, and product link.
 
-![nike product website data](/src/assets/img/nike_product_data_website.png)
+![nike product website data](https://res.cloudinary.com/terieyenike/image/upload/v1750845646/nike_product_data_website_ehjwf2.png)
 
 So I built this all in one tool that allows for the extraction of its data without any restriction because with Bright Data MCP, your applications can effortlessly retrieve both static and dynamic content from across the web, eliminating the need to build or maintain complex data scraping and unlocking infrastructure.
 
