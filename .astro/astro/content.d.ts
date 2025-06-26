@@ -173,6 +173,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"2025-06-26-mcp/index.md": {
+	id: "2025-06-26-mcp/index.md";
+  slug: "bright-data-mcp";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 };
 
 	};
