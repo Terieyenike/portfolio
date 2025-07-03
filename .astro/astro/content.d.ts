@@ -157,28 +157,35 @@ declare module 'astro:content' {
   slug: "cloud-101-guide-to-aws-concepts";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".md"] };
 "2025-05-04-vim/index.md": {
 	id: "2025-05-04-vim/index.md";
   slug: "vim-boost-productivity";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".md"] };
 "2025-05-12-everyday-vim/index.md": {
 	id: "2025-05-12-everyday-vim/index.md";
   slug: "vim-daily-practice";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".md"] };
 "2025-06-26-mcp/index.md": {
 	id: "2025-06-26-mcp/index.md";
   slug: "bright-data-mcp";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
+} & { render(): Render[".md"] };
+"2025-07-03-caption/index.md": {
+	id: "2025-07-03-caption/index.md";
+  slug: "ai-image-captioner-cloudinary";
+  body: string;
+  collection: "blog";
+  data: any
 } & { render(): Render[".md"] };
 };
 
@@ -190,5 +197,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	export type ContentConfig = typeof import("../../src/content/config.js");
+	export type ContentConfig = never;
 }
