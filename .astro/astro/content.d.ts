@@ -187,6 +187,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: any
 } & { render(): Render[".md"] };
+"2025-07-04-cld/index.md": {
+	id: "2025-07-04-cld/index.md";
+  slug: "ai-content-aware-cropper-cloudinary";
+  body: string;
+  collection: "blog";
+  data: any
+} & { render(): Render[".md"] };
 };
 
 	};
