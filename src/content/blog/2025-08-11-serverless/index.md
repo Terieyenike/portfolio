@@ -50,7 +50,7 @@ Now, let’s compress (zip) this file to deploy this app without git. Head over 
 
 ![create new app](https://res.cloudinary.com/terieyenike/image/upload/v1754921830/aws%20calculator%20distance%20app/image7.jpg)
 
-Select the option “Deploy without Git” and click the Next button
+Select the option “Deploy without Git” and click the Next button.
 
 ![deploy app without git](https://res.cloudinary.com/terieyenike/image/upload/v1754921822/aws%20calculator%20distance%20app/image4.jpg)
 
@@ -78,16 +78,11 @@ To create the function, we need to give it a name and select __Python 3.13__ for
 In the code tab, copy and paste this code into the text editor:
 
 ```python
-# import the JSON utility package
 import json
-# import the Python math library
 import math
 
-# import the AWS SDK (for Python the package name is boto3)
 import boto3
-# import two packages to help us with dates and date formatting
 from time import gmtime, strftime
-
 
 # define the handler function that the Lambda service will use an entry point
 def lambda_handler(event, context):
@@ -111,7 +106,6 @@ def lambda_handler(event, context):
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
     distance = 6371 * c  # Earth's radius in km
 
-# return a properly formatted JSON object
     return {
         'statusCode': 200,
         'body': json.dumps('Your result is ' + str(distance))
@@ -242,53 +236,40 @@ Now, paste your copied ARN you copied previously. Click on Next to give it a pol
 To check the data is saved to DynamoDB, under the code tab of the Lambda function, paste this updated code:
 
 ```python
-# import the JSON utility package
 import json
-# import the Python math library
 import math
 
-# import the AWS SDK (for Python the package name is boto3)
 import boto3
-# import two packages to help us with dates and date formatting
 from time import gmtime, strftime
 
-# create a DynamoDB object using the AWS SDK
 dynamodb = boto3.resource('dynamodb')
-# use the DynamoDB object to select our table
 table = dynamodb.Table(‘YOUR DYNAMODB DATABASE NAME’)
-# store the current time in a human readable format in a variable
 now = strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())
 
-# define the handler function that the Lambda service will use an entry point
 def lambda_handler(event, context):
 
-# get the latitude and longitude of the two points from the event
     lat1 = float(event['lat1'])
     lon1 = float(event['lon1'])
     lat2 = float(event['lat2'])
     lon2 = float(event['lon2'])
 
-# convert the latitude and longitude to radians
     lat1_rad = math.radians(lat1)
     lon1_rad = math.radians(lon1)
     lat2_rad = math.radians(lat2)
     lon2_rad = math.radians(lon2)
 
-# calculate the distance in kilometers using the Haversine formula
     dlon = lon2_rad - lon1_rad
     dlat = lat2_rad - lat1_rad
     a = math.sin(dlat / 2)**2 + math.cos(lat1_rad) * math.cos(lat2_rad) * math.sin(dlon / 2)**2
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
     distance = 6371 * c  # Earth's radius in km
 
-# write result and time to the DynamoDB table using the object we instantiated and save response in a variable
     response = table.put_item(
         Item={
             'ID': str(distance),
             'LatestGreetingTime':now
             })
 
-# return a properly formatted JSON object
     return {
         'statusCode': 200,
         'body': json.dumps('Your result is ' + str(distance))
