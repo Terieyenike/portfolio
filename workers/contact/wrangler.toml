@@ -1,0 +1,17 @@
+name = "teri-portfolio-contact"
+main = "src/index.js"
+compatibility_date = "2026-10-04"
+
+[vars]
+CONTACT_TO = "developedbyteri@gmail.com"
+CONTACT_FROM = "Teri's Portfolio <contact@send.iamteri.tech>"
+ALLOWED_ORIGINS = "https://iamteri.tech,https://www.iamteri.tech,http://localhost:4321"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "teri-portfolio-contact"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+migrations_dir = "migrations"
+
+[triggers]
+crons = ["17 3 * * *"]

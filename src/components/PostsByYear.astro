@@ -29,10 +29,11 @@ const groupedPosts = groupPostsByYear(posts);
 ---
 
 <div class="space-y-8">
+  {groupedPosts.length === 0 && <p class="text-zinc-600 dark:text-zinc-400">No posts yet. Check back soon.</p>}
   {groupedPosts.map(({ year, posts }, index) => (
     <div class="group">
-      <h2 class="text-2xl font-bold mb-4 text-[#00a7a7] dark:text-[#00a7a7] flex items-center">
-        <span class="w-2 h-2 bg-[#00a7a7] rounded-full mr-2 group-hover:w-4 transition-all duration-300"></span>
+      <h2 class="text-2xl font-bold mb-4 text-[#667F20] dark:text-[#667F20] flex items-center">
+        <span class="w-2 h-2 bg-[#667F20] rounded-full mr-2 group-hover:w-4 transition-all duration-300"></span>
         {year}
       </h2>
       <div class="space-y-2">
@@ -66,4 +67,11 @@ const groupedPosts = groupPostsByYear(posts);
   .group:nth-child(3) { animation-delay: 0.3s; }
   .group:nth-child(4) { animation-delay: 0.4s; }
   .group:nth-child(5) { animation-delay: 0.5s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .group {
+      animation: none;
+      opacity: 1;
+    }
+  }
 </style>

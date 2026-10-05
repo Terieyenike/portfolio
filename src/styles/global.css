@@ -1,9 +1,98 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+	color-scheme: light;
+	--paper: #f4f2e9;
+	--surface: #fffef8;
+	--ink: #171b16;
+	--muted: #646b5c;
+	--line: #d7d8c9;
+	--acid: #d8f16a;
+	--olive: #506814;
+}
+
+.dark {
+	color-scheme: dark;
+	--paper: #171b16;
+	--surface: #20251b;
+	--ink: #f0f1e8;
+	--muted: #b1b6a6;
+	--line: #3c4432;
+	--acid: #d8f16a;
+	--olive: #d8f16a;
+}
+
+html {
+	scroll-behavior: smooth;
+	scroll-padding-top: 5rem;
+}
+
+body.site-body {
+	min-height: 100vh;
+	background-color: var(--paper);
+	color: var(--ink);
+	font-family: "Avenir Next", Avenir, "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+body.menu-open { overflow: hidden; }
+
+::selection {
+	background: var(--acid);
+	color: #171b16;
+}
+
+.site-shell {
+	background-color: var(--paper);
+	color: var(--ink);
+}
+
+.site-kicker {
+	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+	font-size: .72rem;
+	font-weight: 700;
+	letter-spacing: .16em;
+	line-height: 1.4;
+	text-transform: uppercase;
+}
+
+.site-rule {
+	border-color: var(--line);
+}
+
+.site-panel {
+	border: 1px solid var(--line);
+	background: var(--surface);
+}
+
+.site-grid-pattern {
+	background-image: linear-gradient(to right, color-mix(in srgb, var(--line) 55%, transparent) 1px, transparent 1px), linear-gradient(to bottom, color-mix(in srgb, var(--line) 55%, transparent) 1px, transparent 1px);
+	background-size: 24px 24px;
+}
+
 @layer base {
 	pre,
 	code {
 		font-size: 0.875rem;
+	}
+
+	h1, h2, h3, h4 {
+		letter-spacing: -0.035em;
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--olive);
+		outline-offset: 3px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after {
+		animation-duration: .01ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+		transition-duration: .01ms !important;
 	}
 }

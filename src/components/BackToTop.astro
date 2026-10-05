@@ -1,7 +1,10 @@
 <button
   id="back-to-top"
-  class="fixed bottom-8 right-8 p-3 rounded-full bg-[#005353] dark:bg-[#00E0E0] text-white shadow-lg opacity-0 transition-all duration-300 hover:scale-110"
+  class="fixed bottom-8 right-8 p-3 rounded-full bg-[#506814] dark:bg-[#D8F16A] text-white shadow-lg opacity-0 pointer-events-none transition-all duration-300 hover:scale-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D8F16A]"
   aria-label="Back to top"
+  aria-hidden="true"
+  inert
+  tabindex="-1"
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -27,16 +30,24 @@
       if (window.scrollY > 300) {
         backToTopButton.classList.remove('opacity-0');
         backToTopButton.classList.add('opacity-100');
+        backToTopButton.classList.remove('pointer-events-none');
+        backToTopButton.removeAttribute('aria-hidden');
+        backToTopButton.removeAttribute('inert');
+        backToTopButton.setAttribute('tabindex', '0');
       } else {
         backToTopButton.classList.remove('opacity-100');
         backToTopButton.classList.add('opacity-0');
+        backToTopButton.classList.add('pointer-events-none');
+        backToTopButton.setAttribute('aria-hidden', 'true');
+        backToTopButton.setAttribute('inert', '');
+        backToTopButton.setAttribute('tabindex', '-1');
       }
     });
 
     backToTopButton.addEventListener('click', () => {
       window.scrollTo({
         top: 0,
-        behavior: 'smooth'
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
       });
     });
   }

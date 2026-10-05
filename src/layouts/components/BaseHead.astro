@@ -3,6 +3,7 @@
 // all pages through the use of the <BaseHead /> component.
 import "../../styles/global.css";
 import Favicon from "@src/assets/img/favicon.png";
+import { SITE_TITLE } from "../../consts";
 
 interface Props {
   title: string;
@@ -12,8 +13,8 @@ interface Props {
 }
 
 const {
-  title = "Creative Technologist & Educator | Building future tools",
-  description = "Combining software engineering and education to build interactive tools, creative experiences, and engaging ways to learn through tech",
+  title = "Software & DevOps Engineer | Teri Eyenike",
+  description = "Teri Eyenike builds software, developer tools, and cloud workflows, and writes practical technical guides.",
   image = "https://res.cloudinary.com/terieyenike/image/upload/v1748796012/teri_eyenike_skwuyb.png",
   canonicalUrl,
 } = Astro.props;
@@ -28,9 +29,11 @@ const structuredData = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Teri Eyenike",
+  jobTitle: "Software and DevOps Engineer",
   url: Astro.site,
   image: new URL(image, Astro.url),
   description: description,
+  knowsAbout: ["Software engineering", "DevOps", "Cloud computing", "PostgreSQL", "Developer tools", "Technical writing"],
   sameAs: [
     "https://github.com/terieyenike",
     "https://linkedin.com/in/terieyenike",
@@ -52,6 +55,7 @@ const structuredData = {
   data-site="ylyeqns7l7hy"
   data-domain="iamteri.tech"
 ></script>
+<link rel="alternate" type="application/rss+xml" title={`${SITE_TITLE} RSS feed`} href="/rss.xml" />
 <meta name="generator" content={Astro.generator} />
 
 <!-- Canonical URL -->
@@ -64,7 +68,7 @@ const structuredData = {
 <meta name="author" content="Teri Eyenike" />
 <meta
   name="keywords"
-  content="cloud engineer, creative technologist, developer tools, AWS, DevOps, JavaScript, Node.js, Python, product builder, software engineer, technical content creator, indie hacker, AI productivity tools, open source projects, developer experience, software builder"
+  content="software engineer, DevOps engineer, cloud computing, developer tools, AWS, JavaScript, Node.js, Python, PostgreSQL, technical writing, open source"
 />
 
 <!-- Open Graph / Facebook -->
@@ -75,7 +79,7 @@ const structuredData = {
 <meta property="og:image" content={new URL(image, Astro.url)} />
 <meta
   property="og:site_name"
-  content="The technical storyteller - Teri Eyenike"
+  content="Teri Eyenike | Software, systems & stories"
 />
 
 <!-- Twitter -->
@@ -87,10 +91,8 @@ const structuredData = {
 <meta name="twitter:creator" content="@terieyenike" />
 
 <!-- Additional Meta Tags -->
-<meta name="theme-color" content="#ffffff" />
+<meta name="theme-color" content="#F4F2E9" />
 <meta name="robots" content="index, follow" />
-<meta name="language" content="English" />
-<meta name="revisit-after" content="7 days" />
 
 <!-- Structured Data -->
 <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />

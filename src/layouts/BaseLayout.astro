@@ -15,10 +15,11 @@ const { title, description, image, canonicalUrl } = Astro.props;
 		<BaseHead title={title} description={description} image={image} canonicalUrl={canonicalUrl} />
 	</head>
 	<body
-		class="bg-white dark:bg-zinc-900 dark:text-zinc-100 pt-16"
+		class="site-body"
 	>
+		<a href="#main-content" class="sr-only z-[1001] rounded-md bg-white px-4 py-3 text-zinc-900 shadow focus:not-sr-only focus:fixed focus:left-4 focus:top-4">Skip to main content</a>
 		<Header/>
-		<div class='py-8 min-h-[calc(100vh-160px)]'>
+		<div id="main-content" tabindex="-1" class='py-6 sm:py-10 min-h-[calc(100vh-160px)] focus:outline-none'>
 			<slot />
 		</div>
 		<Footer />

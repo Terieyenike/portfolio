@@ -1,53 +1,46 @@
-import { getRepositoryDetails } from "../../utils";
-
 export interface Project {
   name: string;
-  demoLink: string;
-  tags?: string[];
-  description?: string;
-  postLink?: string;
-  demoLinkRel?: string;
-  [key: string]: any;
+  description: string;
+  demoLink?: string;
+  repositoryUrl?: string;
+  tags: string[];
+  featured?: boolean;
+  outcome?: string;
 }
 
-// Cache variable
-let _projects: Project[] | null = null;
+// Keep project content local so the portfolio build does not depend on GitHub.
+const projectDetails: Project[] = [
+  {
+    name: "File Organizer",
+    description: "A Python command-line tool that organizes files into folders by extension.",
+    demoLink: "https://pypi.org/project/py-file-organizer/",
+    repositoryUrl: "https://github.com/Terieyenike/py-file-organizer",
+    tags: ["Python", "CLI", "Automation"],
+    featured: true,
+    outcome: "Packaged and published on PyPI.",
+  },
+  {
+    name: "Track Trips",
+    description: "A trip dashboard for keeping travel plans and memories in one place.",
+    demoLink: "https://track-trip-dashboard-with-xata-next.vercel.app/",
+    repositoryUrl: "https://github.com/Terieyenike/track-trip-dashboard-with-xata-next",
+    tags: ["Next.js", "Xata", "Travel"],
+    featured: true,
+  },
+  {
+    name: "SQL Notes",
+    description: "Practical notes covering SQL setup, database creation, and common workflows.",
+    repositoryUrl: "https://github.com/Terieyenike/SQL-notes",
+    tags: ["SQL", "PostgreSQL", "Learning"],
+  },
+  {
+    name: "Teri's Portfolio",
+    description: "An open-source personal portfolio built to share projects, writing, and resources.",
+    repositoryUrl: "https://github.com/Terieyenike/v2",
+    tags: ["Astro", "TypeScript", "Open Source"],
+  },
+];
 
 export async function getProjects(): Promise<Project[]> {
-  if (_projects) return _projects;
-
-  _projects = [
-    {
-      ...(await getRepositoryDetails("Terieyenike/py-file-organizer")),
-      name: "File Organizer",
-      description:
-        "A Python CLI tool to organize files into folders by type (extensions).",
-      demoLink: "https://pypi.org/project/py-file-organizer/",
-      tags: ["Python", "Automation"],
-    },
-    {
-      name: "SQL notes",
-      description: "SQL notes - setup, creating databases, and many more",
-      demoLink: "https://github.com/Terieyenike/SQL-notes",
-      tags: ["Database", "PostgreSQL"],
-    },
-    {
-      ...(await getRepositoryDetails("Terieyenike/track-trip-dashboard-with-xata-next")),
-      name: "Track Trips",
-      description:
-        "Keep track of all your adventures, never forget the amazing memories",
-      demoLink: "https://track-trip-dashboard-with-xata-next.vercel.app/",
-      tags: ["Saas"],
-    },
-    {
-      ...(await getRepositoryDetails("Terieyenike/v2")),
-      name: "Teri's Portfolio",
-      description:
-        "An open source personal portfolio site for the community to use freely",
-      demoLink: "https://github.com/Terieyenike/v2",
-      tags: ["React", "Portfolio"],
-    },
-  ];
-
-  return _projects;
+  return projectDetails;
 }

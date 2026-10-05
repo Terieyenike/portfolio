@@ -5,9 +5,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import PostsByYear from "../../components/PostsByYear.astro";
 
 type BlogPost = CollectionEntry<"blog">;
-const title = "All posts";
+const title = "Writing";
 const description =
-  "Articles, guides, tutorials about SWE, AI, Cloud and DevOps.";
+  "Practical articles and tutorials on software engineering, AI, cloud, and DevOps.";
 
 const posts = (await getCollection("blog")).sort(
   (a: BlogPost, b: BlogPost) =>
@@ -16,31 +16,16 @@ const posts = (await getCollection("blog")).sort(
 ---
 
 <BaseLayout title={title} description={description}>
-  <div class="container mx-auto px-4 py-8 max-w-4xl">
-    <div class="mb-12 text-center">
-      <h1 class="text-4xl font-bold mb-4 text-[#005353] dark:text-[#00E0E0]">{title}</h1>
-      <p class="text-zinc-800 dark:text-zinc-300 text-lg max-w-2xl mx-auto">{description}</p>
-    </div>
+  <main class="container mx-auto max-w-4xl px-4 py-12 sm:px-6">
+    <header class="mb-10">
+      <p class="site-kicker mb-2 text-[var(--olive)]">Ideas &amp; tutorials / Archive</p>
+      <h1 class="text-5xl font-semibold tracking-tight text-[var(--ink)] sm:text-6xl">{title}</h1>
+      <p class="mt-3 text-lg leading-8 text-[var(--muted)]">{description}</p>
+      <a href="/tags/" class="mt-4 inline-flex text-sm font-semibold text-[var(--olive)] underline underline-offset-4">Browse by topic →</a>
+    </header>
     
-    <div class="bg-white dark:bg-[#003939] rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl">
+    <div class="site-panel p-5 sm:p-7">
       <PostsByYear posts={posts} />
     </div>
-  </div>
+  </main>
 </BaseLayout>
-
-<style>
-  .container {
-    animation: fadeIn 0.5s ease-out;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-</style>

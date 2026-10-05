@@ -6,8 +6,11 @@ type Props = HTMLAttributes<'a'>;
 const { href, class: className, ...props } = Astro.props;
 
 const { pathname } = Astro.url;
-const subpath = pathname.match(/[^\/]+/g);
-const isActive = href === pathname || href === '/' + subpath?.[0];
+const normalizePath = (path: string) => path.replace(/\/+$/, '') || '/';
+const currentPath = normalizePath(pathname);
+const targetPath = normalizePath(href || '/');
+const isActive = currentPath === targetPath ||
+  (targetPath !== '/' && currentPath.startsWith(`${targetPath}/`));
 ---
 
 <a
@@ -20,6 +23,7 @@ const isActive = href === pathname || href === '/' + subpath?.[0];
 		{ 'text-zinc-950 dark:text-zinc-50': isActive }
 	]}
 	{...props}
+	aria-current={isActive ? 'page' : undefined}
 >
 	<slot />
 </a>

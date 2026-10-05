@@ -47,33 +47,38 @@ for (const post of allPosts) {
 	}
 }
 const groupedTags = groupTagsByFirstLetter(Object.values(mappedTags));
-const title = `All Tags`;
-const description = 'Browse all blog post tags to find content by topic';
+const title = `Topics`;
+const description = 'Browse the topics covered in my articles and tutorials.';
 ---
 
 <BaseLayout title={title} description={description}>
-    <div class="container mx-auto px-4 py-12">
-    <div class="text-center mb-12">
-      <h1 class="text-4xl font-bold mb-4 text-[#005353] dark:text-[#00E0E0] animate-fade-in">{title}</h1>
-      <p class="text-zinc-800 dark:text-zinc-300 text-lg max-w-2xl mx-auto animate-fade-in">
+    <main class="container mx-auto max-w-5xl px-4 py-12 sm:px-6">
+    <div class="mb-10 max-w-3xl">
+      <p class="site-kicker mb-2 text-[var(--olive)]">The index / Browse by subject</p>
+      <h1 class="mb-4 text-5xl font-semibold tracking-tight text-[var(--ink)] sm:text-6xl">{title}</h1>
+      <p class="text-lg leading-8 text-[var(--muted)] max-w-2xl">
         {description}
       </p>
     </div>
 
-    <div class="bg-white dark:bg-zinc-900 rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl">
+    <div class="site-panel p-5 sm:p-7">
       <!-- Tag Search -->
-      <div class="mb-8 relative">
+      <div class="mb-8">
+        <label for="tagSearch" class="mb-2 block text-sm font-semibold text-zinc-700 dark:text-zinc-200">Search topics</label>
+        <div class="relative">
         <input
           type="text"
           id="tagSearch"
           placeholder="Search tags..."
           class="w-full px-4 py-2 rounded-lg border border-zinc-200 dark:border-zinc-700 
                  bg-white dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200
-                 focus:outline-none focus:ring-2 focus:ring-[#005353] dark:focus:ring-[#00E0E0] focus:border-transparent
+                 focus:outline-none focus:ring-2 focus:ring-[#506814] dark:focus:ring-[#D8F16A] focus:border-transparent
                  transition-all duration-300 pr-10 shadow focus:shadow-lg animate-fade-in"
         />
         <button
           id="clearSearch"
+          type="button"
+          aria-label="Clear topic search"
           class="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 
                  dark:hover:text-zinc-200 transition-colors duration-300 hidden"
         >
@@ -84,10 +89,11 @@ const description = 'Browse all blog post tags to find content by topic';
             <path d="m6 6 12 12"/>
           </svg>
         </button>
+        </div>
       </div>
 
       <!-- No Results Message -->
-      <div id="noResults" class="hidden text-center py-8 animate-fade-in">
+      <div id="noResults" class="hidden text-center py-8 animate-fade-in" role="status" aria-live="polite">
         <span class="text-4xl mb-2 block">🔍</span>
         <p class="text-zinc-600 dark:text-zinc-400">
           No tags found matching your search. Try a different term.
@@ -101,15 +107,15 @@ const description = 'Browse all blog post tags to find content by topic';
             class="flex gap-4 py-6 border-b border-zinc-200 dark:border-zinc-700 last:border-b-0 group animate-slide-up"
             style={`animation-delay: ${idx * 60}ms`}
           >
-            <h2 class="text-2xl font-bold text-[#005353] dark:text-[#00E0E0] w-8 shrink-0 sticky top-24 bg-white dark:bg-zinc-900 z-10 rounded">{letter}</h2>
+            <h2 class="text-2xl font-bold text-[#506814] dark:text-[#D8F16A] w-8 shrink-0 sticky top-24 bg-white dark:bg-zinc-900 z-10 rounded">{letter}</h2>
             <div class="flex flex-wrap gap-3">
               {tags.map((tag: Tag) => (
                 <a
                   href={`/tags/${slugify(tag.value)}/`}
                   class="group flex items-center gap-2 border border-zinc-200 dark:border-zinc-700 
                          rounded-full px-5 py-2 text-base font-medium text-zinc-800 dark:text-zinc-200
-                         bg-zinc-50 dark:bg-zinc-800 hover:bg-[#005353] dark:hover:bg-[#00E0E0] hover:border-[#005353] dark:hover:border-[#00E0E0] 
-                         hover:text-white dark:hover:text-zinc-900 transition-all duration-300 shadow-sm hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#00E0E0] scale-100 hover:scale-105 active:scale-95"
+                         bg-zinc-50 dark:bg-zinc-800 hover:bg-[#506814] dark:hover:bg-[#D8F16A] hover:border-[#506814] dark:hover:border-[#D8F16A] 
+                         hover:text-white dark:hover:text-zinc-900 transition-all duration-300 shadow-sm hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#D8F16A] scale-100 hover:scale-105 active:scale-95"
                   aria-label={`View posts tagged with ${tag.label}`}
                   style="transition: box-shadow 0.3s, transform 0.2s;"
                 >
@@ -127,14 +133,14 @@ const description = 'Browse all blog post tags to find content by topic';
         ))}
       </div>
     </div>
-    </div>
+    </main>
 </BaseLayout>
 
 <script>
   // Tag search functionality
   const tagSearch = document.getElementById('tagSearch');
   const clearSearch = document.getElementById('clearSearch');
-  const tagLinks = document.querySelectorAll('a[href^="/tags/"]');
+  const tagLinks = document.querySelectorAll('#tagsList a[href^="/tags/"]');
   const noResults = document.getElementById('noResults');
   const tagsList = document.getElementById('tagsList');
 
@@ -198,18 +204,18 @@ const description = 'Browse all blog post tags to find content by topic';
     from { opacity: 0; transform: translateY(30px);}
     to { opacity: 1; transform: translateY(0);}
   }
-  a[href^="/tags/"]:hover {
+  #tagsList a[href^="/tags/"]:hover {
     transform: scale(1.07) translateY(-2px);
     box-shadow: 0 4px 16px 0 rgba(0,224,224,0.10);
     z-index: 1;
   }
-  a[href^="/tags/"]:active {
+  #tagsList a[href^="/tags/"]:active {
     transform: scale(0.98);
   }
   /* Tag count bubble microinteraction */
-  a[href^="/tags/"]:hover span:last-child {
+  #tagsList a[href^="/tags/"]:hover span:last-child {
     background: #fff3;
-    color: #005353;
+    color: #506814;
     transform: scale(1.15);
   }
   /* Responsive spacing for mobile */
@@ -222,6 +228,17 @@ const description = 'Browse all blog post tags to find content by topic';
     #tagsList h2 {
       position: static;
       margin-bottom: 0.5rem;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .container,
+    .animate-fade-in,
+    .animate-slide-up,
+    #tagsList a,
+    #tagsList a span {
+      animation: none !important;
+      transition: none !important;
+      transform: none !important;
     }
   }
 </style>

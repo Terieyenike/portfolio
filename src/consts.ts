@@ -2,6 +2,6 @@
 // You can import this data from anywhere in your site by using the `import` keyword.
 
 export const SITE_TITLE = "Teri Eyenike";
-export const SITE_TAGLINE = "Creative Technologist & Educator | Building future tools"; 
+export const SITE_TAGLINE = "Software & DevOps Engineer | Developer Tools & Technical Writing";
 export const SITE_DESCRIPTION =
-  "Combining software engineering and education to build interactive tools, creative experiences, and engaging ways to learn through tech";
+  "Teri Eyenike builds software, developer tools, and cloud workflows, and writes practical technical guides.";

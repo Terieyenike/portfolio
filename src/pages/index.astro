@@ -1,223 +1,97 @@
 ---
-import { SITE_TITLE, SITE_TAGLINE, SITE_DESCRIPTION } from "../consts";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import Teri from "@src/assets/img/teri.png";
-import Prose from "../components/Prose.astro";
 import { getProjects } from "./projects/projects";
 import ProjectList from "../components/ProjectList.astro";
 import PostItem from "../components/PostItem.astro";
-import TypingText from "../components/TypingText.astro";
+import { publications } from "../data/publications";
 
 type BlogPost = CollectionEntry<"blog">;
-
 const projects = await getProjects();
-const top6Projects = projects.slice(0, 6);
+const featuredProjects = projects.filter((project) => project.featured).slice(0, 3);
 const posts = (await getCollection("blog"))
-  .sort(
-    (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
-      b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-  )
-  .slice(0, 5);
-
-// --- Other Works Data & Inline Component ---
-type OtherWork = {
-  title: string;
-  image: string;
-  description: string;
-  url: string;
-  publication?: string;
-};
-
-const otherWorks: OtherWork[] = [
-  {
-    title: "How to Build a Quiz App With Nuxt and Xata",
-    image:
-      "https://cdn.thenewstack.io/media/2025/02/c221a25f-build-quiz-app-nuxt-xata-1024x576.png",
-    description:
-      "Life is a continuous test of your knowledge. This tutorial delves into how to build a question-answering (quiz) application with Nuxt and Xata as the data store.",
-    url: "https://thenewstack.io/how-to-build-a-quiz-app-with-nuxt-and-xata/",
-    publication: "The New Stack",
-  },
-  {
-    title: "Display AI-Generated Images in a Jupyter Notebook",
-    image:
-      "https://cdn.thenewstack.io/media/2024/11/20d1e8e3-reefs-1024x576.jpg",
-    description:
-      "AI and its associated technologies, such as OpenAI, can make many processes effortless. With the right tools, you can transform thoughts into creative ideas, by turning text into generated images and storing them in the cloud using Cloudinary, a digital media management tool.",
-    url: "https://thenewstack.io/display-ai-generated-images-in-a-jupyter-notebook/",
-    publication: "The New Stack",
-  },
-  {
-    title: "Building an AI Voice Application in Streamlit using OpenAI",
-    image:
-      "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F3q0mx98s0cxaxoyakd7i.png",
-    description:
-      "This guide showcases the power of AI in turning speech to text and at the same time, translate another audio recording from a different language into English. All using the OpenAI technology and its model called Whisper. Also, you would be able to download the transcribed content as a text file in the .txt format.",
-    url: "https://dev.to/terieyenike/building-a-voice-transcription-and-translation-app-with-openai-whisper-and-streamlit-43mm",
-    publication: "Dev.to",
-  },
-  // Add more articles as needed
-];
-// ---
+  .sort((a: BlogPost, b: BlogPost) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 ---
 
-<BaseLayout
-  title={`${SITE_TITLE} - ${SITE_TAGLINE}`}
-  description={SITE_DESCRIPTION}
->
-  <div class="container mx-auto px-4 py-12 md:py-16">
-    <!-- Hero Section -->
-    <section
-      class="flex flex-col-reverse md:flex-row items-center gap-12 min-h-[calc(100vh-6rem)] md:min-h-[600px] xl:min-h-[calc(100vh-8rem)]"
-    >
-      <div class="flex-1 space-y-6">
-        <h1
-          class="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight bg-gradient-to-r from-[#005353] to-[#00E0E0] bg-clip-text text-transparent drop-shadow-lg"
-        >
-          <TypingText text="Hey, I'm Teri!" />
-        </h1>
-        <div
-          class="text-xl md:text-2xl leading-9 space-y-6 text-zinc-700 dark:text-zinc-300"
-        >
-          <Prose>
-            <p class="fade-in">
-              I'm a software and devops engineer specializing in building
-              applications and creating technical content.
-            </p>
-            <p class="fade-in delay-300">
-              I enjoy sharing knowledge through writing and helping others grow
-              in their tech journey.
-            </p>
-          </Prose>
+<BaseLayout title={`${SITE_TITLE} — Software, systems & stories`} description={SITE_DESCRIPTION}>
+  <main class="site-home mx-auto max-w-6xl px-4 sm:px-6">
+    <section class="home-hero" aria-labelledby="home-title">
+      <div class="home-copy">
+        <p class="site-kicker text-[var(--olive)]">Engineer · Builder · Writer <span class="mx-2 text-[var(--muted)]">/</span> Nigeria</p>
+        <h1 id="home-title">I build software that makes complex work feel <em>simple.</em></h1>
+        <p class="home-intro">I’m Teri Eyenike, a software and DevOps engineer. I build useful tools and cloud workflows, then share what I learn through practical writing.</p>
+        <div class="home-actions">
+          <a class="button-primary" href="/projects/">Explore my work <span aria-hidden="true">↗</span></a>
+          <a class="button-text" href="/contact/">Get in touch <span aria-hidden="true">→</span></a>
         </div>
-        <div class="flex gap-4 mt-6">
-          <a
-            href="/contact"
-            class="px-6 py-3 rounded-lg font-semibold bg-[#005353] dark:bg-[#00E0E0] text-white dark:text-zinc-900 shadow-lg hover:bg-[#003939] dark:hover:bg-[#00D0D0] transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#005353] dark:focus:ring-[#00E0E0]"
-          >
-            Let's Connect
-          </a>
-        </div>
+        <div class="home-meta"><span>Currently focused on</span><strong>Software · Cloud · Developer experience</strong></div>
       </div>
-      <div class="flex-1 flex justify-center items-center">
-        <div class="relative group">
-          <span
-            class="absolute -inset-4 bg-[#00E0E0]/20 dark:bg-[#005353]/20 rounded-3xl blur-xl opacity-70 group-hover:opacity-100 transition-all duration-500"
-          ></span>
-          <Image
-            src={Teri}
-            alt="Oteri on vacation sitting on a boat in Ganvie, Benin Republic"
-            width={340}
-            loading="eager"
-            class="rounded-3xl shadow-2xl relative z-10 rotate-3 group-hover:rotate-0 transition-transform duration-500"
-          />
-        </div>
+      <div class="home-portrait-wrap">
+        <div class="portrait-frame"><Image src={Teri} alt="Teri Eyenike on a boat in Ganvié, Benin Republic" width={520} loading="eager" class="home-portrait" /></div>
+        <span class="portrait-index site-kicker">PERSONAL FIELD NOTES <b>№ 01</b></span>
+        <span class="portrait-stamp" aria-hidden="true">TE<span>.</span></span>
       </div>
     </section>
 
-    <!-- Recent Posts -->
-    <section class="mt-20 md:mt-24">
-      <div
-        class="flex justify-between items-center border-b border-zinc-200 dark:border-zinc-700 mb-6"
-      >
-        <h2
-          class="text-2xl md:text-3xl font-bold text-[#005353] dark:text-[#00E0E0] tracking-tight"
-        >
-          Recent Posts
-        </h2>
-        <a
-          href="/blog/"
-          class="text-base underline hover:text-[#005353] dark:hover:text-[#00E0E0] transition-colors"
-          >All posts &raquo;</a
-        >
-      </div>
-      <div class="grid gap-8 md:grid-cols-2">
-        {posts.map((post: BlogPost) => <PostItem post={post} />)}
-      </div>
+    <section class="home-section" aria-labelledby="work-title">
+      <header class="section-heading"><div><p class="site-kicker text-[var(--olive)]">01 / Things made</p><h2 id="work-title">Selected work</h2></div><a class="button-text" href="/projects/">All projects <span aria-hidden="true">↗</span></a></header>
+      <ProjectList projects={featuredProjects} />
     </section>
 
-    <!-- Projects -->
-    <section class="mt-20">
-      <div class="flex justify-between items-center mb-6">
-        <h2
-          class="text-2xl md:text-3xl font-bold text-[#005353] dark:text-[#00E0E0] tracking-tight"
-        >
-          My Projects
-        </h2>
-        <a
-          href="/projects/"
-          class="text-base underline hover:text-[#005353] dark:hover:text-[#00E0E0] transition-colors"
-          >All projects &raquo;</a
-        >
+    {publications.length > 0 && <section class="home-section" aria-labelledby="published-title">
+      <header class="section-heading"><div><p class="site-kicker text-[var(--olive)]">02 / Elsewhere</p><h2 id="published-title">Published writing</h2></div></header>
+      <div class="publication-list">
+        {publications.slice(0, 3).map((work, index) => <a class="publication-row" href={work.url} target="_blank" rel="noopener noreferrer"><span class="publication-number">0{index + 1}</span><span><strong>{work.title}</strong><small>{work.publication || work.description}</small></span><span class="publication-arrow" aria-hidden="true">↗</span></a>)}
       </div>
-      <ProjectList projects={top6Projects} />
-    </section>
+    </section>}
 
-    <!-- Other Publications Section -->
-    <section class="mt-20">
-      <h2
-        class="text-2xl md:text-3xl font-bold text-[#005353] dark:text-[#00E0E0] mb-6"
-      >
-        Other Publications
-      </h2>
-      <div class="grid gap-8 md:grid-cols-2">
-        {
-          otherWorks.map((work) => (
-            <a
-              href={work.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="group block bg-white dark:bg-zinc-900 rounded-xl shadow hover:shadow-lg transition p-6 h-full"
-              style="height:100%;display:flex;flex-direction:column;"
-            >
-              <img
-                src={work.image}
-                alt={work.title}
-                class="w-full h-40 object-cover rounded-lg mb-4"
-                loading="lazy"
-              />
-              <h3 class="text-lg font-semibold mb-2 group-hover:text-[#005353] dark:group-hover:text-[#00E0E0] transition">
-                {work.title}
-              </h3>
-              <p class="text-zinc-700 dark:text-zinc-300 text-sm mb-2">
-                {work.description}
-              </p>
-              <div style="flex:1"></div>
-              {work.publication && (
-                <span class="text-xs text-zinc-500 dark:text-zinc-400 mt-4 pt-2 border-t border-zinc-100 dark:border-zinc-800 self-end flex items-center gap-1">
-                  {work.publication}
-                  <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 inline" fill="none" viewBox="0 0 20 20">
-                    <path fill="currentColor" d="M14.293 2.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-8.5 8.5a1 1 0 0 1-.325.217l-4 1.5a1 1 0 0 1-1.287-1.287l1.5-4a1 1 0 0 1 .217-.325l8.5-8.5ZM15 4.414 13.586 3 5.914 10.672l-.97 2.577 2.577-.97L15 4.414Z"/>
-                  </svg>
-                </span>
-              )}
-            </a>
-          ))
-        }
-      </div>
+    <section class="home-section" aria-labelledby="writing-title">
+      <header class="section-heading"><div><p class="site-kicker text-[var(--olive)]">03 / In progress</p><h2 id="writing-title">Notes from the work</h2></div><a class="button-text" href="/blog/">All writing <span aria-hidden="true">↗</span></a></header>
+      <div class="grid gap-5 md:grid-cols-2">{posts.map((post: BlogPost) => <PostItem post={post} />)}</div>
     </section>
-  </div>
+    <section class="home-contact site-grid-pattern" aria-labelledby="contact-title"><div><p class="site-kicker text-[var(--olive)]">Have a good problem?</p><h2 id="contact-title">Let’s make something useful.</h2></div><a class="button-primary" href="/contact/">Start a conversation <span aria-hidden="true">↗</span></a></section>
+  </main>
 </BaseLayout>
 
 <style>
-  .fade-in {
-    animation: fadeIn 0.8s ease-out forwards;
-    opacity: 0;
-  }
-  .delay-300 {
-    animation-delay: 300ms;
-  }
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+  .site-home { padding-top: 1rem; }
+  .home-hero { display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: clamp(2rem, 7vw, 7rem); padding: clamp(2rem, 6vw, 5rem) 0 clamp(4rem, 10vw, 8rem); }
+  .home-hero > * { min-width: 0; }
+  .home-copy h1 { max-width: 760px; margin: 1.4rem 0 1.5rem; font-size: clamp(3.2rem, 7.2vw, 6.8rem); line-height: .98; font-weight: 650; letter-spacing: -.075em; }
+  .home-copy h1 em { color: var(--olive); font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
+  .home-intro { max-width: 36rem; color: var(--muted); font-size: clamp(1.05rem, 1.6vw, 1.25rem); line-height: 1.75; }
+  .home-actions { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 2rem; }
+  .button-primary, .button-text { display: inline-flex; align-items: center; gap: .8rem; text-decoration: none; font-weight: 650; }
+  .button-primary { padding: .95rem 1.2rem; background: var(--ink); color: var(--paper); }
+  .button-primary:hover { background: var(--olive); color: #fff; }
+  .button-text { color: var(--ink); border-bottom: 1px solid var(--line); padding: .6rem 0; }
+  .button-text:hover { color: var(--olive); border-color: var(--olive); }
+  .home-meta { border-top: 1px solid var(--line); margin-top: 3rem; padding-top: 1rem; display: grid; gap: .35rem; font-size: .8rem; }
+  .home-meta span { color: var(--muted); }
+  .home-meta strong { font-weight: 600; }
+  .home-portrait-wrap { position: relative; width: 100%; max-width: 380px; box-sizing: border-box; margin: auto; padding: 1.1rem 1.1rem 2.6rem; background: var(--acid); transform: rotate(2deg); }
+  .portrait-frame { aspect-ratio: 4 / 5; overflow: hidden; background: var(--surface); }
+  .home-portrait { width: 100%; height: 100%; object-fit: cover; }
+  .portrait-index { position: absolute; bottom: .9rem; left: 1.15rem; color: #171b16; letter-spacing: .08em; }
+  .portrait-index b { margin-left: .6rem; }
+  .portrait-stamp { position: absolute; right: -1.25rem; top: 1.6rem; display: grid; place-items: center; width: 3.8rem; height: 3.8rem; border: 1px solid var(--ink); border-radius: 50%; background: var(--paper); color: var(--ink); font-family: ui-monospace, monospace; font-weight: 800; }
+  .portrait-stamp span { color: var(--olive); }
+  .home-section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; border-top: 1px solid var(--line); }
+  .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 1rem; margin-bottom: 2rem; }
+  .section-heading h2, .home-contact h2 { margin: .5rem 0 0; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.05; letter-spacing: -.055em; }
+  .publication-list { border-top: 1px solid var(--line); }
+  .publication-row { display: grid; grid-template-columns: 3.5rem 1fr auto; gap: 1rem; align-items: center; padding: 1.2rem .25rem; border-bottom: 1px solid var(--line); color: var(--ink); text-decoration: none; }
+  .publication-row:hover strong, .publication-row:hover .publication-arrow { color: var(--olive); }
+  .publication-number { color: var(--muted); font: .75rem ui-monospace, monospace; }
+  .publication-row strong, .publication-row small { display: block; }
+  .publication-row strong { font-size: 1.08rem; }
+  .publication-row small { margin-top: .35rem; color: var(--muted); }
+  .publication-arrow { font-size: 1.25rem; }
+  .home-contact { display: flex; align-items: center; justify-content: space-between; gap: 2rem; margin: 2rem 0 4rem; padding: clamp(2rem, 6vw, 4rem); border: 1px solid var(--line); background-size: 24px 24px; }
+  @media (max-width: 760px) { .home-hero { grid-template-columns: 1fr; gap: 2.5rem; padding-top: 2rem; } .home-portrait-wrap { width: min(82%, 360px); } .section-heading { align-items: start; } .home-contact { align-items: flex-start; flex-direction: column; } }
 </style>

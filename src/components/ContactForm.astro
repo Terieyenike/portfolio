@@ -1,95 +1,130 @@
 ---
-interface Props {
-  formspreeEndpoint?: string;
-}
-
-const { formspreeEndpoint = "mqapvnkv" } = Astro.props;
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+const contactApiUrl = import.meta.env.PUBLIC_CONTACT_API_URL;
 ---
 
 <div class="max-w-3xl mx-auto">
   <div class="text-center mb-12">
-    <h1 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#005353] to-[#00E0E0] bg-clip-text text-transparent">
-      Get in Touch
-    </h1>
+    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-[var(--ink)]">Send a message</h2>
     <p class="text-xl text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto">
-      Have a question or want to work together? I'd love to hear from you. 
-      Send me a message and I'll respond as soon as possible.
+      Have a question or want to work together? Tell me what you’re building or where you’re stuck.
     </p>
   </div>
 
-  <div class="bg-white dark:bg-zinc-900 rounded-2xl shadow-lg p-8 md:p-12 border border-zinc-200 dark:border-zinc-800">
-    <form 
-      action={`https://formspree.io/f/${formspreeEndpoint}`}
-      method="POST"
+  <div class="site-panel rounded-none p-6 sm:p-8 md:p-12">
+    <form
+      id="contact-message-form"
+      data-api-url={contactApiUrl}
+      aria-describedby="form-note form-status"
       class="space-y-6"
+      novalidate
     >
+      <div class="contact-honeypot" aria-hidden="true">
+        <label for="contact-website">Leave this field empty</label>
+        <input type="text" id="contact-website" name="website" tabindex="-1" autocomplete="off" />
+      </div>
+
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div class="space-y-2">
-          <label for="name" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
-            Name <span class="text-red-500">*</span>
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            required
-            minlength="2"
-            class="w-full px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-[#005353] dark:focus:ring-[#00E0E0] transition-all duration-300"
-            placeholder="Your name"
-          />
+          <label for="name" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">Name <span class="text-red-500">*</span></label>
+          <input type="text" id="name" name="name" autocomplete="name" required minlength="2" maxlength="100" autocapitalize="words" class="contact-input" placeholder="Your name" />
         </div>
-
         <div class="space-y-2">
-          <label for="email" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
-            Email <span class="text-red-500">*</span>
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            required
-            class="w-full px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-[#005353] dark:focus:ring-[#00E0E0] transition-all duration-300"
-            placeholder="your@email.com"
-          />
+          <label for="email" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">Email <span class="text-red-500">*</span></label>
+          <input type="email" id="email" name="email" autocomplete="email" required maxlength="254" inputmode="email" autocapitalize="none" spellcheck="false" class="contact-input" placeholder="you@example.com" />
         </div>
       </div>
+      <p id="form-note" class="text-center text-sm text-zinc-500 dark:text-zinc-400">
+        You’ll receive a confirmation link. Your message is delivered only after you confirm access to your email. Don’t include passwords or confidential information.
+      </p>
 
       <div class="space-y-2">
-        <label for="subject" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
-          Subject
-        </label>
-        <input
-          type="text"
-          id="subject"
-          name="subject"
-          class="w-full px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-[#005353] dark:focus:ring-[#00E0E0] transition-all duration-300"
-          placeholder="What's this about?"
-        />
+        <label for="subject" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">Subject</label>
+        <input type="text" id="subject" name="subject" maxlength="160" class="contact-input" placeholder="What’s this about?" />
       </div>
 
       <div class="space-y-2">
-        <label for="message" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">
-          Message <span class="text-red-500">*</span>
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          required
-          minlength="10"
-          rows="6"
-          class="w-full px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-[#005353] dark:focus:ring-[#00E0E0] transition-all duration-300 resize-none"
-          placeholder="Your message..."
-        ></textarea>
+        <label for="message" class="block text-sm font-medium text-zinc-700 dark:text-zinc-300">Message <span class="text-red-500">*</span></label>
+        <textarea id="message" name="message" required minlength="10" maxlength="5000" autocapitalize="sentences" spellcheck="true" rows="6" class="contact-input" placeholder="Your message..."></textarea>
       </div>
 
-      <div class="flex justify-center">
-        <button
-          type="submit"
-          class="px-8 py-3 bg-[#005353] dark:bg-[#00E0E0] text-white dark:text-zinc-900 rounded-lg font-medium hover:bg-[#003939] dark:hover:bg-[#00D0D0] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#005353] dark:focus:ring-[#00E0E0] focus:ring-offset-2"
-        >
+      {turnstileSiteKey ? (
+        <div class="contact-verification">
+          <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-theme="auto" data-size="compact" data-action="contact"></div>
+          <p class="text-xs text-zinc-500 dark:text-zinc-400">Protected against automated submissions.</p>
+        </div>
+      ) : (
+        <p class="text-center text-sm text-amber-700 dark:text-amber-300">Contact form verification is being configured. Please use the direct email link above for now.</p>
+      )}
+
+      <div class="flex flex-col items-center gap-3">
+        <button id="contact-submit" type="submit" disabled={!contactApiUrl || !turnstileSiteKey} class="px-8 py-3 bg-[#506814] dark:bg-[#D8F16A] text-white dark:text-zinc-900 rounded-lg font-medium hover:bg-[#20251B] dark:hover:bg-[#C4DE4F] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#506814] dark:focus:ring-[#D8F16A] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
           Send Message
         </button>
+        <p id="form-status" class="text-sm text-center text-zinc-600 dark:text-zinc-300" aria-live="polite" role="status"></p>
       </div>
     </form>
   </div>
 </div>
+
+{turnstileSiteKey && <script is:inline async defer src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>}
+
+<script>
+  declare global {
+    interface Window {
+      turnstile?: { reset: () => void };
+    }
+  }
+
+  const form = document.querySelector<HTMLFormElement>("#contact-message-form");
+  const button = document.querySelector<HTMLButtonElement>("#contact-submit");
+  const status = document.querySelector<HTMLElement>("#form-status");
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!form.reportValidity() || !button || !status) return;
+
+    const apiUrl = form.dataset.apiUrl;
+    const turnstileToken = form.querySelector<HTMLInputElement>('input[name="cf-turnstile-response"]')?.value;
+    if (!apiUrl || !turnstileToken) {
+      status.textContent = "Please complete the anti-spam check and try again.";
+      return;
+    }
+
+    const data = new FormData(form);
+    button.disabled = true;
+    status.textContent = "Sending your confirmation email…";
+
+    try {
+      const response = await fetch(`${apiUrl.replace(/\/$/, "")}/submit`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.get("name"),
+          email: data.get("email"),
+          subject: data.get("subject"),
+          message: data.get("message"),
+          website: data.get("website"),
+          turnstileToken,
+        }),
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(result.error || "We couldn’t send the confirmation email. Please try again shortly.");
+
+      form.reset();
+      window.turnstile?.reset();
+      status.textContent = "Check your inbox for a confirmation link. Your message won’t be delivered until you confirm.";
+    } catch (error) {
+      status.textContent = error instanceof Error ? error.message : "Something went wrong. Please try again.";
+      window.turnstile?.reset();
+    } finally {
+      button.disabled = false;
+    }
+  });
+</script>
+
+<style>
+  .contact-honeypot { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+  .contact-verification { display: grid; justify-items: center; gap: .5rem; }
+  .contact-input { @apply w-full px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-[#506814] dark:focus:ring-[#D8F16A] transition-all duration-300; }
+</style>

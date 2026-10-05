@@ -21,18 +21,21 @@ export const getStaticPaths = async () => {
 const { tag } = Astro.params;
 const allPosts: BlogPost[] = (await getCollection('blog')).sort((a: BlogPost, b: BlogPost) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const taggedPosts = allPosts.filter((post) => post.data.tags?.map((t: string) => slugify(t)).includes(tag || ''));
-const title = `All Posts Tagged with ${unslugify(tag || '')}`;
-const description = `All Posts Tagged with ${unslugify(tag || '')}`;
+const readableTag = unslugify(tag || '');
+const title = `Writing about ${readableTag}`;
+const description = `Articles tagged ${readableTag}.`;
 ---
 
 <BaseLayout
 	title={title}
 	description={description}
 >
-  <div class='container'>
-    <div class="mb-10">
-      <h1 class="text-3xl font-bold mb-2">{title}</h1>
-    </div>
+  <main class="container mx-auto max-w-4xl px-4 py-12 sm:px-6">
+    <header class="mb-10">
+      <a href="/tags/" class="site-kicker text-[var(--olive)]">← All topics</a>
+      <h1 class="mt-3 text-4xl font-semibold tracking-tight text-[var(--ink)] sm:text-5xl">{title}</h1>
+      <p class="mt-2 text-[var(--muted)]">{taggedPosts.length} {taggedPosts.length === 1 ? "post" : "posts"} filed under this topic</p>
+    </header>
     <PostsByYear posts={taggedPosts}/>
-  </div>
+  </main>
 </BaseLayout>
