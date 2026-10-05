@@ -1,3 +1,4 @@
 /node_modules
 .env
 /.astro
+workers/contact/.dev.vars
