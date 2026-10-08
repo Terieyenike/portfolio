@@ -7,6 +7,7 @@ import { loadEnv } from 'vite';
 
 const { GTAG_MEASUREMENT_ID } = loadEnv(process.env.NODE_ENV || 'production', process.cwd(), '');
 const { title, description, image, canonicalUrl, pageSchema, noIndex, pageType } = Astro.props;
+const showBackToTop = Astro.url.pathname !== '/contact/';
 ---
 
 <!doctype html>
@@ -23,7 +24,7 @@ const { title, description, image, canonicalUrl, pageSchema, noIndex, pageType }
 			<slot />
 		</div>
 		<Footer />
-    <BackToTop />
+	    {showBackToTop && <BackToTop />}
 		<!-- Google tag (gtag.js) -->
     {
       GTAG_MEASUREMENT_ID &&

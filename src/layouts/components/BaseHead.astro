@@ -60,7 +60,7 @@ const siteGraph = [
     sameAs: [
       "https://github.com/Terieyenike",
       "https://www.linkedin.com/in/terieyenike",
-      "https://x.com/terieyenike",
+      "https://x.com/_terieyenike",
       "https://www.instagram.com/terieyenike",
       "https://www.youtube.com/@terieyenike",
     ],
@@ -74,13 +74,26 @@ const structuredData = JSON.stringify({ "@context": "https://schema.org", "@grap
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" href={Favicon.src} />
-<script
-  is:inline
-  async
-  src="https://www.sabilytics.com/script.js"
-  data-site="ylyeqns7l7hy"
-  data-domain="iamteri.tech"
-></script>
+<script is:inline>
+  (() => {
+    const loadSabilytics = () => {
+      if (document.querySelector("script[data-sabilytics]")) return;
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.sabilytics.com/script.js";
+      script.dataset.sabilytics = "true";
+      script.dataset.site = "ylyeqns7l7hy";
+      script.dataset.domain = "iamteri.tech";
+      document.head.append(script);
+    };
+
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(loadSabilytics, { timeout: 3000 });
+    } else {
+      window.addEventListener("load", () => window.setTimeout(loadSabilytics, 1200), { once: true });
+    }
+  })();
+</script>
 <link rel="alternate" type="application/rss+xml" title={`${SITE_TITLE} RSS feed`} href="/rss.xml" />
 <link rel="describedby" href="/llms.txt" />
 <meta name="generator" content={Astro.generator} />
