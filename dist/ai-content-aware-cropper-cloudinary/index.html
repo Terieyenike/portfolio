@@ -1,0 +1,353 @@
+<!DOCTYPE html><html lang="en"> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/_astro/favicon.CRbAbLu4.png"><script async src="https://www.sabilytics.com/script.js" data-site="ylyeqns7l7hy" data-domain="iamteri.tech"></script><link rel="alternate" type="application/rss+xml" title="Teri Eyenike RSS feed" href="/rss.xml"><meta name="generator" content="Astro v4.16.18"><!-- Canonical URL --><link rel="canonical" href="https://www.iamteri.tech/ai-content-aware-cropper-cloudinary/"><!-- Primary Meta Tags --><title>Build a Content-Aware Image Cropper with Cloudinary and Streamlit</title><meta name="title" content="Build a Content-Aware Image Cropper with Cloudinary and Streamlit"><meta name="description" content="Create a Python and Streamlit app that uses Cloudinary content-aware cropping to adapt images and video to different aspect ratios."><meta name="author" content="Teri Eyenike"><!-- Open Graph / Facebook --><meta property="og:type" content="article"><meta property="og:locale" content="en_NG"><meta property="og:url" content="https://www.iamteri.tech/ai-content-aware-cropper-cloudinary/"><meta property="og:title" content="Build a Content-Aware Image Cropper with Cloudinary and Streamlit"><meta property="og:description" content="Create a Python and Streamlit app that uses Cloudinary content-aware cropping to adapt images and video to different aspect ratios."><meta property="og:image" content="https://www.iamteri.tech/_astro/content_aware.Brw8T1EL.png"><meta property="og:image:alt" content="Create a Python and Streamlit app that uses Cloudinary content-aware cropping to adapt images and video to different aspect ratios."><meta property="og:site_name" content="Teri Eyenike"><!-- Twitter --><meta name="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://www.iamteri.tech/ai-content-aware-cropper-cloudinary/"><meta property="twitter:title" content="Build a Content-Aware Image Cropper with Cloudinary and Streamlit"><meta property="twitter:description" content="Create a Python and Streamlit app that uses Cloudinary content-aware cropping to adapt images and video to different aspect ratios."><meta property="twitter:image" content="https://www.iamteri.tech/_astro/content_aware.Brw8T1EL.png"><meta property="twitter:image:alt" content="Create a Python and Streamlit app that uses Cloudinary content-aware cropping to adapt images and video to different aspect ratios."><meta name="twitter:creator" content="@terieyenike"><!-- Additional Meta Tags --><meta name="theme-color" content="#F4F2E9"><meta name="robots" content="index,follow,max-image-preview:large"><!-- Structured Data --><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.iamteri.tech/#website","url":"https://www.iamteri.tech/","name":"Teri Eyenike","description":"Teri Eyenike is a software engineer in Nigeria. Explore selected projects, software work, technical writing, and contact details.","publisher":{"@id":"https://www.iamteri.tech/#person"}},{"@type":"Person","@id":"https://www.iamteri.tech/#person","name":"Teri Eyenike","url":"https://www.iamteri.tech/","image":"https://www.iamteri.tech/_astro/content_aware.Brw8T1EL.png","jobTitle":"Software Engineer","description":"Teri Eyenike is a software engineer in Nigeria. Explore selected projects, software work, technical writing, and contact details.","knowsAbout":["Software engineering","PostgreSQL","Developer tools","Technical writing"],"sameAs":["https://github.com/Terieyenike","https://www.linkedin.com/in/terieyenike","https://x.com/terieyenike","https://www.instagram.com/terieyenike","https://www.youtube.com/@terieyenike"]},{"@type":"BlogPosting","@id":"https://www.iamteri.tech/ai-content-aware-cropper-cloudinary/#article","headline":"Build a Content-Aware Image Cropper with Cloudinary and Streamlit","description":"Create a Python and Streamlit app that uses Cloudinary content-aware cropping to adapt images and video to different aspect ratios.","image":["https://www.iamteri.tech/_astro/content_aware.Brw8T1EL.png"],"datePublished":"2025-07-05T00:00:00.000Z","dateModified":"2025-07-05T00:00:00.000Z","author":{"@id":"https://www.iamteri.tech/#person"},"publisher":{"@id":"https://www.iamteri.tech/#person"},"mainEntityOfPage":{"@id":"https://www.iamteri.tech/ai-content-aware-cropper-cloudinary/"},"keywords":"python","articleSection":["python"]}]}</script><link rel="stylesheet" href="/_astro/_slug_.Ci_jzLtx.css">
+<link rel="stylesheet" href="/_astro/_slug_.BYOqDRji.css">
+<style>.toc-list[data-astro-cid-awg4b4gg]::-webkit-scrollbar{width:5px}.toc-list[data-astro-cid-awg4b4gg]::-webkit-scrollbar-track{background:transparent}.toc-list[data-astro-cid-awg4b4gg]::-webkit-scrollbar-thumb{background:#eee;border-radius:5px}.dark .toc-list[data-astro-cid-awg4b4gg]::-webkit-scrollbar-thumb{background:#2e2e2e}.toc-link[data-astro-cid-awg4b4gg].active-toc{border-left-color:#d8f16a;color:#506814;background:color-mix(in srgb,#D8F16A 18%,var(--surface));font-weight:700}.dark .toc-link[data-astro-cid-awg4b4gg].active-toc{border-left-color:#d8f16a;color:#d8f16a;background:color-mix(in srgb,#D8F16A 14%,var(--surface))}.toc-link[data-astro-cid-awg4b4gg]{scroll-behavior:smooth}.pre-wrapper[data-astro-cid-fzx4jmue]{position:relative}.copy-btn[data-astro-cid-fzx4jmue]{position:absolute;top:10px;right:10px;background:#222;color:#fff;border:none;border-radius:4px;padding:4px 8px;cursor:pointer;opacity:.7;transition:opacity .2s;font-size:.9em;display:flex;align-items:center}.copy-btn[data-astro-cid-fzx4jmue]:hover,.copy-btn[data-astro-cid-fzx4jmue]:focus{opacity:1;background:#506814;color:#fff}article[data-astro-cid-fzx4jmue] pre[data-astro-cid-fzx4jmue]{position:relative}
+</style><script type="module" src="/_astro/hoisted.CrCfDMim.js"></script>
+<script>!(function(w,p,f,c){if(!window.crossOriginIsolated && !navigator.serviceWorker) return;c=w[p]=Object.assign(w[p]||{},{"lib":"/~partytown/","debug":false});c[f]=(c[f]||[])})(window,'partytown','forward');/* Partytown 0.11.0 - MIT QwikDev */
+const t={preserveBehavior:!1},e=e=>{if("string"==typeof e)return[e,t];const[n,r=t]=e;return[n,{...t,...r}]},n=Object.freeze((t=>{const e=new Set;let n=[];do{Object.getOwnPropertyNames(n).forEach((t=>{"function"==typeof n[t]&&e.add(t)}))}while((n=Object.getPrototypeOf(n))!==Object.prototype);return Array.from(e)})());!function(t,r,o,i,a,s,c,l,d,p,u=t,f){function h(){f||(f=1,"/"==(c=(s.lib||"/~partytown/")+(s.debug?"debug/":""))[0]&&(d=r.querySelectorAll('script[type="text/partytown"]'),i!=t?i.dispatchEvent(new CustomEvent("pt1",{detail:t})):(l=setTimeout(v,(null==s?void 0:s.fallbackTimeout)||1e4),r.addEventListener("pt0",w),a?y(1):o.serviceWorker?o.serviceWorker.register(c+(s.swPath||"partytown-sw.js"),{scope:c}).then((function(t){t.active?y():t.installing&&t.installing.addEventListener("statechange",(function(t){"activated"==t.target.state&&y()}))}),console.error):v())))}function y(e){p=r.createElement(e?"script":"iframe"),t._pttab=Date.now(),e||(p.style.display="block",p.style.width="0",p.style.height="0",p.style.border="0",p.style.visibility="hidden",p.setAttribute("aria-hidden",!0)),p.src=c+"partytown-"+(e?"atomics.js?v=0.11.0":"sandbox-sw.html?"+t._pttab),r.querySelector(s.sandboxParent||"body").appendChild(p)}function v(n,o){for(w(),i==t&&(s.forward||[]).map((function(n){const[r]=e(n);delete t[r.split(".")[0]]})),n=0;n<d.length;n++)(o=r.createElement("script")).innerHTML=d[n].innerHTML,o.nonce=s.nonce,r.head.appendChild(o);p&&p.parentNode.removeChild(p)}function w(){clearTimeout(l)}s=t.partytown||{},i==t&&(s.forward||[]).map((function(r){const[o,{preserveBehavior:i}]=e(r);u=t,o.split(".").map((function(e,r,o){var a;u=u[o[r]]=r+1<o.length?u[o[r]]||(a=o[r+1],n.includes(a)?[]:{}):(()=>{let e=null;if(i){const{methodOrProperty:n,thisObject:r}=((t,e)=>{let n=t;for(let t=0;t<e.length-1;t+=1)n=n[e[t]];return{thisObject:n,methodOrProperty:e.length>0?n[e[e.length-1]]:void 0}})(t,o);"function"==typeof n&&(e=(...t)=>n.apply(r,...t))}return function(){let n;return e&&(n=e(arguments)),(t._ptf=t._ptf||[]).push(o,arguments),n}})()}))})),"complete"==r.readyState?h():(t.addEventListener("DOMContentLoaded",h),t.addEventListener("load",h))}(window,document,navigator,top,window.crossOriginIsolated);;(e=>{e.addEventListener("astro:before-swap",e=>{let r=document.body.querySelector("iframe[src*='/~partytown/']");if(r)e.newDocument.body.append(r)})})(document);</script></head> <body class="site-body"> <a href="#main-content" class="sr-only z-[1001] rounded-md bg-white px-4 py-3 text-zinc-900 shadow focus:not-sr-only focus:fixed focus:left-4 focus:top-4">Skip to main content</a> <header id="site-header" class="site-header sticky top-0 z-[999] border-b"> <div class="container mx-auto flex items-center justify-between gap-4 px-4 py-3 sm:px-6"> <a href="/" class="site-wordmark flex items-center gap-3" aria-label="Teri Eyenike, home"> <span class="site-monogram grid h-10 w-10 place-items-center text-sm font-black" aria-hidden="true">TE<span>.</span></span> <span class="hidden sm:block"> <span class="block text-sm font-bold leading-tight">Teri Eyenike</span> <span class="site-kicker mt-1 block text-[.58rem] text-[var(--muted)]">Engineer · Writer</span> </span> </a> <nav aria-label="Primary navigation" class="hidden items-center gap-1 md:flex"> <a href="/projects/" class="site-nav-link rounded-full px-3 py-2 text-sm font-medium transition-all duration-200 ease-in-out text-zinc-600 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-zinc-50 hover:scale-105" data-astro-cid-6eef2acz> Work </a> <a href="/blog/" class="site-nav-link rounded-full px-3 py-2 text-sm font-medium transition-all duration-200 ease-in-out text-zinc-600 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-zinc-50 hover:scale-105" data-astro-cid-6eef2acz> Writing </a> <a href="/about/" class="site-nav-link rounded-full px-3 py-2 text-sm font-medium transition-all duration-200 ease-in-out text-zinc-600 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-zinc-50 hover:scale-105" data-astro-cid-6eef2acz> About </a> <a href="/resume/" class="site-nav-link rounded-full px-3 py-2 text-sm font-medium transition-all duration-200 ease-in-out text-zinc-600 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-zinc-50 hover:scale-105" data-astro-cid-6eef2acz> Résumé </a>  </nav> <div class="flex items-center gap-2"> <a href="/contact/" class="site-contact-link hidden px-4 py-2 text-sm font-semibold sm:inline-flex">Let’s talk <span aria-hidden="true">↗</span></a> <button id="themeToggle" class="site-icon-button grid h-11 w-11 place-items-center rounded-full" aria-label="Switch to dark theme" title="Switch color theme"> <svg class="sun h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg> <svg class="moon h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.7 8.7 0 1 0 20.5 14.2Z"></path></svg> </button> <button id="hamburger" class="site-icon-button grid h-11 w-11 place-items-center rounded-full md:hidden" aria-label="Open navigation menu" aria-controls="mobile-menu" aria-expanded="false"> <svg class="hamburger-icon h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg> </button> </div> </div> <nav id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true" inert class="site-mobile-menu md:hidden"> <div class="container mx-auto flex flex-col gap-1 px-4 pb-5 sm:px-6"> <a href="/projects/" class="site-mobile-link flex items-baseline gap-3 py-3 text-lg font-semibold transition-all duration-200 ease-in-out text-zinc-600 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-zinc-50 hover:scale-105" data-astro-cid-6eef2acz>  <span class="site-kicker text-xs text-[var(--muted)]">01</span>Work </a> <a href="/blog/" class="site-mobile-link flex items-baseline gap-3 py-3 text-lg font-semibold transition-all duration-200 ease-in-out text-zinc-600 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-zinc-50 hover:scale-105" data-astro-cid-6eef2acz>  <span class="site-kicker text-xs text-[var(--muted)]">02</span>Writing </a> <a href="/about/" class="site-mobile-link flex items-baseline gap-3 py-3 text-lg font-semibold transition-all duration-200 ease-in-out text-zinc-600 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-zinc-50 hover:scale-105" data-astro-cid-6eef2acz>  <span class="site-kicker text-xs text-[var(--muted)]">03</span>About </a> <a href="/resume/" class="site-mobile-link flex items-baseline gap-3 py-3 text-lg font-semibold transition-all duration-200 ease-in-out text-zinc-600 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-zinc-50 hover:scale-105" data-astro-cid-6eef2acz>  <span class="site-kicker text-xs text-[var(--muted)]">04</span>Résumé </a>  <a href="/contact/" class="site-contact-link mt-3 inline-flex w-fit px-4 py-3 font-semibold">Let’s talk <span aria-hidden="true">↗</span></a> </div> </nav> </header>  <script>
+  const savedTheme = window.localStorage.getItem("theme");
+  const theme = savedTheme === "dark" || savedTheme === "light"
+    ? savedTheme
+    : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  document.documentElement.classList.toggle("dark", theme === "dark");
+
+  const themeToggle = document.getElementById("themeToggle");
+  const updateThemeLabel = () => themeToggle?.setAttribute(
+    "aria-label",
+    document.documentElement.classList.contains("dark") ? "Switch to light theme" : "Switch to dark theme"
+  );
+  updateThemeLabel();
+  themeToggle?.addEventListener("click", () => {
+    const dark = document.documentElement.classList.toggle("dark");
+    window.localStorage.setItem("theme", dark ? "dark" : "light");
+    document.querySelector("iframe.giscus-frame")?.contentWindow?.postMessage(
+      { giscus: { setConfig: { theme: dark ? "dark_dimmed" : "light" } } },
+      "https://giscus.app"
+    );
+    updateThemeLabel();
+  });
+
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const closeMenu = () => {
+    mobileMenu?.classList.remove("mobile-menu-open");
+    mobileMenu?.setAttribute("aria-hidden", "true");
+    mobileMenu?.setAttribute("inert", "");
+    hamburger?.setAttribute("aria-expanded", "false");
+    hamburger?.setAttribute("aria-label", "Open navigation menu");
+    document.body.classList.remove("menu-open");
+    document.querySelector(".menu-backdrop")?.remove();
+  };
+  hamburger?.addEventListener("click", () => {
+    if (mobileMenu?.classList.contains("mobile-menu-open")) {
+      closeMenu();
+      return;
+    }
+    mobileMenu?.classList.add("mobile-menu-open");
+    mobileMenu?.setAttribute("aria-hidden", "false");
+    mobileMenu?.removeAttribute("inert");
+    hamburger?.setAttribute("aria-expanded", "true");
+    hamburger?.setAttribute("aria-label", "Close navigation menu");
+    document.body.classList.add("menu-open");
+    const backdrop = document.createElement("button");
+    backdrop.type = "button";
+    backdrop.className = "menu-backdrop";
+    backdrop.setAttribute("aria-label", "Close navigation menu");
+    backdrop.addEventListener("click", closeMenu);
+    document.body.append(backdrop);
+  });
+  mobileMenu?.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && mobileMenu?.classList.contains("mobile-menu-open")) {
+      closeMenu();
+      hamburger?.focus();
+    }
+  });
+</script> <div id="main-content" tabindex="-1" class="py-6 sm:py-10 min-h-[calc(100vh-160px)] focus:outline-none">  <div class="container lg:flex gap-10" data-astro-cid-fzx4jmue> <main class="overflow-hidden grow" data-astro-cid-fzx4jmue> <article data-astro-cid-fzx4jmue> <div class="prose dark:prose-invert
+  prose-h1:font-[900] prose-h1:my-4 prose-h1:text-2xl sm:prose-h1:text-[2rem]/[1.3]
+  prose-h2:mt-6 prose-h2:mb-3 prose-h2:text-2xl sm:prose-h2:text-3xl prose-h2:font-extrabold
+  prose-h3:mt-5 prose-h3:mb-2 prose-h3:text-xl sm:prose-h3:text-2xl
+  prose-h4:mt-3 prose-h4:mb-0 prose-img:rounded-xl prose-h3:target:pt-20">  <div data-astro-cid-fzx4jmue> <h1 class="!my-1 leading-tight" data-astro-cid-fzx4jmue>Build a Content-Aware Image Cropper with Cloudinary and Streamlit</h1> <!-- Post metadata --> <div class="flex flex-wrap items-center justify-between gap-4 mt-4 mb-6" data-astro-cid-fzx4jmue> <!-- Left side: Tags --> <div class="flex flex-wrap gap-2" data-astro-cid-fzx4jmue> <a class="inline-flex px-3 py-1 text-sm bg-zinc-100 dark:bg-zinc-800 
+                    text-zinc-600 dark:text-zinc-400 rounded-full no-underline 
+                    hover:bg-[#506814] dark:hover:bg-[#D8F16A] hover:text-white 
+                    dark:hover:text-zinc-900 transition-all duration-300" href="/tags/python" data-astro-cid-fzx4jmue> python </a> </div> <!-- Right side: Reading time and dates --> <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-zinc-600 dark:text-zinc-400" data-astro-cid-fzx4jmue> <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-zinc-100 dark:bg-zinc-800 rounded-full" data-astro-cid-fzx4jmue> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#506814] dark:text-[#D8F16A]" data-astro-cid-fzx4jmue> <circle cx="12" cy="12" r="10" data-astro-cid-fzx4jmue></circle> <polyline points="12 6 12 12 16 14" data-astro-cid-fzx4jmue></polyline> </svg> <span data-astro-cid-fzx4jmue>7 min read</span> </div> <span data-astro-cid-fzx4jmue>Posted on <time datetime="2025-07-05T00:00:00.000Z"> Jul 05, 2025 </time></span>  </div> </div> <!-- Canonical URL -->  <!-- Cover Image --> <div class="mb-6" data-astro-cid-fzx4jmue> <img src="/_astro/content_aware.Brw8T1EL_Z23KEXR.webp" class="rounded-2xl w-full" alt="Build a Content-Aware Image Cropper with Cloudinary and Streamlit" loading="eager" data-astro-cid-fzx4jmue width="1536" height="1024" decoding="async"> </div> <!-- Content --> <div class="my-6 p-4 bg-zinc-100 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700"><div class="flex items-center gap-2 mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#506814] dark:text-[#D8F16A]"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><h3 class="text-lg font-bold m-0">TL;DR</h3></div><p class="m-0 text-zinc-700 dark:text-zinc-300">Learn how to build a smart, content-aware cropping app for images and videos using AI. This guide walks you through integrating Cloudinary for media management and Streamlit for a simple, interactive UI. Perfect for developers looking to add intelligent media processing to their apps.</p></div> <p>Do you want to be productive as a developer working with a tool that automatically crops your images and videos to the right dimension? If yes, you do not need to use sophisticated tools or editing software to make this happen.</p>
+<p>With Cloudinary, you are in for an efficient and effective cropping using content-aware which is an AI powered tool which deliver images and videos to perfectly fit your graphic design and layout, on any device.</p>
+<p>In this tutorial, you’ll use Cloudinary and Streamlit to build an engaging and performant web experience for interaction saving you time and effort in delivering visuals to users.</p>
+<p><img src="https://res.cloudinary.com/terieyenike/image/upload/v1751649569/blog_cover_image_bodts3.jpg" alt="Streamlit Content Aware Cropper"></p>
+<h2 id="what-youll-need">What You’ll Need</h2>
+<p>To get started with this application, the following is what you need to know or have:</p>
+<ul>
+<li>Create a <a href="https://cloudinary.com/users/register_free" target="_blank" rel="noopener">free Cloudinary account</a></li>
+<li>Understanding of Python and Streamlit</li>
+</ul>
+<p>Check out the <a href="https://docs.streamlit.io/" target="_blank" rel="noopener">Streamlit documentation</a> if you are not conversant with this open-source app framework.</p>
+<h2 id="setting-up-the-project">Setting Up the Project</h2>
+<p>To setup the environment, you need to create a virtual environment and install the dependencies.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">mkdir</span><span style="color:#9ECBFF"> content_aware</span></span>
+<span class="line"><span style="color:#79B8FF">cd</span><span style="color:#9ECBFF"> content_aware</span></span>
+<span class="line"></span></code></pre>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#79B8FF">.</span></span>
+<span class="line"><span style="color:#B392F0">├──</span><span style="color:#9ECBFF"> app.py</span></span>
+<span class="line"><span style="color:#B392F0">├──</span><span style="color:#9ECBFF"> README.md</span></span>
+<span class="line"><span style="color:#B392F0">├──</span><span style="color:#9ECBFF"> .env</span></span>
+<span class="line"><span style="color:#B392F0">├──</span><span style="color:#9ECBFF"> .gitignore</span></span>
+<span class="line"><span style="color:#B392F0">└──</span><span style="color:#9ECBFF"> requirements.txt</span></span>
+<span class="line"></span></code></pre>
+<p>In the terminal, run the following command to create a virtual environment in the root of the project.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">python</span><span style="color:#79B8FF"> -m</span><span style="color:#9ECBFF"> venv</span><span style="color:#9ECBFF"> .venv</span></span>
+<span class="line"></span></code></pre>
+<p>Activate the virtual environment.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#79B8FF">source</span><span style="color:#9ECBFF"> .venv/bin/activate</span></span>
+<span class="line"></span></code></pre>
+<p>Install the dependencies.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">pip</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> streamlit</span><span style="color:#9ECBFF"> cloudinary</span><span style="color:#9ECBFF"> python-dotenv</span></span>
+<span class="line"></span></code></pre>
+<p>It is important to include the packages and its versions in the <mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">requirements.txt</mark> file as shown below:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#E1E4E8">cloudinary</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">=1.41.0</span></span>
+<span class="line"><span style="color:#E1E4E8">python-dotenv</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">=1.0.1</span></span>
+<span class="line"><span style="color:#E1E4E8">streamlit</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">=1.39.0</span></span>
+<span class="line"></span></code></pre>
+<h2 id="environment-variables">Environment Variables</h2>
+<p>Create a file called <mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">.env</mark> which ensures that your environment variables (API keys) are not exposed to the public.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#E1E4E8">CLOUDINARY_CLOUD_NAME</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">your_cloud_name</span></span>
+<span class="line"><span style="color:#E1E4E8">CLOUDINARY_API_KEY</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">your_api_key</span></span>
+<span class="line"><span style="color:#E1E4E8">CLOUDINARY_API_SECRET</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">your_api_secret</span></span>
+<span class="line"></span></code></pre>
+<p>Go to your <a href="https://cloudinary.com/documentation/finding_your_credentials_tutorial" target="_blank" rel="noopener">Cloudinary dashboard</a> and get your credentials to replace the placeholders with your own.</p>
+<p>After doing this, create a file called <mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">.gitignore</mark> and include the <mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">.env</mark> file in it like this:</p>
+<p><mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">.gitignore</mark></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">.env</span></span>
+<span class="line"></span></code></pre>
+<h2 id="creating-the-streamlit-app">Creating the Streamlit App</h2>
+<p>Before you begin building the app, create a file, <mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">app.py</mark> and add the following code:</p>
+<p><mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">app.py</mark></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> streamlit </span><span style="color:#F97583">as</span><span style="color:#E1E4E8"> st</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> cloudinary</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> cloudinary </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> CloudinaryImage, CloudinaryVideo</span></span>
+<span class="line"><span style="color:#F97583">from</span><span style="color:#E1E4E8"> dotenv </span><span style="color:#F97583">import</span><span style="color:#E1E4E8"> load_dotenv</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> os</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Load environment variables from .env file</span></span>
+<span class="line"><span style="color:#E1E4E8">load_dotenv()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Initialize Cloudinary configuration</span></span>
+<span class="line"><span style="color:#E1E4E8">cloudinary.config(</span></span>
+<span class="line"><span style="color:#FFAB70">    cloud_name</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">os.getenv(</span><span style="color:#9ECBFF">'CLOUDINARY_CLOUD_NAME'</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#FFAB70">    api_key</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">os.getenv(</span><span style="color:#9ECBFF">'CLOUDINARY_API_KEY'</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#FFAB70">    api_secret</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">os.getenv(</span><span style="color:#9ECBFF">'CLOUDINARY_API_SECRET'</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#FFAB70">    secure</span><span style="color:#F97583">=</span><span style="color:#79B8FF">True</span></span>
+<span class="line"><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span></code></pre>
+<p>The above code initializes the Cloudinary configuration and loads the environment variables from the <mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">.env</mark> file.</p>
+<p>Next, create a function that generates the image URL using the <mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">CloudinaryImage</mark> class with this code:</p>
+<p><mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">app.py</mark></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#79B8FF">...</span><span style="color:#6A737D"> # existing code</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> generate_image_url</span><span style="color:#E1E4E8">(public_id: </span><span style="color:#79B8FF">str</span><span style="color:#E1E4E8">, aspect_ratio: </span><span style="color:#79B8FF">float</span><span style="color:#E1E4E8">, width: </span><span style="color:#79B8FF">int</span><span style="color:#E1E4E8">) -> </span><span style="color:#79B8FF">str</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    image </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> CloudinaryImage(public_id)</span></span>
+<span class="line"><span style="color:#E1E4E8">    transformation </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [</span></span>
+<span class="line"><span style="color:#E1E4E8">        {</span><span style="color:#9ECBFF">'aspect_ratio'</span><span style="color:#E1E4E8">: aspect_ratio, </span><span style="color:#9ECBFF">'gravity'</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"auto"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'width'</span><span style="color:#E1E4E8">: width, </span><span style="color:#9ECBFF">'crop'</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"fill"</span><span style="color:#E1E4E8">},</span></span>
+<span class="line"><span style="color:#E1E4E8">        {</span><span style="color:#9ECBFF">'quality'</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"auto"</span><span style="color:#E1E4E8">},</span></span>
+<span class="line"><span style="color:#E1E4E8">        {</span><span style="color:#9ECBFF">'fetch_format'</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"auto"</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#E1E4E8">    ]</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> image.build_url(</span><span style="color:#FFAB70">transformation</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">transformation)</span></span>
+<span class="line"></span></code></pre>
+<p>The function, <mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">generate_image_url</mark> takes three parameters with its data type as follows:</p>
+<ul>
+<li><mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">public_id</mark>: The public ID of the image in Cloudinary.</li>
+<li><mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">aspect_ratio</mark>: The desired aspect ratio for cropping.</li>
+<li><mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">width</mark>: The width for the output image.</li>
+</ul>
+<p>The function returns the URL of the processed image with the <a href="https://cloudinary.com/documentation/transformation_reference" target="_blank" rel="noopener">transformation applied</a>.</p>
+<p>Let’s do the same for the video URL by defining the <mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">generate_video_url</mark> function with this code:</p>
+<p><mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">app.py</mark></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#79B8FF">...</span><span style="color:#6A737D"> # </span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> generate_video_url</span><span style="color:#E1E4E8">(public_id: </span><span style="color:#79B8FF">str</span><span style="color:#E1E4E8">, aspect_ratio: </span><span style="color:#79B8FF">float</span><span style="color:#E1E4E8">, width: </span><span style="color:#79B8FF">int</span><span style="color:#E1E4E8">) -> </span><span style="color:#79B8FF">str</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    video </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> CloudinaryVideo(public_id)</span></span>
+<span class="line"><span style="color:#E1E4E8">    transformation </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [</span></span>
+<span class="line"><span style="color:#E1E4E8">        {</span><span style="color:#9ECBFF">'aspect_ratio'</span><span style="color:#E1E4E8">: aspect_ratio, </span><span style="color:#9ECBFF">'gravity'</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"auto"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'width'</span><span style="color:#E1E4E8">: width, </span><span style="color:#9ECBFF">'crop'</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"fill"</span><span style="color:#E1E4E8">},</span></span>
+<span class="line"><span style="color:#E1E4E8">        {</span><span style="color:#9ECBFF">'quality'</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"auto"</span><span style="color:#E1E4E8">},</span></span>
+<span class="line"><span style="color:#E1E4E8">        {</span><span style="color:#9ECBFF">'fetch_format'</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"auto"</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#E1E4E8">    ]</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> video.build_url(</span><span style="color:#FFAB70">transformation</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">transformation)</span></span>
+<span class="line"></span></code></pre>
+<h3 id="building-the-ui-for-the-image">Building the UI for the Image</h3>
+<p>So far, we have created the functions that generate the image and video URLs without the actual UI. In this section, copy and paste the following code:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#79B8FF">...</span><span style="color:#6A737D"> # existing code</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">():</span></span>
+<span class="line"><span style="color:#E1E4E8">    st.title(</span><span style="color:#9ECBFF">"AI-Powered Content-Aware Cropping for Images and Videos with Cloudinary"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    st.write(</span><span style="color:#9ECBFF">"This app demonstrates content-aware cropping using Cloudinary's AI capabilities."</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    # User input for Cloudinary image public ID</span></span>
+<span class="line"><span style="color:#E1E4E8">    public_id </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> st.text_input(</span><span style="color:#9ECBFF">"Enter the Cloudinary image public ID:"</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"profile_uzviqu"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    # Aspect ratio options with corresponding widths</span></span>
+<span class="line"><span style="color:#E1E4E8">    aspect_ratio_options </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#9ECBFF">        "1:2"</span><span style="color:#E1E4E8">: (</span><span style="color:#79B8FF">0.5</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">433</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#9ECBFF">        "5:2"</span><span style="color:#E1E4E8">: (</span><span style="color:#79B8FF">2.5</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1300</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#9ECBFF">        "1:1"</span><span style="color:#E1E4E8">: (</span><span style="color:#79B8FF">1.0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">867</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    st.subheader(</span><span style="color:#9ECBFF">"Aspect Ratio:"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    selected_option </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> st.radio(</span><span style="color:#9ECBFF">"Select Aspect Ratio"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">list</span><span style="color:#E1E4E8">(aspect_ratio_options.keys()), </span><span style="color:#FFAB70">index</span><span style="color:#F97583">=</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">key</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"image_radio"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    # Get aspect ratio and width based on selection</span></span>
+<span class="line"><span style="color:#E1E4E8">    aspect_ratio, width </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> aspect_ratio_options[selected_option]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    # Generate and display image URL</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> public_id:</span></span>
+<span class="line"><span style="color:#E1E4E8">        image_url </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> generate_image_url(public_id, aspect_ratio, width)</span></span>
+<span class="line"><span style="color:#E1E4E8">        st.image(image_url, </span><span style="color:#FFAB70">caption</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"Content-Aware Cropped Image"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span></code></pre>
+<p>The code above depicts the following:</p>
+<ul>
+<li>Displays the title, description, and a text input for the Cloudinary image public ID.</li>
+<li>Shows the aspect ratio options as radio buttons with its corresponding widths.</li>
+<li>In Streamlit, functions can accept arguments such that <mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">index=1</mark> in the <mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">selected_option</mark> variable indicates the selected option of the radio button is on the aspect ratio of <strong>5:2</strong> when the page loads.</li>
+<li>To generate and display the image URL, the public ID provided in the text input must be valid. Afterwards, the image URL is displayed using the <mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">st.image</mark> function with a caption below the image.</li>
+</ul>
+<h3 id="displaying-the-video">Displaying the Video</h3>
+<p>To display the video, follow the same process as the image above. The only difference is that the <mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">st.video</mark> function is used instead of the <mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">st.image</mark> function to call the video URL.</p>
+<p>Include the following code in the <mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">app.py</mark> file:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#79B8FF">...</span><span style="color:#6A737D"> # existing code</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">def</span><span style="color:#B392F0"> video</span><span style="color:#E1E4E8">():</span></span>
+<span class="line"><span style="color:#E1E4E8">    public_id </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> st.text_input(</span><span style="color:#9ECBFF">"Enter the Cloudinary Video public ID: "</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">"video-player/gushing-waterfall"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    video_aspect_ratio_options </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#9ECBFF">        "1:2"</span><span style="color:#E1E4E8">: (</span><span style="color:#79B8FF">0.5</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">364</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#9ECBFF">        "5:2"</span><span style="color:#E1E4E8">: (</span><span style="color:#79B8FF">2.5</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1300</span><span style="color:#E1E4E8">),</span></span>
+<span class="line"><span style="color:#9ECBFF">        "1:1"</span><span style="color:#E1E4E8">: (</span><span style="color:#79B8FF">1.0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">728</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    st.subheader(</span><span style="color:#9ECBFF">"Aspect Ratio:"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    selected_option </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> st.radio(</span><span style="color:#9ECBFF">"Select Aspect Ratio"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">list</span><span style="color:#E1E4E8">(video_aspect_ratio_options.keys()), </span><span style="color:#FFAB70">index</span><span style="color:#F97583">=</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">key</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">"video_radio"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    # Get aspect ratio and width based on selection</span></span>
+<span class="line"><span style="color:#E1E4E8">    aspect_ratio, width </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> video_aspect_ratio_options[selected_option]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> public_id:</span></span>
+<span class="line"><span style="color:#E1E4E8">        video_url </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> generate_video_url(public_id, aspect_ratio, width)</span></span>
+<span class="line"><span style="color:#E1E4E8">        st.video(video_url)</span></span>
+<span class="line"></span></code></pre>
+<h3 id="calling-the-functions">Calling the Functions</h3>
+<p>Add the following code to the <mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">app.py</mark> file:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="python"><code><span class="line"><span style="color:#79B8FF">...</span><span style="color:#6A737D"> # existing code</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#79B8FF"> __name__</span><span style="color:#F97583"> ==</span><span style="color:#9ECBFF"> "__main__"</span><span style="color:#E1E4E8">:</span></span>
+<span class="line"><span style="color:#E1E4E8">    main()</span></span>
+<span class="line"><span style="color:#E1E4E8">    video()</span></span>
+<span class="line"></span></code></pre>
+<h2 id="running-the-app">Running the App</h2>
+<p>Now that everything is in place, run the app with this command:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">streamlit</span><span style="color:#9ECBFF"> run</span><span style="color:#9ECBFF"> app.py</span></span>
+<span class="line"></span></code></pre>
+<p>The app should look something like this:</p>
+<p><img src="https://res.cloudinary.com/terieyenike/image/upload/v1751657150/image_yzyhmd.png" alt="Content Aware Cropper"></p>
+<p>Try it out for <a href="http://content-aware-st.streamlit.app" target="_blank" rel="noopener">yourself</a>.</p>
+<p>If you want to make this app yours, then you have to clone it from <a href="https://github.com/Terieyenike/content-aware-st" target="_blank" rel="noopener">this repo</a> and include your Cloudinary credentials in the <mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">.env</mark> file.</p>
+<h2 id="deploying-your-app">Deploying your App</h2>
+<p>Streamlit offers a free tier for hosting your app using the <a href="https://share.streamlit.io/?utm_source=streamlit&#x26;utm_medium=referral&#x26;utm_campaign=main&#x26;utm_content=-ss-streamlit-io-topright" target="_blank" rel="noopener">Streamlit Community Cloud</a>.</p>
+<p>Follow the instructions <a href="https://docs.streamlit.io/deploy/streamlit-community-cloud" target="_blank" rel="noopener">in this guide</a> to deploy your app in production. Remember to include your Cloudinary credentials stored in your <mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">.env</mark> file in the app <strong>settings</strong> of the Streamlit Community Cloud.</p>
+<p><img src="https://res.cloudinary.com/terieyenike/image/upload/v1751652335/streamlit_community_cloud_s8ncmg.png" alt="Streamlit Community Cloud"></p>
+<h2 id="wrapping-up">Wrapping Up</h2>
+<p>Cloudinary offers a great service for resizing images and videos to desired width which eliminate the need to manually do it, but rather depend on the AI for its smart content-aware cropping.</p>
+<p>In this article, we also discovered how to build and deploy this app with Streamlit making you showcase your work without frontend experience.</p>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="https://cloudinary.com/documentation" target="_blank" rel="noopener">Cloudinary Documentation</a></li>
+<li><a href="https://cloudinary.com/documentation/django_integration" target="_blank" rel="noopener">Cloudinary Python SDK</a></li>
+<li><a href="https://cloudinary.com/documentation/content_aware_image_cropping_tutorial" target="_blank" rel="noopener">Content-aware image cropping</a></li>
+</ul> </div>  </div> <!-- Comments -->  </article> </main> <div class="shrink-0 w-[280px] hidden md:block" data-astro-cid-fzx4jmue> <div class="mb-4" data-astro-cid-fzx4jmue> <div class="about-the-author py-6 px-5 border-b bg-white/80 dark:bg-zinc-900/80 rounded-xl shadow-md max-w-md mx-auto mt-6"> <h3 class="font-extrabold uppercase mb-4 text-xs tracking-widest text-[#506814] dark:text-[#D8F16A]">
+About the Author
+</h3> <div class="flex gap-4 items-center leading-tight not-prose"> <a href="https://github.com/terieyenike" target="_blank" rel="noopener noreferrer" class="rounded-full overflow-hidden shrink-0 w-[70px] h-[70px]"> <img src="/_astro/profile.BHDGMQmk_bfCSM.webp" alt="Portrait of Teri Eyenike" width="1024" height="1024" loading="lazy" decoding="async"> </a> <div> <div> <a href="https://github.com/terieyenike" class="block font-bold text-inherit hover:text-[var(--link-color)]" target="_blank" rel="noopener noreferrer">
+Teri Eyenike
+</a> </div> <small class="avatar__subtitle">Software Engineer · Technical Writer</small> </div> </div> <div class="author-desc text-[.925rem] my-4 text-zinc-700 dark:text-zinc-300"> <p class="mb-2 font-semibold">
+Building tools, sharing ideas, and bridging the gap between code and
+      people.
+</p> <p class="mb-2">
+Teri is a software engineer and technical writer based in Nigeria. 🌍
+</p> <p class="mb-2">
+Open to collaborations and new opportunities in developer relations,
+      writing, and open-source.
+</p> </div> <!-- Social Links --> <div class="flex flex-col gap-2 mt-4"> <span class="text-sm font-semibold text-zinc-800 dark:text-zinc-200">Let's connect</span> <div class="flex gap-4"> <a href="https://www.linkedin.com/in/terieyenike" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition-transform" title="LinkedIn"> <img src="/_astro/linkedin-mark.BPWEoAYl_Z55LUo.svg" alt="LinkedIn logo" class="dark:hidden" width="24" height="24" loading="lazy" decoding="async"> <img src="/_astro/linkedin-mark-white.BxiZ7l6f_Z12sMeP.svg" alt="LinkedIn logo" class="hidden dark:block" width="24" height="24" loading="lazy" decoding="async"> </a> <a href="https://github.com/terieyenike" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition-transform" title="GitHub"> <img src="/_astro/github-mark.BwyJR_2w_Z1xtQRt.svg" alt="GitHub logo" class="dark:hidden" width="24" height="24" loading="lazy" decoding="async"> <img src="/_astro/github-mark-white.S2fJVXLq_Z1Xebf3.svg" alt="GitHub logo" class="hidden dark:block" width="24" height="24" loading="lazy" decoding="async"> </a> <!-- Add more social links as needed --> </div> </div> <!-- Newsletter Signup (uncomment to enable) --> <!-- <div class="newsletter-signup mt-6 p-4 bg-[#F8F7F0] dark:bg-[#20251B] rounded-lg border border-[#D8F16A]/20">
+    <h4 class="text-sm font-semibold mb-2 text-[#506814] dark:text-[#D8F16A]">Stay Updated</h4>
+    <p class="text-xs mb-3 text-zinc-600 dark:text-zinc-300">Get notified about new articles and updates</p>
+    <form class="flex flex-col gap-2">
+      <input
+        type="email"
+        placeholder="Your email"
+        class="w-full px-3 py-2 text-sm rounded border dark:bg-gray-700 dark:border-gray-600"
+      />
+      <button
+        type="submit"
+        class="w-full px-4 py-2 bg-[#D8F16A] text-[#20251B] text-sm rounded hover:bg-[#C4DE4F] transition-colors font-semibold"
+      >
+        Subscribe
+      </button>
+    </form>
+  </div> --> </div> </div> <nav class="toc sticky top-4 py-2 lg:-ml-3" aria-label="Table of contents" data-astro-cid-awg4b4gg> <h3 class="font-extrabold uppercase mb-1 px-3 text-sm" data-astro-cid-awg4b4gg>On This Page</h3> <ul class="toc-list max-h-[calc(100vh-70px)] overflow-auto text-[.825rem] text-[var(--color-content-secondary)]" data-astro-cid-awg4b4gg> <li data-astro-cid-awg4b4gg> <a class="toc-link block font-bold py-1.5 px-3 border-l-2 border-transparent text-inherit leading-tight text-zinc-700 dark:text-zinc-300 transition-colors" href="#what-youll-need" data-toc-slug="what-youll-need" data-astro-cid-awg4b4gg> What You’ll Need </a>  </li><li data-astro-cid-awg4b4gg> <a class="toc-link block font-bold py-1.5 px-3 border-l-2 border-transparent text-inherit leading-tight text-zinc-700 dark:text-zinc-300 transition-colors" href="#setting-up-the-project" data-toc-slug="setting-up-the-project" data-astro-cid-awg4b4gg> Setting Up the Project </a>  </li><li data-astro-cid-awg4b4gg> <a class="toc-link block font-bold py-1.5 px-3 border-l-2 border-transparent text-inherit leading-tight text-zinc-700 dark:text-zinc-300 transition-colors" href="#environment-variables" data-toc-slug="environment-variables" data-astro-cid-awg4b4gg> Environment Variables </a>  </li><li data-astro-cid-awg4b4gg> <a class="toc-link block font-bold py-1.5 px-3 border-l-2 border-transparent text-inherit leading-tight text-zinc-700 dark:text-zinc-300 transition-colors" href="#creating-the-streamlit-app" data-toc-slug="creating-the-streamlit-app" data-astro-cid-awg4b4gg> Creating the Streamlit App </a> <ul data-astro-cid-awg4b4gg> <li data-astro-cid-awg4b4gg> <a class="toc-link block py-1.5 pl-7 pr-3 border-l-2 border-transparent text-inherit leading-tight text-zinc-700 dark:text-zinc-300 transition-colors" href="#building-the-ui-for-the-image" data-toc-slug="building-the-ui-for-the-image" data-astro-cid-awg4b4gg> Building the UI for the Image </a> </li><li data-astro-cid-awg4b4gg> <a class="toc-link block py-1.5 pl-7 pr-3 border-l-2 border-transparent text-inherit leading-tight text-zinc-700 dark:text-zinc-300 transition-colors" href="#displaying-the-video" data-toc-slug="displaying-the-video" data-astro-cid-awg4b4gg> Displaying the Video </a> </li><li data-astro-cid-awg4b4gg> <a class="toc-link block py-1.5 pl-7 pr-3 border-l-2 border-transparent text-inherit leading-tight text-zinc-700 dark:text-zinc-300 transition-colors" href="#calling-the-functions" data-toc-slug="calling-the-functions" data-astro-cid-awg4b4gg> Calling the Functions </a> </li> </ul> </li><li data-astro-cid-awg4b4gg> <a class="toc-link block font-bold py-1.5 px-3 border-l-2 border-transparent text-inherit leading-tight text-zinc-700 dark:text-zinc-300 transition-colors" href="#running-the-app" data-toc-slug="running-the-app" data-astro-cid-awg4b4gg> Running the App </a>  </li><li data-astro-cid-awg4b4gg> <a class="toc-link block font-bold py-1.5 px-3 border-l-2 border-transparent text-inherit leading-tight text-zinc-700 dark:text-zinc-300 transition-colors" href="#deploying-your-app" data-toc-slug="deploying-your-app" data-astro-cid-awg4b4gg> Deploying your App </a>  </li><li data-astro-cid-awg4b4gg> <a class="toc-link block font-bold py-1.5 px-3 border-l-2 border-transparent text-inherit leading-tight text-zinc-700 dark:text-zinc-300 transition-colors" href="#wrapping-up" data-toc-slug="wrapping-up" data-astro-cid-awg4b4gg> Wrapping Up </a>  </li><li data-astro-cid-awg4b4gg> <a class="toc-link block font-bold py-1.5 px-3 border-l-2 border-transparent text-inherit leading-tight text-zinc-700 dark:text-zinc-300 transition-colors" href="#resources" data-toc-slug="resources" data-astro-cid-awg4b4gg> Resources </a>  </li> </ul> </nav> <script type="module">
+    // Highlight active section in TOC
+    if (typeof window !== "undefined") {
+        const tocLinks = document.querySelectorAll('.toc-link');
+        const headingEls = Array.from(tocLinks).map(link => {
+            const id = link.getAttribute('href')?.slice(1);
+            return document.getElementById(id);
+        });
+        function onScroll() {
+            let activeIdx = 0;
+            for (let i = 0; i < headingEls.length; i++) {
+                if (headingEls[i] && headingEls[i].getBoundingClientRect().top < 120) {
+                    activeIdx = i;
+                }
+            }
+            tocLinks.forEach((link, idx) => {
+                if (idx === activeIdx) {
+                    link.classList.add('active-toc');
+                    link.setAttribute('aria-current', 'location');
+                } else {
+                    link.classList.remove('active-toc');
+                    link.removeAttribute('aria-current');
+                }
+            });
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+    }
+</script>  </div> </div>  </div> <footer class="site-footer mt-20"> <div class="site-footer-accent" aria-hidden="true"></div> <div class="container mx-auto grid gap-10 px-4 py-12 sm:px-6 md:grid-cols-[1.3fr_1fr_1fr] md:py-16"> <div> <a href="/" class="flex w-fit items-center gap-3" aria-label="Teri Eyenike, home"> <span class="site-footer-monogram grid h-11 w-11 place-items-center font-mono text-sm font-bold" aria-hidden="true">TE.</span> <span class="text-lg font-bold">Teri Eyenike</span> </a> <p class="mt-4 max-w-sm text-sm leading-6 opacity-75">Software projects and clear technical writing. Based in Nigeria, working everywhere.</p> </div> <nav aria-label="Footer navigation"> <h2 class="site-kicker mb-4 opacity-90">Explore</h2> <ul class="grid grid-cols-2 gap-x-4 gap-y-3 text-sm"> <li><a class="site-footer-link" href="/projects/">Work</a></li><li><a class="site-footer-link" href="/blog/">Writing</a></li><li><a class="site-footer-link" href="/about/">About</a></li><li><a class="site-footer-link" href="/resume/">Résumé</a></li><li><a class="site-footer-link" href="/contact/">Contact</a></li> <li><a class="site-footer-link" href="/tags/">Topics</a></li> </ul> </nav> <div> <h2 class="site-kicker mb-4 opacity-90">Say hello</h2> <a class="site-footer-link text-sm" href="mailto:developedbyteri@gmail.com">developedbyteri@gmail.com</a> <div class="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm"> <a class="site-footer-link" href="https://github.com/terieyenike" target="_blank" rel="noopener noreferrer">GitHub ↗</a> <a class="site-footer-link" href="https://www.linkedin.com/in/terieyenike" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a> <a class="site-footer-link" href="/rss.xml">RSS ↗</a> </div> </div> </div> <div class="container mx-auto flex flex-col gap-2 border-t px-4 py-5 text-xs opacity-90 sm:flex-row sm:items-center sm:justify-between sm:px-6" style="border-color:color-mix(in srgb,var(--paper) 35%,transparent)"> <span>© 2026 Teri Eyenike</span> <span>Made with care in Nigeria · Built with Astro</span> </div> </footer>  <button id="back-to-top" class="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 p-3 rounded-full bg-[#506814] dark:bg-[#D8F16A] text-white dark:text-zinc-900 shadow-lg opacity-0 pointer-events-none transition-all duration-300 hover:scale-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D8F16A]" aria-label="Back to top" aria-hidden="true" inert tabindex="-1"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6"> <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5"></path> </svg> </button>  <!-- Google tag (gtag.js) -->  </body> </html>  <!-- Copy-to-Clipboard for Code Blocks (Blog Posts Only) --> <script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('article pre > code').forEach(function (codeBlock) {
+    const pre = codeBlock.parentNode;
+    // Prevent duplicate buttons
+    if (pre.querySelector('.copy-btn')) return;
+    // Create button
+    const button = document.createElement('button');
+    button.className = 'copy-btn';
+    button.type = 'button';
+    button.title = 'Copy code';
+    button.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`;
+    button.style.position = 'absolute';
+    button.style.top = '10px';
+    button.style.right = '10px';
+    button.style.zIndex = '10';
+    // Wrap pre in relative div if not already
+    if (pre.parentNode.className !== 'pre-wrapper') {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'pre-wrapper';
+      wrapper.style.position = 'relative';
+      pre.parentNode.insertBefore(wrapper, pre);
+      wrapper.appendChild(pre);
+    }
+    pre.parentNode.appendChild(button);
+    button.addEventListener('click', function () {
+      navigator.clipboard.writeText(codeBlock.innerText).then(() => {
+        button.innerHTML = 'Copied!';
+        setTimeout(() => {
+          button.innerHTML = `<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"9\" y=\"9\" width=\"13\" height=\"13\" rx=\"2\" ry=\"2\"></rect><path d=\"M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1\"/></svg>`;
+        }, 1200);
+      });
+    });
+  });
+});
+</script> 

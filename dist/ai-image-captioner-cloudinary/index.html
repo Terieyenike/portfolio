@@ -1,0 +1,483 @@
+<!DOCTYPE html><html lang="en"> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/_astro/favicon.CRbAbLu4.png"><script async src="https://www.sabilytics.com/script.js" data-site="ylyeqns7l7hy" data-domain="iamteri.tech"></script><link rel="alternate" type="application/rss+xml" title="Teri Eyenike RSS feed" href="/rss.xml"><meta name="generator" content="Astro v4.16.18"><!-- Canonical URL --><link rel="canonical" href="https://terieyenike.hashnode.dev/ai-for-photo-captions-with-cloudinary"><!-- Primary Meta Tags --><title>Build an AI Image Captioning App with Cloudinary</title><meta name="title" content="Build an AI Image Captioning App with Cloudinary"><meta name="description" content="Build a web app that uses Cloudinary AI to generate image descriptions, helping people add useful alt text to images shared on social platforms."><meta name="author" content="Teri Eyenike"><!-- Open Graph / Facebook --><meta property="og:type" content="article"><meta property="og:locale" content="en_NG"><meta property="og:url" content="https://terieyenike.hashnode.dev/ai-for-photo-captions-with-cloudinary"><meta property="og:title" content="Build an AI Image Captioning App with Cloudinary"><meta property="og:description" content="Build a web app that uses Cloudinary AI to generate image descriptions, helping people add useful alt text to images shared on social platforms."><meta property="og:image" content="https://www.iamteri.tech/_astro/photo-captioner.BMleLsHf.png"><meta property="og:image:alt" content="Build a web app that uses Cloudinary AI to generate image descriptions, helping people add useful alt text to images shared on social platforms."><meta property="og:site_name" content="Teri Eyenike"><!-- Twitter --><meta name="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://terieyenike.hashnode.dev/ai-for-photo-captions-with-cloudinary"><meta property="twitter:title" content="Build an AI Image Captioning App with Cloudinary"><meta property="twitter:description" content="Build a web app that uses Cloudinary AI to generate image descriptions, helping people add useful alt text to images shared on social platforms."><meta property="twitter:image" content="https://www.iamteri.tech/_astro/photo-captioner.BMleLsHf.png"><meta property="twitter:image:alt" content="Build a web app that uses Cloudinary AI to generate image descriptions, helping people add useful alt text to images shared on social platforms."><meta name="twitter:creator" content="@terieyenike"><!-- Additional Meta Tags --><meta name="theme-color" content="#F4F2E9"><meta name="robots" content="index,follow,max-image-preview:large"><!-- Structured Data --><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.iamteri.tech/#website","url":"https://www.iamteri.tech/","name":"Teri Eyenike","description":"Teri Eyenike is a software engineer in Nigeria. Explore selected projects, software work, technical writing, and contact details.","publisher":{"@id":"https://www.iamteri.tech/#person"}},{"@type":"Person","@id":"https://www.iamteri.tech/#person","name":"Teri Eyenike","url":"https://www.iamteri.tech/","image":"https://www.iamteri.tech/_astro/photo-captioner.BMleLsHf.png","jobTitle":"Software Engineer","description":"Teri Eyenike is a software engineer in Nigeria. Explore selected projects, software work, technical writing, and contact details.","knowsAbout":["Software engineering","PostgreSQL","Developer tools","Technical writing"],"sameAs":["https://github.com/Terieyenike","https://www.linkedin.com/in/terieyenike","https://x.com/terieyenike","https://www.instagram.com/terieyenike","https://www.youtube.com/@terieyenike"]},{"@type":"BlogPosting","@id":"https://terieyenike.hashnode.dev/ai-for-photo-captions-with-cloudinary#article","headline":"Build an AI Image Captioning App with Cloudinary","description":"Build a web app that uses Cloudinary AI to generate image descriptions, helping people add useful alt text to images shared on social platforms.","image":["https://www.iamteri.tech/_astro/photo-captioner.BMleLsHf.png"],"datePublished":"2025-07-03T00:00:00.000Z","dateModified":"2025-07-03T00:00:00.000Z","author":{"@id":"https://www.iamteri.tech/#person"},"publisher":{"@id":"https://www.iamteri.tech/#person"},"mainEntityOfPage":{"@id":"https://terieyenike.hashnode.dev/ai-for-photo-captions-with-cloudinary"},"keywords":"javascript","articleSection":["javascript"]}]}</script><link rel="stylesheet" href="/_astro/_slug_.Ci_jzLtx.css">
+<link rel="stylesheet" href="/_astro/_slug_.BYOqDRji.css">
+<style>.toc-list[data-astro-cid-awg4b4gg]::-webkit-scrollbar{width:5px}.toc-list[data-astro-cid-awg4b4gg]::-webkit-scrollbar-track{background:transparent}.toc-list[data-astro-cid-awg4b4gg]::-webkit-scrollbar-thumb{background:#eee;border-radius:5px}.dark .toc-list[data-astro-cid-awg4b4gg]::-webkit-scrollbar-thumb{background:#2e2e2e}.toc-link[data-astro-cid-awg4b4gg].active-toc{border-left-color:#d8f16a;color:#506814;background:color-mix(in srgb,#D8F16A 18%,var(--surface));font-weight:700}.dark .toc-link[data-astro-cid-awg4b4gg].active-toc{border-left-color:#d8f16a;color:#d8f16a;background:color-mix(in srgb,#D8F16A 14%,var(--surface))}.toc-link[data-astro-cid-awg4b4gg]{scroll-behavior:smooth}.pre-wrapper[data-astro-cid-fzx4jmue]{position:relative}.copy-btn[data-astro-cid-fzx4jmue]{position:absolute;top:10px;right:10px;background:#222;color:#fff;border:none;border-radius:4px;padding:4px 8px;cursor:pointer;opacity:.7;transition:opacity .2s;font-size:.9em;display:flex;align-items:center}.copy-btn[data-astro-cid-fzx4jmue]:hover,.copy-btn[data-astro-cid-fzx4jmue]:focus{opacity:1;background:#506814;color:#fff}article[data-astro-cid-fzx4jmue] pre[data-astro-cid-fzx4jmue]{position:relative}
+</style><script type="module" src="/_astro/hoisted.CrCfDMim.js"></script>
+<script>!(function(w,p,f,c){if(!window.crossOriginIsolated && !navigator.serviceWorker) return;c=w[p]=Object.assign(w[p]||{},{"lib":"/~partytown/","debug":false});c[f]=(c[f]||[])})(window,'partytown','forward');/* Partytown 0.11.0 - MIT QwikDev */
+const t={preserveBehavior:!1},e=e=>{if("string"==typeof e)return[e,t];const[n,r=t]=e;return[n,{...t,...r}]},n=Object.freeze((t=>{const e=new Set;let n=[];do{Object.getOwnPropertyNames(n).forEach((t=>{"function"==typeof n[t]&&e.add(t)}))}while((n=Object.getPrototypeOf(n))!==Object.prototype);return Array.from(e)})());!function(t,r,o,i,a,s,c,l,d,p,u=t,f){function h(){f||(f=1,"/"==(c=(s.lib||"/~partytown/")+(s.debug?"debug/":""))[0]&&(d=r.querySelectorAll('script[type="text/partytown"]'),i!=t?i.dispatchEvent(new CustomEvent("pt1",{detail:t})):(l=setTimeout(v,(null==s?void 0:s.fallbackTimeout)||1e4),r.addEventListener("pt0",w),a?y(1):o.serviceWorker?o.serviceWorker.register(c+(s.swPath||"partytown-sw.js"),{scope:c}).then((function(t){t.active?y():t.installing&&t.installing.addEventListener("statechange",(function(t){"activated"==t.target.state&&y()}))}),console.error):v())))}function y(e){p=r.createElement(e?"script":"iframe"),t._pttab=Date.now(),e||(p.style.display="block",p.style.width="0",p.style.height="0",p.style.border="0",p.style.visibility="hidden",p.setAttribute("aria-hidden",!0)),p.src=c+"partytown-"+(e?"atomics.js?v=0.11.0":"sandbox-sw.html?"+t._pttab),r.querySelector(s.sandboxParent||"body").appendChild(p)}function v(n,o){for(w(),i==t&&(s.forward||[]).map((function(n){const[r]=e(n);delete t[r.split(".")[0]]})),n=0;n<d.length;n++)(o=r.createElement("script")).innerHTML=d[n].innerHTML,o.nonce=s.nonce,r.head.appendChild(o);p&&p.parentNode.removeChild(p)}function w(){clearTimeout(l)}s=t.partytown||{},i==t&&(s.forward||[]).map((function(r){const[o,{preserveBehavior:i}]=e(r);u=t,o.split(".").map((function(e,r,o){var a;u=u[o[r]]=r+1<o.length?u[o[r]]||(a=o[r+1],n.includes(a)?[]:{}):(()=>{let e=null;if(i){const{methodOrProperty:n,thisObject:r}=((t,e)=>{let n=t;for(let t=0;t<e.length-1;t+=1)n=n[e[t]];return{thisObject:n,methodOrProperty:e.length>0?n[e[e.length-1]]:void 0}})(t,o);"function"==typeof n&&(e=(...t)=>n.apply(r,...t))}return function(){let n;return e&&(n=e(arguments)),(t._ptf=t._ptf||[]).push(o,arguments),n}})()}))})),"complete"==r.readyState?h():(t.addEventListener("DOMContentLoaded",h),t.addEventListener("load",h))}(window,document,navigator,top,window.crossOriginIsolated);;(e=>{e.addEventListener("astro:before-swap",e=>{let r=document.body.querySelector("iframe[src*='/~partytown/']");if(r)e.newDocument.body.append(r)})})(document);</script></head> <body class="site-body"> <a href="#main-content" class="sr-only z-[1001] rounded-md bg-white px-4 py-3 text-zinc-900 shadow focus:not-sr-only focus:fixed focus:left-4 focus:top-4">Skip to main content</a> <header id="site-header" class="site-header sticky top-0 z-[999] border-b"> <div class="container mx-auto flex items-center justify-between gap-4 px-4 py-3 sm:px-6"> <a href="/" class="site-wordmark flex items-center gap-3" aria-label="Teri Eyenike, home"> <span class="site-monogram grid h-10 w-10 place-items-center text-sm font-black" aria-hidden="true">TE<span>.</span></span> <span class="hidden sm:block"> <span class="block text-sm font-bold leading-tight">Teri Eyenike</span> <span class="site-kicker mt-1 block text-[.58rem] text-[var(--muted)]">Engineer · Writer</span> </span> </a> <nav aria-label="Primary navigation" class="hidden items-center gap-1 md:flex"> <a href="/projects/" class="site-nav-link rounded-full px-3 py-2 text-sm font-medium transition-all duration-200 ease-in-out text-zinc-600 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-zinc-50 hover:scale-105" data-astro-cid-6eef2acz> Work </a> <a href="/blog/" class="site-nav-link rounded-full px-3 py-2 text-sm font-medium transition-all duration-200 ease-in-out text-zinc-600 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-zinc-50 hover:scale-105" data-astro-cid-6eef2acz> Writing </a> <a href="/about/" class="site-nav-link rounded-full px-3 py-2 text-sm font-medium transition-all duration-200 ease-in-out text-zinc-600 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-zinc-50 hover:scale-105" data-astro-cid-6eef2acz> About </a> <a href="/resume/" class="site-nav-link rounded-full px-3 py-2 text-sm font-medium transition-all duration-200 ease-in-out text-zinc-600 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-zinc-50 hover:scale-105" data-astro-cid-6eef2acz> Résumé </a>  </nav> <div class="flex items-center gap-2"> <a href="/contact/" class="site-contact-link hidden px-4 py-2 text-sm font-semibold sm:inline-flex">Let’s talk <span aria-hidden="true">↗</span></a> <button id="themeToggle" class="site-icon-button grid h-11 w-11 place-items-center rounded-full" aria-label="Switch to dark theme" title="Switch color theme"> <svg class="sun h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg> <svg class="moon h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.7 8.7 0 1 0 20.5 14.2Z"></path></svg> </button> <button id="hamburger" class="site-icon-button grid h-11 w-11 place-items-center rounded-full md:hidden" aria-label="Open navigation menu" aria-controls="mobile-menu" aria-expanded="false"> <svg class="hamburger-icon h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg> </button> </div> </div> <nav id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true" inert class="site-mobile-menu md:hidden"> <div class="container mx-auto flex flex-col gap-1 px-4 pb-5 sm:px-6"> <a href="/projects/" class="site-mobile-link flex items-baseline gap-3 py-3 text-lg font-semibold transition-all duration-200 ease-in-out text-zinc-600 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-zinc-50 hover:scale-105" data-astro-cid-6eef2acz>  <span class="site-kicker text-xs text-[var(--muted)]">01</span>Work </a> <a href="/blog/" class="site-mobile-link flex items-baseline gap-3 py-3 text-lg font-semibold transition-all duration-200 ease-in-out text-zinc-600 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-zinc-50 hover:scale-105" data-astro-cid-6eef2acz>  <span class="site-kicker text-xs text-[var(--muted)]">02</span>Writing </a> <a href="/about/" class="site-mobile-link flex items-baseline gap-3 py-3 text-lg font-semibold transition-all duration-200 ease-in-out text-zinc-600 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-zinc-50 hover:scale-105" data-astro-cid-6eef2acz>  <span class="site-kicker text-xs text-[var(--muted)]">03</span>About </a> <a href="/resume/" class="site-mobile-link flex items-baseline gap-3 py-3 text-lg font-semibold transition-all duration-200 ease-in-out text-zinc-600 dark:text-zinc-200 hover:text-zinc-900 dark:hover:text-zinc-50 hover:scale-105" data-astro-cid-6eef2acz>  <span class="site-kicker text-xs text-[var(--muted)]">04</span>Résumé </a>  <a href="/contact/" class="site-contact-link mt-3 inline-flex w-fit px-4 py-3 font-semibold">Let’s talk <span aria-hidden="true">↗</span></a> </div> </nav> </header>  <script>
+  const savedTheme = window.localStorage.getItem("theme");
+  const theme = savedTheme === "dark" || savedTheme === "light"
+    ? savedTheme
+    : window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  document.documentElement.classList.toggle("dark", theme === "dark");
+
+  const themeToggle = document.getElementById("themeToggle");
+  const updateThemeLabel = () => themeToggle?.setAttribute(
+    "aria-label",
+    document.documentElement.classList.contains("dark") ? "Switch to light theme" : "Switch to dark theme"
+  );
+  updateThemeLabel();
+  themeToggle?.addEventListener("click", () => {
+    const dark = document.documentElement.classList.toggle("dark");
+    window.localStorage.setItem("theme", dark ? "dark" : "light");
+    document.querySelector("iframe.giscus-frame")?.contentWindow?.postMessage(
+      { giscus: { setConfig: { theme: dark ? "dark_dimmed" : "light" } } },
+      "https://giscus.app"
+    );
+    updateThemeLabel();
+  });
+
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const closeMenu = () => {
+    mobileMenu?.classList.remove("mobile-menu-open");
+    mobileMenu?.setAttribute("aria-hidden", "true");
+    mobileMenu?.setAttribute("inert", "");
+    hamburger?.setAttribute("aria-expanded", "false");
+    hamburger?.setAttribute("aria-label", "Open navigation menu");
+    document.body.classList.remove("menu-open");
+    document.querySelector(".menu-backdrop")?.remove();
+  };
+  hamburger?.addEventListener("click", () => {
+    if (mobileMenu?.classList.contains("mobile-menu-open")) {
+      closeMenu();
+      return;
+    }
+    mobileMenu?.classList.add("mobile-menu-open");
+    mobileMenu?.setAttribute("aria-hidden", "false");
+    mobileMenu?.removeAttribute("inert");
+    hamburger?.setAttribute("aria-expanded", "true");
+    hamburger?.setAttribute("aria-label", "Close navigation menu");
+    document.body.classList.add("menu-open");
+    const backdrop = document.createElement("button");
+    backdrop.type = "button";
+    backdrop.className = "menu-backdrop";
+    backdrop.setAttribute("aria-label", "Close navigation menu");
+    backdrop.addEventListener("click", closeMenu);
+    document.body.append(backdrop);
+  });
+  mobileMenu?.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && mobileMenu?.classList.contains("mobile-menu-open")) {
+      closeMenu();
+      hamburger?.focus();
+    }
+  });
+</script> <div id="main-content" tabindex="-1" class="py-6 sm:py-10 min-h-[calc(100vh-160px)] focus:outline-none">  <div class="container lg:flex gap-10" data-astro-cid-fzx4jmue> <main class="overflow-hidden grow" data-astro-cid-fzx4jmue> <article data-astro-cid-fzx4jmue> <div class="prose dark:prose-invert
+  prose-h1:font-[900] prose-h1:my-4 prose-h1:text-2xl sm:prose-h1:text-[2rem]/[1.3]
+  prose-h2:mt-6 prose-h2:mb-3 prose-h2:text-2xl sm:prose-h2:text-3xl prose-h2:font-extrabold
+  prose-h3:mt-5 prose-h3:mb-2 prose-h3:text-xl sm:prose-h3:text-2xl
+  prose-h4:mt-3 prose-h4:mb-0 prose-img:rounded-xl prose-h3:target:pt-20">  <div data-astro-cid-fzx4jmue> <h1 class="!my-1 leading-tight" data-astro-cid-fzx4jmue>Build an AI Image Captioning App with Cloudinary</h1> <!-- Post metadata --> <div class="flex flex-wrap items-center justify-between gap-4 mt-4 mb-6" data-astro-cid-fzx4jmue> <!-- Left side: Tags --> <div class="flex flex-wrap gap-2" data-astro-cid-fzx4jmue> <a class="inline-flex px-3 py-1 text-sm bg-zinc-100 dark:bg-zinc-800 
+                    text-zinc-600 dark:text-zinc-400 rounded-full no-underline 
+                    hover:bg-[#506814] dark:hover:bg-[#D8F16A] hover:text-white 
+                    dark:hover:text-zinc-900 transition-all duration-300" href="/tags/javascript" data-astro-cid-fzx4jmue> javascript </a> </div> <!-- Right side: Reading time and dates --> <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-zinc-600 dark:text-zinc-400" data-astro-cid-fzx4jmue> <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-zinc-100 dark:bg-zinc-800 rounded-full" data-astro-cid-fzx4jmue> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#506814] dark:text-[#D8F16A]" data-astro-cid-fzx4jmue> <circle cx="12" cy="12" r="10" data-astro-cid-fzx4jmue></circle> <polyline points="12 6 12 12 16 14" data-astro-cid-fzx4jmue></polyline> </svg> <span data-astro-cid-fzx4jmue>7 min read</span> </div> <span data-astro-cid-fzx4jmue>Posted on <time datetime="2025-07-03T00:00:00.000Z"> Jul 03, 2025 </time></span>  </div> </div> <!-- Canonical URL --> <div class="text-sm text-zinc-600 dark:text-zinc-400 mb-6" data-astro-cid-fzx4jmue>
+Originally published at  <a href="https://terieyenike.hashnode.dev/ai-for-photo-captions-with-cloudinary" class="text-[#506814] dark:text-[#D8F16A] no-underline hover:opacity-80 transition-opacity" target="_blank" rel="noopener noreferrer" data-astro-cid-fzx4jmue> terieyenike.hashnode.dev </a> </div> <!-- Cover Image --> <div class="mb-6" data-astro-cid-fzx4jmue> <img src="/_astro/photo-captioner.BMleLsHf_ZPC0QM.webp" class="rounded-2xl w-full" alt="Build an AI Image Captioning App with Cloudinary" loading="eager" data-astro-cid-fzx4jmue width="1536" height="1024" decoding="async"> </div> <!-- Content --> <div class="my-6 p-4 bg-zinc-100 dark:bg-zinc-800 rounded-xl border border-zinc-200 dark:border-zinc-700"><div class="flex items-center gap-2 mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#506814] dark:text-[#D8F16A]"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><h3 class="text-lg font-bold m-0">TL;DR</h3></div><p class="m-0 text-zinc-700 dark:text-zinc-300">Caption Image is an app that automatically solves the problem of adding captions to your images on social media platforms like X and LinkedIn for accessibility using alt text.</p></div> <p>Have you always found it challenging to add captions to your images on social media platforms like <strong>X</strong> and <strong>LinkedIn</strong> for accessibility using alt text?</p>
+<p>Caption Image is an app that automatically solves this problem by analyzing your image and its details using Cloudinary AI to provide a perfect description automatically.</p>
+<p>This guide will cover connecting the server code (API) to the client side to build a robust full-stack application for image captions.</p>
+<p><img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1722194377373/e8d011bd-7517-4209-92e5-99b49b136fd2.png" alt="Caption Image"></p>
+<p>Want to give it a try? Check out the <a href="https://caption-image-gamma.vercel.app/" target="_blank" rel="noopener">Caption Image app</a>.</p>
+<h2 id="before-you-begin">Before you begin</h2>
+<p><strong>Prerequisites</strong></p>
+<ul>
+<li>
+<p>Basic understanding of React</p>
+</li>
+<li>
+<p>Node.js installed on your local machine</p>
+</li>
+<li>
+<p>Set up a Cloudinary <a href="https://cloudinary.com/users/register_free" target="_blank" rel="noopener">account</a></p>
+</li>
+</ul>
+<h2 id="creating-the-server">Creating the server</h2>
+<p>Run this command to create your project as follows:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">mkdir</span><span style="color:#9ECBFF"> caption-image-server</span></span>
+<span class="line"><span style="color:#79B8FF">cd</span><span style="color:#9ECBFF"> caption-image-server</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> init</span><span style="color:#79B8FF"> -y</span><span style="color:#6A737D"> # initialize the folder</span></span>
+<span class="line"></span></code></pre>
+<p>After this setup, install the following dependencies to be able to build the API:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> nodemon</span><span style="color:#79B8FF"> --save-dev</span></span>
+<span class="line"></span></code></pre>
+<p><strong>Nodemon</strong>: Runs your development server and monitors changes for any change in the code</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> cors</span><span style="color:#9ECBFF"> cloudinary</span><span style="color:#9ECBFF"> dotenv</span><span style="color:#9ECBFF"> express</span></span>
+<span class="line"></span></code></pre>
+<ul>
+<li>
+<p><strong>cors</strong>: it allows you to perform cross-domain requests in web applications</p>
+</li>
+<li>
+<p><strong>cloudinary</strong>: cloud storage for image and video</p>
+</li>
+<li>
+<p><strong>dotenv</strong>: load environment variables from a <mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">.env</mark> file</p>
+</li>
+<li>
+<p><strong>express</strong>: a node.js framework for building APIs</p>
+</li>
+</ul>
+<p>In the <mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">package.json</mark>, update the script objects with the following:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#FDAEB7;font-style:italic">  ...</span></span>
+<span class="line"><span style="color:#79B8FF">  "scripts"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">    "start"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"node index"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">    "start:dev"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"nodemon index"</span></span>
+<span class="line"><span style="color:#E1E4E8">  },</span></span>
+<span class="line"><span style="color:#FDAEB7;font-style:italic">  ...</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span></code></pre>
+<p>The <mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">index</mark> represents the file used to create the backend code. Run this code to create the file:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">touch</span><span style="color:#9ECBFF"> index.js</span></span>
+<span class="line"></span></code></pre>
+<h2 id="environment-variables">Environment variables</h2>
+<p>The environment variables keep our credentials secret and prevent them from being leaked when pushed to GitHub.</p>
+<p><mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">.env</mark></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#E1E4E8">CLOUDINARY_CLOUD_NAME</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">your_cloud_name</span></span>
+<span class="line"><span style="color:#E1E4E8">CLOUDINARY_API_KEY</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">your_api_key</span></span>
+<span class="line"><span style="color:#E1E4E8">CLOUDINARY_API_SECRET</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">your_api_secret</span></span>
+<span class="line"></span></code></pre>
+<p>Go to your Cloudinary dashboard, and you will have access to your values. Replace the placeholder text after the equal sign.</p>
+<p><img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1722198347861/41657017-3468-4f26-b4f8-0863ff6adfb8.jpeg" alt="Cloudinary Dashboard"></p>
+<p>Let’s create the server. Copy-paste this code into your <mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">index.js</mark> file:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> express </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "express"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { v2 </span><span style="color:#F97583">as</span><span style="color:#E1E4E8"> cloudinary } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "cloudinary"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#79B8FF"> *</span><span style="color:#F97583"> as</span><span style="color:#E1E4E8"> dotenv </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "dotenv"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> cors </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "cors"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">dotenv.</span><span style="color:#B392F0">config</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> app</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> express</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">use</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">cors</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">use</span><span style="color:#E1E4E8">(express.</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">());</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">cloudinary.</span><span style="color:#B392F0">config</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">  cloud_name: process.env.</span><span style="color:#79B8FF">CLOUDINARY_CLOUD_NAME</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">  api_key: process.env.</span><span style="color:#79B8FF">CLOUDINARY_API_KEY</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">  api_secret: process.env.</span><span style="color:#79B8FF">CLOUDINARY_API_SECRET</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/"</span><span style="color:#E1E4E8">, (</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">  res.</span><span style="color:#B392F0">status</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">    message: </span><span style="color:#9ECBFF">"Upload and generate image caption with Cloudinary AI"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">  });</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">app.</span><span style="color:#B392F0">post</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"/api/v1/caption"</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">async</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">req</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">res</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#E1E4E8"> { </span><span style="color:#79B8FF">imageUrl</span><span style="color:#E1E4E8"> } </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> req.body;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">imageUrl) {</span></span>
+<span class="line"><span style="color:#F97583">      return</span><span style="color:#E1E4E8"> res.</span><span style="color:#B392F0">status</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">400</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">        success: </span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">        message: </span><span style="color:#9ECBFF">"Image URL is required"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">      });</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> result</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> cloudinary.uploader.</span><span style="color:#B392F0">upload</span><span style="color:#E1E4E8">(imageUrl, {</span></span>
+<span class="line"><span style="color:#E1E4E8">      detection: </span><span style="color:#9ECBFF">"captioning"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    });</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    res.</span><span style="color:#B392F0">status</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">200</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">      success: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">      caption: result.info.detection.captioning.data.caption,</span></span>
+<span class="line"><span style="color:#E1E4E8">    });</span></span>
+<span class="line"><span style="color:#E1E4E8">  } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (error) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    res.</span><span style="color:#B392F0">status</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">500</span><span style="color:#E1E4E8">).</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">      success: </span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">      message: </span><span style="color:#9ECBFF">"Unable to generate image caption"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">      error: error.message,</span></span>
+<span class="line"><span style="color:#E1E4E8">    });</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#B392F0"> startServer</span><span style="color:#F97583"> =</span><span style="color:#F97583"> async</span><span style="color:#E1E4E8"> () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">  try</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">    app.</span><span style="color:#B392F0">listen</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">8080</span><span style="color:#E1E4E8">, () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Server started on port 8080"</span><span style="color:#E1E4E8">));</span></span>
+<span class="line"><span style="color:#E1E4E8">  } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (error) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    console.</span><span style="color:#B392F0">log</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Error starting server:"</span><span style="color:#E1E4E8">, error);</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">startServer</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"></span></code></pre>
+<p>The code snippet shows the endpoints to the GET and POST HTTP methods. The POST method reads the image and crafts a caption. Check out <a href="https://cloudinary.com/documentation/cloudinary_ai_content_analysis_addon" target="_blank" rel="noopener">Cloudinary AI Content Analysis</a> to learn more about the practical use case of this technology.</p>
+<p><strong>Start the development server</strong></p>
+<p>In your terminal, use the command to run the server at <code>http://localhost:8080</code>.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> run</span><span style="color:#9ECBFF"> start:dev</span></span>
+<span class="line"></span></code></pre>
+<h2 id="creating-the-ui">Creating the UI</h2>
+<p>Next.js is a popular framework among frontend developers because it helps create beautiful and user-friendly interfaces with reusable components.</p>
+<p><strong>Installation</strong></p>
+<p>As with any project, we need to create the boilerplate code that includes the files and folders with this command:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">npx</span><span style="color:#9ECBFF"> create-next-app@latest</span><span style="color:#9ECBFF"> caption-image-client</span></span>
+<span class="line"></span></code></pre>
+<p>During installation, some prompts will appear, allowing you to choose your preferences for the project.</p>
+<p>Next, install these dependencies:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> install</span><span style="color:#9ECBFF"> react-toastify</span><span style="color:#9ECBFF"> next-cloudinary</span><span style="color:#9ECBFF"> cloudinary</span><span style="color:#9ECBFF"> copy-to-clipboard</span></span>
+<span class="line"></span></code></pre>
+<ul>
+<li>
+<p><strong>react-toastify</strong>: for notification</p>
+</li>
+<li>
+<p><strong>next-cloudinary</strong>: The Cloudinary package is developed for high-performance image and video delivery</p>
+</li>
+<li>
+<p><strong>copy-to-clipboard</strong>: copy text to the clipboard</p>
+</li>
+</ul>
+<h2 id="environment-variables-1">Environment variables</h2>
+<p>In the same way, as with the backend code, we need to create the environment variables in the root directory with the following:</p>
+<p><mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">.env</mark></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#E1E4E8">NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">your_cloud_name</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#E1E4E8">NEXT_PUBLIC_CLOUDINARY_API_KEY</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">your_api_key</span></span>
+<span class="line"><span style="color:#E1E4E8">CLOUDINARY_API_SECRET</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">your_api_secret</span></span>
+<span class="line"></span></code></pre>
+<p>These variables will help <a href="https://next.cloudinary.dev/clduploadwidget/signed-uploads#api-endpoint-to-sign-requests" target="_blank" rel="noopener">sign our requests</a> because we will use Cloudinary signed uploads to send files to the cloud. The signed uploads add an extra security layer to file uploads instead of <a href="https://support.cloudinary.com/hc/en-us/articles/360018796451-Unsigned-Uploads-Security-Considerations" target="_blank" rel="noopener">unsigned uploads</a>.</p>
+<p><strong>Configuring Cloudinary</strong></p>
+<p>Create a <mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">lib</mark> folder in the root directory, and it, a file name <mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">cloudinary.js</mark></p>
+<p><mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">lib/cloudinary.js</mark></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { v2 </span><span style="color:#F97583">as</span><span style="color:#E1E4E8"> cloudinary } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "cloudinary"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">cloudinary.</span><span style="color:#B392F0">config</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">  cloud_name: process.env.</span><span style="color:#79B8FF">NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">  api_key: process.env.</span><span style="color:#79B8FF">NEXT_PUBLIC_CLOUDINARY_API_KEY</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">  api_secret: process.env.</span><span style="color:#79B8FF">CLOUDINARY_API_SECRET</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> default</span><span style="color:#E1E4E8"> cloudinary;</span></span>
+<span class="line"></span></code></pre>
+<p>Next, in the App router, create a new API route with this file name, <mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">api/sign-cloudinary-params/route.js</mark>:</p>
+<p><mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">app/api/sign-cloudinary-params/route.js</mark></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> cloudinary </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "@/lib/cloudinary"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> async</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> POST</span><span style="color:#E1E4E8">(</span><span style="color:#FFAB70">request</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> body</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> request.</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#E1E4E8"> { </span><span style="color:#79B8FF">paramsToSign</span><span style="color:#E1E4E8"> } </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> body;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#79B8FF"> signature</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> cloudinary.utils.</span><span style="color:#B392F0">api_sign_request</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#E1E4E8">    paramsToSign,</span></span>
+<span class="line"><span style="color:#E1E4E8">    process.env.</span><span style="color:#79B8FF">CLOUDINARY_API_SECRET</span></span>
+<span class="line"><span style="color:#E1E4E8">  );</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> Response.</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">({ signature });</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span></code></pre>
+<p><strong>Displaying the UI content</strong></p>
+<p>Here, the home route will display the content users can interact with within the app.</p>
+<p><mark style="background-color: #ffd54f; color: #1a1a1a; padding: 2.72px 5.44px; border-radius: 4px">app/page.js</mark></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#9ECBFF">"use client"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { CldUploadWidget } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "next-cloudinary"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { useState } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "react"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> copy </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "copy-to-clipboard"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { ToastContainer, toast } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> "react-toastify"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#9ECBFF"> "react-toastify/dist/ReactToastify.css"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> default</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> Home</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">imageUrl</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">setImageUrl</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#B392F0"> useState</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">caption</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">setCaption</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#B392F0"> useState</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">""</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">loading</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">setLoading</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#B392F0"> useState</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#B392F0"> handleUploadSuccess</span><span style="color:#F97583"> =</span><span style="color:#F97583"> async</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">result</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">    setLoading</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#B392F0">    setImageUrl</span><span style="color:#E1E4E8">(result.info.secure_url);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> response</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#B392F0"> fetch</span><span style="color:#E1E4E8">(</span></span>
+<span class="line"><span style="color:#9ECBFF">      "http://localhost:8080/api/v1/caption"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">      {</span></span>
+<span class="line"><span style="color:#E1E4E8">        method: </span><span style="color:#9ECBFF">"post"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">        headers: {</span></span>
+<span class="line"><span style="color:#9ECBFF">          "Content-Type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"application/json"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">        },</span></span>
+<span class="line"><span style="color:#E1E4E8">        body: </span><span style="color:#79B8FF">JSON</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">stringify</span><span style="color:#E1E4E8">({ imageUrl: result.info.secure_url }),</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#E1E4E8">    );</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> data</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#E1E4E8"> response.</span><span style="color:#B392F0">json</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#B392F0">    setCaption</span><span style="color:#E1E4E8">(data.caption);</span></span>
+<span class="line"><span style="color:#B392F0">    setLoading</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  };</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  const</span><span style="color:#B392F0"> handleCopyCaption</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> () </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#B392F0">    copy</span><span style="color:#E1E4E8">(caption, {</span></span>
+<span class="line"><span style="color:#E1E4E8">      debug: </span><span style="color:#79B8FF">true</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#E1E4E8">    });</span></span>
+<span class="line"><span style="color:#B392F0">    toast</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"✅ Copied"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">  };</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;</span><span style="color:#85E89D">main</span><span style="color:#B392F0"> className</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'flex min-h-screen flex-col items-center justify-center p-4 bg-gray-100'</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;</span><span style="color:#85E89D">h1</span><span style="color:#B392F0"> className</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'text-2xl font-bold mb-8'</span><span style="color:#E1E4E8">>AI-Enhanced Photo Captioner&#x3C;/</span><span style="color:#85E89D">h1</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> className</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-4 mb-8'</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        {imageUrl </span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#E1E4E8">          &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> className</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'flex flex-col items-center justify-center border border-dashed border-gray-400 p-4 bg-white rounded-lg'</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">h2</span><span style="color:#B392F0"> className</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'text-xl font-semibold mb-2'</span><span style="color:#E1E4E8">>Uploaded Image:&#x3C;/</span><span style="color:#85E89D">h2</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">img</span></span>
+<span class="line"><span style="color:#B392F0">              src</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{imageUrl}</span></span>
+<span class="line"><span style="color:#B392F0">              alt</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'Uploaded'</span></span>
+<span class="line"><span style="color:#B392F0">              className</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'w-full h-auto object-contain'</span></span>
+<span class="line"><span style="color:#B392F0">              style</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{{ maxHeight: </span><span style="color:#9ECBFF">"60vh"</span><span style="color:#E1E4E8"> }}</span></span>
+<span class="line"><span style="color:#E1E4E8">            /></span></span>
+<span class="line"><span style="color:#E1E4E8">          &#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        )}</span></span>
+<span class="line"><span style="color:#E1E4E8">        {caption </span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#E1E4E8">          &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> className</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'flex flex-col items-center justify-center border border-dashed border-gray-400 p-4 bg-white rounded-lg'</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">h2</span><span style="color:#B392F0"> className</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'text-xl font-semibold mb-2'</span><span style="color:#E1E4E8">>Caption:&#x3C;/</span><span style="color:#85E89D">h2</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">p</span><span style="color:#B392F0"> className</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'select-none'</span><span style="color:#E1E4E8">>{caption}&#x3C;/</span><span style="color:#85E89D">p</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">button</span></span>
+<span class="line"><span style="color:#B392F0">              className</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'px-4 py-2 bg-emerald-700 text-white font-semibold rounded-lg shadow-md hover:bg-emerald-600 focus:outline-none mt-5 cursor-pointer'</span></span>
+<span class="line"><span style="color:#B392F0">              onClick</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{handleCopyCaption}></span></span>
+<span class="line"><span style="color:#E1E4E8">              Copy caption</span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;/</span><span style="color:#85E89D">button</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">          &#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        )}</span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;</span><span style="color:#85E89D">div</span><span style="color:#B392F0"> className</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'flex flex-col items-center'</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;</span><span style="color:#79B8FF">CldUploadWidget</span></span>
+<span class="line"><span style="color:#B392F0">          signatureEndpoint</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'/api/sign-cloudinary-params'</span></span>
+<span class="line"><span style="color:#B392F0">          onSuccess</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{handleUploadSuccess}></span></span>
+<span class="line"><span style="color:#E1E4E8">          {({ </span><span style="color:#FFAB70">open</span><span style="color:#E1E4E8"> }) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> (</span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;</span><span style="color:#85E89D">button</span></span>
+<span class="line"><span style="color:#B392F0">              onClick</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{() </span><span style="color:#F97583">=></span><span style="color:#B392F0"> open</span><span style="color:#E1E4E8">()}</span></span>
+<span class="line"><span style="color:#B392F0">              disabled</span><span style="color:#F97583">=</span><span style="color:#E1E4E8">{loading}</span></span>
+<span class="line"><span style="color:#B392F0">              className</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none disabled:bg-gray-400'</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">              {loading </span><span style="color:#F97583">?</span><span style="color:#9ECBFF"> "Loading..."</span><span style="color:#F97583"> :</span><span style="color:#9ECBFF"> "Upload an Image"</span><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#E1E4E8">            &#x3C;/</span><span style="color:#85E89D">button</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">          )}</span></span>
+<span class="line"><span style="color:#E1E4E8">        &#x3C;/</span><span style="color:#79B8FF">CldUploadWidget</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;/</span><span style="color:#85E89D">div</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">      &#x3C;</span><span style="color:#79B8FF">ToastContainer</span><span style="color:#B392F0"> theme</span><span style="color:#F97583">=</span><span style="color:#9ECBFF">'dark'</span><span style="color:#E1E4E8"> /></span></span>
+<span class="line"><span style="color:#E1E4E8">    &#x3C;/</span><span style="color:#85E89D">main</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#E1E4E8">  );</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span></code></pre>
+<p>Now that we have the code for the home page clicking the “<strong>Upload an Image</strong>” button opens the Cloudinary widget interface that offers many options for uploading an image. Once you have selected an image, it processes the data with Cloudinary, generating both the picture and the caption side-by-side. Then, a notification pops up when you “<strong>Copy caption</strong>” to the clipboard for later use as an alternative text for your image.</p>
+<h2 id="tech-stack">Tech stack</h2>
+<p>These are the following technologies that made it possible to build the AI-enhanced photo captioner:</p>
+<ul>
+<li>
+<p>Next.js</p>
+</li>
+<li>
+<p>Cloudinary</p>
+</li>
+<li>
+<p>Vercel</p>
+</li>
+<li>
+<p><a href="https://render.com/" target="_blank" rel="noopener">Render</a></p>
+</li>
+<li>
+<p>Express</p>
+</li>
+</ul>
+<h2 id="important-links">Important links</h2>
+<p><strong>Caption Image</strong>: <a href="https://caption-image-gamma.vercel.app/" target="_blank" rel="noopener">https://caption-image-gamma.vercel.app/</a></p>
+<p><strong>Server code</strong>: <a href="https://github.com/Terieyenike/caption-image-server" target="_blank" rel="noopener">https://github.com/Terieyenike/caption-image-server</a></p>
+<p><strong>GitHub repo</strong>: <a href="https://github.com/Terieyenike/caption-image-client" target="_blank" rel="noopener">https://github.com/Terieyenike/caption-image-client</a></p>
+<p><strong>API</strong>: <a href="https://caption-image-server.onrender.com/" target="_blank" rel="noopener">https://caption-image-server.onrender.com/</a></p>
+<h2 id="deployment">Deployment</h2>
+<p>These two technologies managed the deployment of the app on the web.</p>
+<ul>
+<li>
+<p><strong>Vercel</strong>: helps deploy frontend web applications</p>
+</li>
+<li>
+<p><strong>Render</strong>: hosting the server code (API) in the cloud</p>
+</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>Everything is made possible by using AI. It shows how efficiently AI is used to our advantage in creating for humans.</p>
+<p>The AI-enhanced photo captioner is one example of the power of Cloudinary APIs and tools for building your next app. It removes the need to use other tools that provide similar services when bundling it all in Cloudinary.</p>
+<p>Happy coding!</p> </div>  </div> <!-- Comments -->  </article> </main> <div class="shrink-0 w-[280px] hidden md:block" data-astro-cid-fzx4jmue> <div class="mb-4" data-astro-cid-fzx4jmue> <div class="about-the-author py-6 px-5 border-b bg-white/80 dark:bg-zinc-900/80 rounded-xl shadow-md max-w-md mx-auto mt-6"> <h3 class="font-extrabold uppercase mb-4 text-xs tracking-widest text-[#506814] dark:text-[#D8F16A]">
+About the Author
+</h3> <div class="flex gap-4 items-center leading-tight not-prose"> <a href="https://github.com/terieyenike" target="_blank" rel="noopener noreferrer" class="rounded-full overflow-hidden shrink-0 w-[70px] h-[70px]"> <img src="/_astro/profile.BHDGMQmk_bfCSM.webp" alt="Portrait of Teri Eyenike" width="1024" height="1024" loading="lazy" decoding="async"> </a> <div> <div> <a href="https://github.com/terieyenike" class="block font-bold text-inherit hover:text-[var(--link-color)]" target="_blank" rel="noopener noreferrer">
+Teri Eyenike
+</a> </div> <small class="avatar__subtitle">Software Engineer · Technical Writer</small> </div> </div> <div class="author-desc text-[.925rem] my-4 text-zinc-700 dark:text-zinc-300"> <p class="mb-2 font-semibold">
+Building tools, sharing ideas, and bridging the gap between code and
+      people.
+</p> <p class="mb-2">
+Teri is a software engineer and technical writer based in Nigeria. 🌍
+</p> <p class="mb-2">
+Open to collaborations and new opportunities in developer relations,
+      writing, and open-source.
+</p> </div> <!-- Social Links --> <div class="flex flex-col gap-2 mt-4"> <span class="text-sm font-semibold text-zinc-800 dark:text-zinc-200">Let's connect</span> <div class="flex gap-4"> <a href="https://www.linkedin.com/in/terieyenike" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition-transform" title="LinkedIn"> <img src="/_astro/linkedin-mark.BPWEoAYl_Z55LUo.svg" alt="LinkedIn logo" class="dark:hidden" width="24" height="24" loading="lazy" decoding="async"> <img src="/_astro/linkedin-mark-white.BxiZ7l6f_Z12sMeP.svg" alt="LinkedIn logo" class="hidden dark:block" width="24" height="24" loading="lazy" decoding="async"> </a> <a href="https://github.com/terieyenike" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition-transform" title="GitHub"> <img src="/_astro/github-mark.BwyJR_2w_Z1xtQRt.svg" alt="GitHub logo" class="dark:hidden" width="24" height="24" loading="lazy" decoding="async"> <img src="/_astro/github-mark-white.S2fJVXLq_Z1Xebf3.svg" alt="GitHub logo" class="hidden dark:block" width="24" height="24" loading="lazy" decoding="async"> </a> <!-- Add more social links as needed --> </div> </div> <!-- Newsletter Signup (uncomment to enable) --> <!-- <div class="newsletter-signup mt-6 p-4 bg-[#F8F7F0] dark:bg-[#20251B] rounded-lg border border-[#D8F16A]/20">
+    <h4 class="text-sm font-semibold mb-2 text-[#506814] dark:text-[#D8F16A]">Stay Updated</h4>
+    <p class="text-xs mb-3 text-zinc-600 dark:text-zinc-300">Get notified about new articles and updates</p>
+    <form class="flex flex-col gap-2">
+      <input
+        type="email"
+        placeholder="Your email"
+        class="w-full px-3 py-2 text-sm rounded border dark:bg-gray-700 dark:border-gray-600"
+      />
+      <button
+        type="submit"
+        class="w-full px-4 py-2 bg-[#D8F16A] text-[#20251B] text-sm rounded hover:bg-[#C4DE4F] transition-colors font-semibold"
+      >
+        Subscribe
+      </button>
+    </form>
+  </div> --> </div> </div> <nav class="toc sticky top-4 py-2 lg:-ml-3" aria-label="Table of contents" data-astro-cid-awg4b4gg> <h3 class="font-extrabold uppercase mb-1 px-3 text-sm" data-astro-cid-awg4b4gg>On This Page</h3> <ul class="toc-list max-h-[calc(100vh-70px)] overflow-auto text-[.825rem] text-[var(--color-content-secondary)]" data-astro-cid-awg4b4gg> <li data-astro-cid-awg4b4gg> <a class="toc-link block font-bold py-1.5 px-3 border-l-2 border-transparent text-inherit leading-tight text-zinc-700 dark:text-zinc-300 transition-colors" href="#before-you-begin" data-toc-slug="before-you-begin" data-astro-cid-awg4b4gg> Before you begin </a>  </li><li data-astro-cid-awg4b4gg> <a class="toc-link block font-bold py-1.5 px-3 border-l-2 border-transparent text-inherit leading-tight text-zinc-700 dark:text-zinc-300 transition-colors" href="#creating-the-server" data-toc-slug="creating-the-server" data-astro-cid-awg4b4gg> Creating the server </a>  </li><li data-astro-cid-awg4b4gg> <a class="toc-link block font-bold py-1.5 px-3 border-l-2 border-transparent text-inherit leading-tight text-zinc-700 dark:text-zinc-300 transition-colors" href="#environment-variables" data-toc-slug="environment-variables" data-astro-cid-awg4b4gg> Environment variables </a>  </li><li data-astro-cid-awg4b4gg> <a class="toc-link block font-bold py-1.5 px-3 border-l-2 border-transparent text-inherit leading-tight text-zinc-700 dark:text-zinc-300 transition-colors" href="#creating-the-ui" data-toc-slug="creating-the-ui" data-astro-cid-awg4b4gg> Creating the UI </a>  </li><li data-astro-cid-awg4b4gg> <a class="toc-link block font-bold py-1.5 px-3 border-l-2 border-transparent text-inherit leading-tight text-zinc-700 dark:text-zinc-300 transition-colors" href="#environment-variables-1" data-toc-slug="environment-variables-1" data-astro-cid-awg4b4gg> Environment variables </a>  </li><li data-astro-cid-awg4b4gg> <a class="toc-link block font-bold py-1.5 px-3 border-l-2 border-transparent text-inherit leading-tight text-zinc-700 dark:text-zinc-300 transition-colors" href="#tech-stack" data-toc-slug="tech-stack" data-astro-cid-awg4b4gg> Tech stack </a>  </li><li data-astro-cid-awg4b4gg> <a class="toc-link block font-bold py-1.5 px-3 border-l-2 border-transparent text-inherit leading-tight text-zinc-700 dark:text-zinc-300 transition-colors" href="#important-links" data-toc-slug="important-links" data-astro-cid-awg4b4gg> Important links </a>  </li><li data-astro-cid-awg4b4gg> <a class="toc-link block font-bold py-1.5 px-3 border-l-2 border-transparent text-inherit leading-tight text-zinc-700 dark:text-zinc-300 transition-colors" href="#deployment" data-toc-slug="deployment" data-astro-cid-awg4b4gg> Deployment </a>  </li><li data-astro-cid-awg4b4gg> <a class="toc-link block font-bold py-1.5 px-3 border-l-2 border-transparent text-inherit leading-tight text-zinc-700 dark:text-zinc-300 transition-colors" href="#conclusion" data-toc-slug="conclusion" data-astro-cid-awg4b4gg> Conclusion </a>  </li> </ul> </nav> <script type="module">
+    // Highlight active section in TOC
+    if (typeof window !== "undefined") {
+        const tocLinks = document.querySelectorAll('.toc-link');
+        const headingEls = Array.from(tocLinks).map(link => {
+            const id = link.getAttribute('href')?.slice(1);
+            return document.getElementById(id);
+        });
+        function onScroll() {
+            let activeIdx = 0;
+            for (let i = 0; i < headingEls.length; i++) {
+                if (headingEls[i] && headingEls[i].getBoundingClientRect().top < 120) {
+                    activeIdx = i;
+                }
+            }
+            tocLinks.forEach((link, idx) => {
+                if (idx === activeIdx) {
+                    link.classList.add('active-toc');
+                    link.setAttribute('aria-current', 'location');
+                } else {
+                    link.classList.remove('active-toc');
+                    link.removeAttribute('aria-current');
+                }
+            });
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+    }
+</script>  </div> </div>  </div> <footer class="site-footer mt-20"> <div class="site-footer-accent" aria-hidden="true"></div> <div class="container mx-auto grid gap-10 px-4 py-12 sm:px-6 md:grid-cols-[1.3fr_1fr_1fr] md:py-16"> <div> <a href="/" class="flex w-fit items-center gap-3" aria-label="Teri Eyenike, home"> <span class="site-footer-monogram grid h-11 w-11 place-items-center font-mono text-sm font-bold" aria-hidden="true">TE.</span> <span class="text-lg font-bold">Teri Eyenike</span> </a> <p class="mt-4 max-w-sm text-sm leading-6 opacity-75">Software projects and clear technical writing. Based in Nigeria, working everywhere.</p> </div> <nav aria-label="Footer navigation"> <h2 class="site-kicker mb-4 opacity-90">Explore</h2> <ul class="grid grid-cols-2 gap-x-4 gap-y-3 text-sm"> <li><a class="site-footer-link" href="/projects/">Work</a></li><li><a class="site-footer-link" href="/blog/">Writing</a></li><li><a class="site-footer-link" href="/about/">About</a></li><li><a class="site-footer-link" href="/resume/">Résumé</a></li><li><a class="site-footer-link" href="/contact/">Contact</a></li> <li><a class="site-footer-link" href="/tags/">Topics</a></li> </ul> </nav> <div> <h2 class="site-kicker mb-4 opacity-90">Say hello</h2> <a class="site-footer-link text-sm" href="mailto:developedbyteri@gmail.com">developedbyteri@gmail.com</a> <div class="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm"> <a class="site-footer-link" href="https://github.com/terieyenike" target="_blank" rel="noopener noreferrer">GitHub ↗</a> <a class="site-footer-link" href="https://www.linkedin.com/in/terieyenike" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a> <a class="site-footer-link" href="/rss.xml">RSS ↗</a> </div> </div> </div> <div class="container mx-auto flex flex-col gap-2 border-t px-4 py-5 text-xs opacity-90 sm:flex-row sm:items-center sm:justify-between sm:px-6" style="border-color:color-mix(in srgb,var(--paper) 35%,transparent)"> <span>© 2026 Teri Eyenike</span> <span>Made with care in Nigeria · Built with Astro</span> </div> </footer>  <button id="back-to-top" class="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 p-3 rounded-full bg-[#506814] dark:bg-[#D8F16A] text-white dark:text-zinc-900 shadow-lg opacity-0 pointer-events-none transition-all duration-300 hover:scale-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D8F16A]" aria-label="Back to top" aria-hidden="true" inert tabindex="-1"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6"> <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5"></path> </svg> </button>  <!-- Google tag (gtag.js) -->  </body> </html>  <!-- Copy-to-Clipboard for Code Blocks (Blog Posts Only) --> <script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('article pre > code').forEach(function (codeBlock) {
+    const pre = codeBlock.parentNode;
+    // Prevent duplicate buttons
+    if (pre.querySelector('.copy-btn')) return;
+    // Create button
+    const button = document.createElement('button');
+    button.className = 'copy-btn';
+    button.type = 'button';
+    button.title = 'Copy code';
+    button.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`;
+    button.style.position = 'absolute';
+    button.style.top = '10px';
+    button.style.right = '10px';
+    button.style.zIndex = '10';
+    // Wrap pre in relative div if not already
+    if (pre.parentNode.className !== 'pre-wrapper') {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'pre-wrapper';
+      wrapper.style.position = 'relative';
+      pre.parentNode.insertBefore(wrapper, pre);
+      wrapper.appendChild(pre);
+    }
+    pre.parentNode.appendChild(button);
+    button.addEventListener('click', function () {
+      navigator.clipboard.writeText(codeBlock.innerText).then(() => {
+        button.innerHTML = 'Copied!';
+        setTimeout(() => {
+          button.innerHTML = `<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"9\" y=\"9\" width=\"13\" height=\"13\" rx=\"2\" ry=\"2\"></rect><path d=\"M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1\"/></svg>`;
+        }, 1200);
+      });
+    });
+  });
+});
+</script> 
