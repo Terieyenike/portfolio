@@ -62,9 +62,9 @@ const projectDetails: Project[] = [
   },
   {
     name: "Teri's Portfolio",
-    description: "An open-source personal portfolio built to share projects, writing, and resources.",
+    description: "An open-source React portfolio built with JavaScript. Fork it, adapt the layout and content, and make it your own.",
     repositoryUrl: "https://github.com/Terieyenike/v2",
-    tags: ["Astro", "TypeScript", "Open Source"],
+    tags: ["React", "JavaScript", "Open Source"],
   },
 ];
 
