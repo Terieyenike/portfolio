@@ -8,7 +8,7 @@ const { href, class: className, ...props } = Astro.props;
 const { pathname } = Astro.url;
 const normalizePath = (path: string) => path.replace(/\/+$/, '') || '/';
 const currentPath = normalizePath(pathname);
-const targetPath = normalizePath(href || '/');
+const targetPath = normalizePath(href instanceof URL ? href.pathname : href || '/');
 const isActive = currentPath === targetPath ||
   (targetPath !== '/' && currentPath.startsWith(`${targetPath}/`));
 ---
