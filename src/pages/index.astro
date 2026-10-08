@@ -18,19 +18,17 @@ const posts = (await getCollection("blog"))
   .slice(0, 3);
 ---
 
-<BaseLayout title={`${SITE_TITLE} | Software & DevOps Engineer`} description={SITE_DESCRIPTION}>
+<BaseLayout title={`${SITE_TITLE} | Software Engineer`} description={SITE_DESCRIPTION}>
   <main class="site-home mx-auto max-w-6xl px-4 sm:px-6">
     <section class="home-hero" aria-labelledby="home-title">
       <div class="home-copy">
         <p class="site-kicker text-[var(--olive)]">Open to software engineering roles and collaboration <span class="mx-2 text-[var(--muted)]">/</span> Nigeria</p>
-        <h1 id="home-title">Software engineer building useful web products and cloud tools.</h1>
-        <p class="home-intro">I’m Teri Eyenike, a software engineer in Nigeria. I build useful web pages, applications, cloud workflows, and developer tools. I also collaborate with teams on technical writing and consulting.</p>
+        <h1 id="home-title">Software engineer building useful web products.</h1>
+        <p class="home-intro">I’m Teri Eyenike, a software engineer in Nigeria. I build web pages, applications, and developer tools. I also collaborate with teams on technical writing and consulting.</p>
         <div class="home-actions">
           <a class="button-primary" href="/projects/">Explore my work <span aria-hidden="true">↗</span></a>
-          <a class="button-text" href="/resume/">View résumé <span aria-hidden="true">↗</span></a>
           <a class="button-text" href="/contact/">Hire or collaborate <span aria-hidden="true">→</span></a>
         </div>
-        <div class="home-meta"><span>Currently focused on</span><strong>Software · Cloud · Developer experience</strong></div>
       </div>
       <div class="home-portrait-wrap">
         <div class="portrait-frame"><Image src={Teri} alt="Teri Eyenike on a boat in Ganvié, Benin Republic" width={520} loading="eager" class="home-portrait" /></div>
@@ -95,5 +93,5 @@ const posts = (await getCollection("blog"))
   .publication-arrow { font-size: 1.25rem; }
   .home-contact { display: flex; align-items: center; justify-content: space-between; gap: 2rem; margin: 2rem 0 4rem; padding: clamp(2rem, 6vw, 4rem); border: 1px solid var(--line); background-size: 24px 24px; }
   @media (max-width: 760px) { .home-hero { grid-template-columns: 1fr; gap: 2.5rem; padding-top: 2rem; } .home-portrait-wrap { width: min(82%, 360px); } .section-heading { align-items: start; } .home-contact { align-items: flex-start; flex-direction: column; } }
-  @media (max-width: 480px) { .home-copy h1 { font-size: clamp(2.7rem, 12vw, 3.5rem); } .home-actions { align-items: stretch; gap: .75rem 1.1rem; } .home-actions .button-primary { justify-content: center; } .publication-row { grid-template-columns: 2rem minmax(0, 1fr) auto; gap: .65rem; } }
+  @media (max-width: 480px) { .home-copy h1 { font-size: clamp(2.7rem, 12vw, 3.5rem); } .home-actions { display: grid; grid-template-columns: minmax(0, 1fr); gap: .75rem; } .home-actions .button-primary, .home-actions .button-text { width: 100%; min-height: 3.25rem; justify-content: space-between; padding: .9rem 1.1rem; } .home-actions .button-text { border: 1px solid var(--line); } .publication-row { grid-template-columns: 2rem minmax(0, 1fr) auto; gap: .65rem; } }
 </style>

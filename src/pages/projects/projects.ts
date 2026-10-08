@@ -3,6 +3,7 @@ export interface Project {
   description: string;
   demoLink?: string;
   repositoryUrl?: string;
+  serverRepositoryUrl?: string;
   tags: string[];
   featured?: boolean;
   outcome?: string;
@@ -13,9 +14,9 @@ const projectDetails: Project[] = [
   {
     name: "Track Trips",
     description: "A travel journal and trip planner for documenting journeys with photos and setting a date for the next trip.",
-    demoLink: "https://track-trip-dashboard-with-xata-next.vercel.app/",
-    repositoryUrl: "https://github.com/Terieyenike/track-trip-dashboard-with-xata-next",
-    tags: ["Next.js", "Xata", "Travel"],
+    demoLink: "https://tracktrips-app.vercel.app/",
+    repositoryUrl: "https://github.com/Terieyenike/track-trips",
+    tags: ["Next.js", "Supabase", "Travel"],
     featured: true,
   },
   {
@@ -34,6 +35,15 @@ const projectDetails: Project[] = [
     tags: ["Web app", "Product development", "Distributed teamwork"],
     featured: true,
     outcome: "Shipped with React and Firebase as part of The Collab Lab’s distributed, remote agile team.",
+  },
+  {
+    name: "Caption Image",
+    description: "An AI-powered image captioning app that helps people add descriptive alt text to images shared on social platforms.",
+    demoLink: "https://caption-image-gamma.vercel.app/",
+    repositoryUrl: "https://github.com/Terieyenike/caption-image-client",
+    serverRepositoryUrl: "https://github.com/Terieyenike/caption-image-server",
+    tags: ["Next.js", "Express", "Cloudinary", "Accessibility"],
+    outcome: "Built a full-stack image captioning flow with separate client and server applications.",
   },
   {
     name: "File Organizer",

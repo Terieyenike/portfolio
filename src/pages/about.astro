@@ -4,7 +4,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Teri from "@src/assets/img/profile.png";
 import { SITE_TITLE } from "../consts";
 
-const aboutDescription = "Learn about Teri Eyenike, a software engineer in Nigeria who builds web pages and applications and collaborates on technical writing, consulting, and cloud workflows.";
+const aboutDescription = "Learn about Teri Eyenike, a software engineer in Nigeria who builds web pages and applications and collaborates on technical writing and consulting.";
 const aboutUrl = new URL("/about/", Astro.site!).href;
 const profileSchema = {
   "@type": "ProfilePage",
@@ -16,16 +16,15 @@ const profileSchema = {
 };
 ---
 
-<BaseLayout title="About Teri Eyenike | Software & DevOps Engineer" description={aboutDescription} pageSchema={profileSchema}>
+<BaseLayout title="About Teri Eyenike | Software Engineer" description={aboutDescription} pageSchema={profileSchema}>
   <main class="about-page mx-auto max-w-6xl px-4 sm:px-6">
     <header class="about-hero">
-      <div><p class="site-kicker text-[var(--olive)]">A little context / 01</p><h1>Curious about how things work. Serious about making them <em>work better.</em></h1><p class="about-lede">I’m Teri Eyenike, a software engineer in Nigeria. I build company web pages and applications, and work with teams on technical writing, consulting, and cloud workflows.</p><div class="about-actions"><a class="about-primary" href="/projects/">See what I’ve built ↗</a><a class="about-link" href="/resume/">View résumé →</a></div></div>
+      <div><p class="site-kicker text-[var(--olive)]">A little context / 01</p><h1>Curious about how things work. Serious about making them <em>work better.</em></h1><p class="about-lede">I’m Teri Eyenike, a software engineer in Nigeria. I build company web pages and applications, and collaborate with teams on technical writing and consulting.</p><div class="about-actions"><a class="about-primary" href="/projects/">See what I’ve built ↗</a><a class="about-link" href="/resume/">View résumé →</a></div></div>
       <figure class="about-photo"><Image src={Teri} alt="Portrait of Teri Eyenike" width={480} loading="eager" /><figcaption class="site-kicker">Teri Eyenike · Engineer &amp; writer</figcaption></figure>
     </header>
     <section class="about-section"><p class="site-kicker text-[var(--olive)]">The work / 02</p><h2>Where I spend my attention</h2><div class="focus-grid">
       <article><span class="focus-number">01</span><h3>Software that helps</h3><p>Building useful applications and developer tools with an emphasis on clear interfaces, maintainable code, and solving a real problem.</p></article>
-      <article><span class="focus-number">02</span><h3>Reliable systems</h3><p>Working across cloud infrastructure, automation, and DevOps practices to make software easier to ship and operate.</p></article>
-      <article><span class="focus-number">03</span><h3>Knowledge shared</h3><p>Writing practical technical guides that make tools and concepts easier to understand, try, and apply.</p></article>
+      <article><span class="focus-number">02</span><h3>Knowledge shared</h3><p>Writing practical technical guides that make tools and concepts easier to understand, try, and apply.</p></article>
     </div></section>
     <section class="about-section toolkit"><div><p class="site-kicker text-[var(--olive)]">Tools I use / 03</p><h2>A practical toolkit</h2></div><ul>{['Python', 'JavaScript', 'AWS', 'Git', 'Node.js', 'PostgreSQL', 'OpenAI'].map((technology) => <li>{technology}</li>)}</ul></section>
     <section class="about-contact site-grid-pattern"><div><p class="site-kicker text-[var(--olive)]">The next chapter / 04</p><h2>Have a challenge worth solving?</h2><p>I’m open to software engineering roles and collaborations in technical writing, consulting, and building company web pages.</p></div><a class="about-primary" href="/contact/">Discuss a role or project ↗</a></section>
@@ -48,7 +47,7 @@ const profileSchema = {
   .about-photo figcaption { padding: .8rem .25rem 0; color: #171b16; font-size: .63rem; }
   .about-section { border-top: 1px solid var(--line); padding: clamp(3rem, 7vw, 5.5rem) 0; }
   .about-section h2, .about-contact h2 { margin: .6rem 0 2rem; font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.05; letter-spacing: -.055em; }
-  .focus-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .focus-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
   .focus-grid article { padding: 1.5rem; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
   .focus-number { color: var(--olive); font: .78rem ui-monospace, monospace; }
   .focus-grid h3 { margin: 2rem 0 .5rem; font-size: 1.2rem; }

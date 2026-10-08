@@ -15,6 +15,7 @@ const { projects } = Astro.props
       <div class="project-links">
         {project.demoLink && <a href={project.demoLink} target="_blank" rel="noopener noreferrer">View project <span aria-hidden="true">↗</span></a>}
         {project.repositoryUrl && <a href={project.repositoryUrl} target="_blank" rel="noopener noreferrer">Source <span aria-hidden="true">↗</span></a>}
+        {project.serverRepositoryUrl && <a href={project.serverRepositoryUrl} target="_blank" rel="noopener noreferrer">Server source <span aria-hidden="true">↗</span></a>}
       </div>
     </article>
   ))}
