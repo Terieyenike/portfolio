@@ -48,7 +48,15 @@ const siteGraph = [
     image: imageUrl,
     jobTitle: "Software Engineer",
     description: SITE_DESCRIPTION,
-    knowsAbout: ["Software engineering", "PostgreSQL", "Developer tools", "Technical writing"],
+    email: "developedbyteri@gmail.com",
+    knowsAbout: [
+      "Software engineering",
+      "Web application development",
+      "Developer tools",
+      "Technical writing",
+      "Consulting",
+      "PostgreSQL",
+    ],
     sameAs: [
       "https://github.com/Terieyenike",
       "https://www.linkedin.com/in/terieyenike",
@@ -74,6 +82,7 @@ const structuredData = JSON.stringify({ "@context": "https://schema.org", "@grap
   data-domain="iamteri.tech"
 ></script>
 <link rel="alternate" type="application/rss+xml" title={`${SITE_TITLE} RSS feed`} href="/rss.xml" />
+<link rel="describedby" href="/llms.txt" />
 <meta name="generator" content={Astro.generator} />
 
 <!-- Canonical URL -->
