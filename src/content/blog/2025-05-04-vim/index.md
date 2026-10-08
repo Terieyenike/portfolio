@@ -1,6 +1,6 @@
 ---
-title: "Mastering Vim: How This Timeless Editor Can 10x Your Developer Productivity"
-description: "Discover how mastering Vim can dramatically boost your coding speed and productivity. Learn why developers still swear by Vim in 2025 and how to get started."
+title: "Vim for Developers: Essential Motions, Modes, and Editing Workflows"
+description: "Learn practical Vim modes, navigation, text editing, and search commands, plus how to use Vim key bindings in Visual Studio Code."
 slug: "vim-boost-productivity"
 tags: ["Vim"]
 pubDate: "2025-05-03"

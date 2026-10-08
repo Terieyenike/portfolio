@@ -2,12 +2,24 @@
 import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Teri from "@src/assets/img/profile.png";
+import { SITE_TITLE } from "../consts";
+
+const aboutDescription = "Learn about Teri Eyenike, a software engineer in Nigeria who builds web pages and applications and collaborates on technical writing, consulting, and cloud workflows.";
+const aboutUrl = new URL("/about/", Astro.site!).href;
+const profileSchema = {
+  "@type": "ProfilePage",
+  "@id": `${aboutUrl}#profile`,
+  url: aboutUrl,
+  name: `About ${SITE_TITLE}`,
+  description: aboutDescription,
+  mainEntity: { "@id": `${new URL("/", Astro.site!).href}#person` },
+};
 ---
 
-<BaseLayout title="About | Teri Eyenike" description="Meet Teri Eyenike: software and DevOps engineer building useful tools, cloud workflows, and practical technical writing.">
+<BaseLayout title="About Teri Eyenike | Software & DevOps Engineer" description={aboutDescription} pageSchema={profileSchema}>
   <main class="about-page mx-auto max-w-6xl px-4 sm:px-6">
     <header class="about-hero">
-      <div><p class="site-kicker text-[var(--olive)]">A little context / 01</p><h1>Curious about how things work. Serious about making them <em>work better.</em></h1><p class="about-lede">I’m Teri Eyenike, a software and DevOps engineer in Nigeria. I enjoy turning tricky technical problems into tools, workflows, and explanations people can actually use.</p><div class="about-actions"><a class="about-primary" href="/projects/">See what I’ve built ↗</a><a class="about-link" href="/resume/">View résumé draft →</a></div></div>
+      <div><p class="site-kicker text-[var(--olive)]">A little context / 01</p><h1>Curious about how things work. Serious about making them <em>work better.</em></h1><p class="about-lede">I’m Teri Eyenike, a software engineer in Nigeria. I build company web pages and applications, and work with teams on technical writing, consulting, and cloud workflows.</p><div class="about-actions"><a class="about-primary" href="/projects/">See what I’ve built ↗</a><a class="about-link" href="/resume/">View résumé →</a></div></div>
       <figure class="about-photo"><Image src={Teri} alt="Portrait of Teri Eyenike" width={480} loading="eager" /><figcaption class="site-kicker">Teri Eyenike · Engineer &amp; writer</figcaption></figure>
     </header>
     <section class="about-section"><p class="site-kicker text-[var(--olive)]">The work / 02</p><h2>Where I spend my attention</h2><div class="focus-grid">
@@ -16,7 +28,7 @@ import Teri from "@src/assets/img/profile.png";
       <article><span class="focus-number">03</span><h3>Knowledge shared</h3><p>Writing practical technical guides that make tools and concepts easier to understand, try, and apply.</p></article>
     </div></section>
     <section class="about-section toolkit"><div><p class="site-kicker text-[var(--olive)]">Tools I use / 03</p><h2>A practical toolkit</h2></div><ul>{['Python', 'JavaScript', 'AWS', 'Git', 'Node.js', 'PostgreSQL', 'OpenAI'].map((technology) => <li>{technology}</li>)}</ul></section>
-    <section class="about-contact site-grid-pattern"><div><p class="site-kicker text-[var(--olive)]">The next chapter / 04</p><h2>Have a challenge worth solving?</h2><p>I’m open to thoughtful collaborations, interesting engineering problems, and conversations about building better software.</p></div><a class="about-primary" href="/contact/">Get in touch ↗</a></section>
+    <section class="about-contact site-grid-pattern"><div><p class="site-kicker text-[var(--olive)]">The next chapter / 04</p><h2>Have a challenge worth solving?</h2><p>I’m open to software engineering roles and collaborations in technical writing, consulting, and building company web pages.</p></div><a class="about-primary" href="/contact/">Discuss a role or project ↗</a></section>
   </main>
 </BaseLayout>
 
@@ -49,4 +61,5 @@ import Teri from "@src/assets/img/profile.png";
   .about-contact h2 { margin-bottom: .8rem; }
   .about-contact p:not(.site-kicker) { max-width: 36rem; margin: 0; }
   @media(max-width: 760px) { .about-hero, .toolkit { grid-template-columns: 1fr; } .about-photo { width: min(80%, 340px); margin: 0 auto; } .focus-grid { grid-template-columns: 1fr; } .focus-grid h3 { margin-top: 1rem; } .about-contact { align-items: flex-start; flex-direction: column; } }
+  @media(max-width: 480px) { .about-hero h1 { font-size: clamp(2.6rem, 11.5vw, 3.5rem); } }
 </style>

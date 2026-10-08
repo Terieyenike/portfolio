@@ -32,8 +32,8 @@ const groupedPosts = groupPostsByYear(posts);
   {groupedPosts.length === 0 && <p class="text-zinc-600 dark:text-zinc-400">No posts yet. Check back soon.</p>}
   {groupedPosts.map(({ year, posts }, index) => (
     <div class="group">
-      <h2 class="text-2xl font-bold mb-4 text-[#667F20] dark:text-[#667F20] flex items-center">
-        <span class="w-2 h-2 bg-[#667F20] rounded-full mr-2 group-hover:w-4 transition-all duration-300"></span>
+      <h2 class="text-2xl font-bold mb-4 text-[#506814] dark:text-[#D8F16A] flex items-center">
+        <span class="w-2 h-2 bg-[#506814] dark:bg-[#D8F16A] rounded-full mr-2 group-hover:w-4 transition-all duration-300"></span>
         {year}
       </h2>
       <div class="space-y-2">

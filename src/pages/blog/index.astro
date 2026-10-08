@@ -5,9 +5,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import PostsByYear from "../../components/PostsByYear.astro";
 
 type BlogPost = CollectionEntry<"blog">;
-const title = "Writing";
-const description =
-  "Practical articles and tutorials on software engineering, AI, cloud, and DevOps.";
+const title = "Software & DevOps Articles | Teri Eyenike";
+const description = "Practical tutorials by Teri Eyenike on AWS, Python, JavaScript, DevOps, AI tools, PostgreSQL, and developer workflows.";
 
 const posts = (await getCollection("blog")).sort(
   (a: BlogPost, b: BlogPost) =>

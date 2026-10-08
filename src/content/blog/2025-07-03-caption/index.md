@@ -1,6 +1,6 @@
 ---
-title: "How to Generate Accessible Image Captions Automatically Using Cloudinary AI"
-description: "Caption Image is an app that automatically solves the problem of adding captions to your images on social media platforms like X and LinkedIn for accessibility using alt text."
+title: "Build an AI Image Captioning App with Cloudinary"
+description: "Build a web app that uses Cloudinary AI to generate image descriptions, helping people add useful alt text to images shared on social platforms."
 pubDate: 2025-07-03
 coverImage: photo-captioner.png 
 tldr: "Caption Image is an app that automatically solves the problem of adding captions to your images on social media platforms like X and LinkedIn for accessibility using alt text."

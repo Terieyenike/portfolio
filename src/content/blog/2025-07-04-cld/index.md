@@ -1,6 +1,6 @@
 ---
-title: "Build a Content-Aware Media Cropper Using AI, Cloudinary, and Streamlit"
-description: "Build an AI-powered content-aware cropper for images and videos using Cloudinary and Streamlit. Perfect for developers exploring smart media processing."
+title: "Build a Content-Aware Image Cropper with Cloudinary and Streamlit"
+description: "Create a Python and Streamlit app that uses Cloudinary content-aware cropping to adapt images and video to different aspect ratios."
 slug: "ai-content-aware-cropper-cloudinary"
 tags: ["python"]
 pubDate: 2025-07-05

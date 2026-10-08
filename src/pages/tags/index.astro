@@ -51,7 +51,7 @@ const title = `Topics`;
 const description = 'Browse the topics covered in my articles and tutorials.';
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} noIndex={true}>
     <main class="container mx-auto max-w-5xl px-4 py-12 sm:px-6">
     <div class="mb-10 max-w-3xl">
       <p class="site-kicker mb-2 text-[var(--olive)]">The index / Browse by subject</p>
@@ -79,8 +79,8 @@ const description = 'Browse the topics covered in my articles and tutorials.';
           id="clearSearch"
           type="button"
           aria-label="Clear topic search"
-          class="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 
-                 dark:hover:text-zinc-200 transition-colors duration-300 hidden"
+          class="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-600 hover:text-zinc-900 
+                 dark:text-zinc-300 dark:hover:text-white transition-colors duration-300 hidden"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" 
                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
@@ -113,7 +113,7 @@ const description = 'Browse the topics covered in my articles and tutorials.';
                 <a
                   href={`/tags/${slugify(tag.value)}/`}
                   class="group flex items-center gap-2 border border-zinc-200 dark:border-zinc-700 
-                         rounded-full px-5 py-2 text-base font-medium text-zinc-800 dark:text-zinc-200
+                         rounded-full px-5 py-2.5 text-base font-medium text-zinc-800 dark:text-zinc-200
                          bg-zinc-50 dark:bg-zinc-800 hover:bg-[#506814] dark:hover:bg-[#D8F16A] hover:border-[#506814] dark:hover:border-[#D8F16A] 
                          hover:text-white dark:hover:text-zinc-900 transition-all duration-300 shadow-sm hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#D8F16A] scale-100 hover:scale-105 active:scale-95"
                   aria-label={`View posts tagged with ${tag.label}`}

@@ -98,13 +98,13 @@ function buildToc(headings: any) {
     .toc-link.active-toc {
         border-left-color: #D8F16A;
         color: #506814;
-        background: rgba(0,224,224,0.08);
+        background: color-mix(in srgb, #D8F16A 18%, var(--surface));
         font-weight: 700;
     }
     :global(.dark) .toc-link.active-toc {
         border-left-color: #D8F16A;
         color: #D8F16A;
-        background: rgba(0,224,224,0.10);
+        background: color-mix(in srgb, #D8F16A 14%, var(--surface));
     }
     .toc-link {
         scroll-behavior: smooth;

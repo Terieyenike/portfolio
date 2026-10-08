@@ -3,7 +3,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title={`Page not found | ${SITE_TITLE}`} description={SITE_DESCRIPTION}>
+<BaseLayout title={`Page not found | ${SITE_TITLE}`} description={SITE_DESCRIPTION} noIndex={true}>
   <main class="not-found mx-auto grid min-h-[65vh] max-w-6xl items-center gap-8 px-4 py-12 sm:px-6 md:grid-cols-[1fr_auto]">
     <div><p class="site-kicker text-[var(--olive)]">404 / Wrong turn</p><h1>There’s nothing here.<br /><em>Yet.</em></h1><p class="not-found-copy">The page may have moved, or the address may have a typo. Let’s get you back to the useful stuff.</p><div class="not-found-links"><a href="/" class="not-found-primary">Go to homepage ↗</a><a href="/projects/">Browse projects →</a></div></div>
     <div class="not-found-mark" aria-hidden="true"><span>404</span><i>TE.</i></div>

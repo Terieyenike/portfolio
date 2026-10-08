@@ -1,6 +1,6 @@
 ---
-title: "Level Up Your Vim Game: Daily Practices for Developers"
-description: "Boost your productivity with daily Vim practices. Learn essential motions, search tricks, and editing commands to master Vim like a pro."
+title: "Advanced Vim for Developers: Search, Motions, and Editing Commands"
+description: "Practice Vim character motions, forward and backward search, text changes, line joins, case commands, formatting, and repeatable edits."
 slug: "vim-daily-practice"
 tags: ["Vim"]
 pubDate: 2025-05-12

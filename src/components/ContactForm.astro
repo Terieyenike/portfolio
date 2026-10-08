@@ -34,7 +34,7 @@ const contactApiUrl = import.meta.env.PUBLIC_CONTACT_API_URL;
           <input type="email" id="email" name="email" autocomplete="email" required maxlength="254" inputmode="email" autocapitalize="none" spellcheck="false" class="contact-input" placeholder="you@example.com" />
         </div>
       </div>
-      <p id="form-note" class="text-center text-sm text-zinc-500 dark:text-zinc-400">
+      <p id="form-note" class="text-center text-sm text-zinc-600 dark:text-zinc-300">
         You’ll receive a confirmation link. Your message is delivered only after you confirm access to your email. Don’t include passwords or confidential information.
       </p>
 
@@ -51,14 +51,14 @@ const contactApiUrl = import.meta.env.PUBLIC_CONTACT_API_URL;
       {turnstileSiteKey ? (
         <div class="contact-verification">
           <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-theme="auto" data-size="compact" data-action="contact"></div>
-          <p class="text-xs text-zinc-500 dark:text-zinc-400">Protected against automated submissions.</p>
+          <p class="text-xs text-zinc-600 dark:text-zinc-300">Protected against automated submissions.</p>
         </div>
       ) : (
         <p class="text-center text-sm text-amber-700 dark:text-amber-300">Contact form verification is being configured. Please use the direct email link above for now.</p>
       )}
 
       <div class="flex flex-col items-center gap-3">
-        <button id="contact-submit" type="submit" disabled={!contactApiUrl || !turnstileSiteKey} class="px-8 py-3 bg-[#506814] dark:bg-[#D8F16A] text-white dark:text-zinc-900 rounded-lg font-medium hover:bg-[#20251B] dark:hover:bg-[#C4DE4F] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#506814] dark:focus:ring-[#D8F16A] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+        <button id="contact-submit" type="submit" disabled={!contactApiUrl || !turnstileSiteKey} class="min-h-11 px-8 py-3 bg-[#506814] dark:bg-[#D8F16A] text-white dark:text-zinc-900 rounded-lg font-medium hover:bg-[#20251B] dark:hover:bg-[#C4DE4F] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#506814] dark:focus:ring-[#D8F16A] focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-zinc-300 disabled:text-zinc-700 disabled:opacity-100 dark:disabled:bg-zinc-700 dark:disabled:text-zinc-200">
           Send Message
         </button>
         <p id="form-status" class="text-sm text-center text-zinc-600 dark:text-zinc-300" aria-live="polite" role="status"></p>
@@ -126,5 +126,5 @@ const contactApiUrl = import.meta.env.PUBLIC_CONTACT_API_URL;
 <style>
   .contact-honeypot { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
   .contact-verification { display: grid; justify-items: center; gap: .5rem; }
-  .contact-input { @apply w-full px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-[#506814] dark:focus:ring-[#D8F16A] transition-all duration-300; }
+  .contact-input { @apply w-full px-4 py-3 rounded-lg border border-zinc-500 dark:border-zinc-500 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-[#506814] dark:focus:ring-[#D8F16A] transition-all duration-300; }
 </style>

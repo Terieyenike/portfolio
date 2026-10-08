@@ -1,6 +1,5 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
-import sitemap from '@astrojs/sitemap';
 import tailwind from "@astrojs/tailwind";
 import { autoNewTabExternalLinks } from './src/autoNewTabExternalLinks';
 
@@ -8,8 +7,8 @@ import partytown from "@astrojs/partytown";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://iamteri.tech',
-  integrations: [mdx(), sitemap(), tailwind(), partytown()],
+  site: 'https://www.iamteri.tech',
+  integrations: [mdx(), tailwind(), partytown()],
   markdown: {
     extendDefaultPlugins: true,
     rehypePlugins: [[autoNewTabExternalLinks, {

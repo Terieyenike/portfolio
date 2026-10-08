@@ -1,7 +1,7 @@
 ---
-title: "Cloud 101: A No-Fluff Guide to AWS Concepts That Matter"
+title: "AWS Cloud Concepts for Beginners: EC2, S3, RDS, VPC, and IAM"
 slug: "cloud-101-guide-to-aws-concepts"
-description: "Discover the core concepts of AWS cloud, including key benefits, foundational services, and others. A no-fluff guide perfect for beginners and tech professionals exploring cloud fundamentals."
+description: "Understand AWS cloud fundamentals and core services, including EC2, S3, RDS, DynamoDB, VPC, and IAM, with this practical introduction for new cloud learners."
 tags: ["AWS"]
 pubDate: "2025-04-10"
 coverImage: "./Cloud_101_AWS_Concepts_That_Matter.jpg"

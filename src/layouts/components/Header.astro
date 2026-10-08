@@ -29,11 +29,11 @@ const menu = [
 
     <div class="flex items-center gap-2">
       <a href="/contact/" class="site-contact-link hidden px-4 py-2 text-sm font-semibold sm:inline-flex">Let’s talk <span aria-hidden="true">↗</span></a>
-      <button id="themeToggle" class="site-icon-button grid h-10 w-10 place-items-center rounded-full" aria-label="Switch to dark theme" title="Switch color theme">
+      <button id="themeToggle" class="site-icon-button grid h-11 w-11 place-items-center rounded-full" aria-label="Switch to dark theme" title="Switch color theme">
         <svg class="sun h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
         <svg class="moon h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.7 8.7 0 1 0 20.5 14.2Z"/></svg>
       </button>
-      <button id="hamburger" class="site-icon-button grid h-10 w-10 place-items-center rounded-full md:hidden" aria-label="Open navigation menu" aria-controls="mobile-menu" aria-expanded="false">
+      <button id="hamburger" class="site-icon-button grid h-11 w-11 place-items-center rounded-full md:hidden" aria-label="Open navigation menu" aria-controls="mobile-menu" aria-expanded="false">
         <svg class="hamburger-icon h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
     </div>
@@ -65,10 +65,10 @@ const menu = [
     letter-spacing: -.1em;
   }
   .site-monogram span { color: var(--olive); }
-  .site-nav-link { color: var(--muted); text-decoration: none; }
+  .site-nav-link { min-height: 44px; display: inline-flex; align-items: center; color: var(--muted); text-decoration: none; }
   .site-nav-link:hover, .site-nav-link[aria-current="page"] { background: var(--surface); color: var(--ink); }
   .site-nav-link[aria-current="page"] { box-shadow: inset 0 0 0 1px var(--line); }
-  .site-contact-link { align-items: center; gap: .5rem; background: var(--ink); color: var(--paper); text-decoration: none; }
+  .site-contact-link { min-height: 44px; align-items: center; gap: .5rem; background: var(--ink); color: var(--paper); text-decoration: none; }
   .site-contact-link:hover { background: var(--olive); color: #171b16; }
   .site-icon-button { color: var(--ink); }
   .site-icon-button:hover { background: color-mix(in srgb, var(--line) 55%, transparent); }

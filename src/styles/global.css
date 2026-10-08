@@ -8,7 +8,7 @@
 	--surface: #fffef8;
 	--ink: #171b16;
 	--muted: #646b5c;
-	--line: #d7d8c9;
+	--line: #89916f;
 	--acid: #d8f16a;
 	--olive: #506814;
 }
@@ -19,7 +19,7 @@
 	--surface: #20251b;
 	--ink: #f0f1e8;
 	--muted: #b1b6a6;
-	--line: #3c4432;
+	--line: #68735b;
 	--acid: #d8f16a;
 	--olive: #d8f16a;
 }
@@ -35,6 +35,33 @@ body.site-body {
 	color: var(--ink);
 	font-family: "Avenir Next", Avenir, "Segoe UI", ui-sans-serif, system-ui, sans-serif;
 	-webkit-font-smoothing: antialiased;
+}
+
+img,
+video,
+iframe,
+svg {
+	max-width: 100%;
+}
+
+pre,
+table {
+	max-width: 100%;
+	overflow-x: auto;
+	overscroll-behavior-x: contain;
+}
+
+.prose table {
+	display: block;
+	width: 100%;
+}
+
+.prose :where(p, li, a, code) {
+	overflow-wrap: anywhere;
+}
+
+:where(a, p, li, h1, h2, h3) {
+	overflow-wrap: anywhere;
 }
 
 body.menu-open { overflow: hidden; }
@@ -76,6 +103,10 @@ body.menu-open { overflow: hidden; }
 	pre,
 	code {
 		font-size: 0.875rem;
+	}
+
+	pre {
+		-webkit-overflow-scrolling: touch;
 	}
 
 	h1, h2, h3, h4 {

@@ -37,6 +37,22 @@ const {
 } = post;
 const { Content, headings } = await post.render();
 const readingTime = calculateReadingTime(post.body);
+const articleUrl = canonicalUrl
+  ? new URL(canonicalUrl).href
+  : new URL(`/${post.slug}/`, Astro.site!).href;
+const articleSchema = {
+  "@type": "BlogPosting",
+  "@id": `${articleUrl}#article`,
+  headline: title,
+  description,
+  ...(coverImage ? { image: [new URL(coverImage.src, Astro.site!).href] } : {}),
+  datePublished: pubDate.toISOString(),
+  dateModified: (updatedDate || pubDate).toISOString(),
+  author: { "@id": `${new URL("/", Astro.site!).href}#person` },
+  publisher: { "@id": `${new URL("/", Astro.site!).href}#person` },
+  mainEntityOfPage: { "@id": articleUrl },
+  ...(tags?.length ? { keywords: tags.join(", "), articleSection: tags } : {}),
+};
 ---
 
 <BaseLayout
@@ -44,6 +60,8 @@ const readingTime = calculateReadingTime(post.body);
   description={description}
   image={coverImage?.src || undefined}
   canonicalUrl={canonicalUrl}
+  pageSchema={articleSchema}
+  pageType="article"
 >
   <div class="container lg:flex gap-10">
     <main class="overflow-hidden grow">
@@ -90,7 +108,7 @@ const readingTime = calculateReadingTime(post.body);
                     stroke-width="2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    class="text-[#667F20]"
+                    class="text-[#506814] dark:text-[#D8F16A]"
                   >
                     <circle cx="12" cy="12" r="10"></circle>
                     <polyline points="12 6 12 12 16 14"></polyline>

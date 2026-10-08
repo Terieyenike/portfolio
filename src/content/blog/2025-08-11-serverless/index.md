@@ -1,6 +1,6 @@
 ---
-title: "Build a Serverless Distance Calculator on AWS (Amplify, Lambda, API Gateway & DynamoDB)"
-description: "Learn how to build a serverless distance calculator web app on AWS using Amplify, Lambda, API Gateway, IAM, and DynamoDB. Step-by-step tutorial with code, deployment, and real-world geolocation example."
+title: "Build a Serverless Distance Calculator with AWS Amplify and Lambda"
+description: "Build a web app that calculates the distance between two coordinates with AWS Amplify, Lambda, API Gateway, IAM, and DynamoDB."
 slug: "aws-serverless-distance-calculator"
 tags: ["aws"]
 pubDate: 2025-08-11

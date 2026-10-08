@@ -33,7 +33,7 @@ const { projects } = Astro.props
   .project-outcome { display: grid; gap: .2rem; margin: .9rem 0 0; padding-left: .7rem; border-left: 2px solid var(--olive); color: var(--muted); font-size: .82rem; }
   .project-outcome strong { color: var(--ink); }
   .project-links { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: auto; padding-top: 1.25rem; }
-  .project-links a { color: var(--ink); font-size: .82rem; font-weight: 650; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: .25rem; }
+  .project-links a { display: inline-flex; min-height: 44px; align-items: center; color: var(--ink); font-size: .82rem; font-weight: 650; text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: .25rem; }
   .project-links a:hover { color: var(--olive); text-decoration-color: var(--olive); }
   @media(max-width: 900px) { .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media(max-width: 600px) { .project-grid { grid-template-columns: 1fr; } .project-card { min-height: 16rem; } }

@@ -3,13 +3,16 @@
 // all pages through the use of the <BaseHead /> component.
 import "../../styles/global.css";
 import Favicon from "@src/assets/img/favicon.png";
-import { SITE_TITLE } from "../../consts";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 
 interface Props {
   title: string;
   description: string;
   image?: string;
   canonicalUrl?: string;
+  pageSchema?: Record<string, unknown>;
+  noIndex?: boolean;
+  pageType?: "website" | "article";
 }
 
 const {
@@ -17,31 +20,44 @@ const {
   description = "Teri Eyenike builds software, developer tools, and cloud workflows, and writes practical technical guides.",
   image = "https://res.cloudinary.com/terieyenike/image/upload/v1748796012/teri_eyenike_skwuyb.png",
   canonicalUrl,
+  pageSchema,
+  noIndex = false,
+  pageType = "website",
 } = Astro.props;
 
-// Use the provided canonical URL or generate one from the current path
-const finalCanonicalURL = canonicalUrl
-  ? new URL(canonicalUrl)
-  : new URL(Astro.url.pathname, Astro.site);
-
-// Generate structured data
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Teri Eyenike",
-  jobTitle: "Software and DevOps Engineer",
-  url: Astro.site,
-  image: new URL(image, Astro.url),
-  description: description,
-  knowsAbout: ["Software engineering", "DevOps", "Cloud computing", "PostgreSQL", "Developer tools", "Technical writing"],
-  sameAs: [
-    "https://github.com/terieyenike",
-    "https://linkedin.com/in/terieyenike",
-    "https://x.com/terieyenike",
-    "https://www.instagram.com/terieyenike",
-    "https://www.youtube.com/@terieyenike",
-  ],
-};
+const siteRoot = new URL("/", Astro.site || Astro.url).href;
+const personId = `${siteRoot}#person`;
+const finalCanonicalURL = canonicalUrl ? new URL(canonicalUrl) : new URL(Astro.url.pathname, siteRoot);
+const imageUrl = new URL(image, siteRoot).href;
+const siteGraph = [
+  {
+    "@type": "WebSite",
+    "@id": `${siteRoot}#website`,
+    url: siteRoot,
+    name: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    publisher: { "@id": personId },
+  },
+  {
+    "@type": "Person",
+    "@id": personId,
+    name: "Teri Eyenike",
+    url: siteRoot,
+    image: imageUrl,
+    jobTitle: "Software and DevOps Engineer",
+    description: SITE_DESCRIPTION,
+    knowsAbout: ["Software engineering", "DevOps", "Cloud computing", "PostgreSQL", "Developer tools", "Technical writing"],
+    sameAs: [
+      "https://github.com/Terieyenike",
+      "https://www.linkedin.com/in/terieyenike",
+      "https://x.com/terieyenike",
+      "https://www.instagram.com/terieyenike",
+      "https://www.youtube.com/@terieyenike",
+    ],
+  },
+  ...(pageSchema ? [pageSchema] : []),
+];
+const structuredData = JSON.stringify({ "@context": "https://schema.org", "@graph": siteGraph }).replace(/</g, "\\u003c");
 ---
 
 <!-- Global Metadata -->
@@ -66,33 +82,29 @@ const structuredData = {
 <meta name="title" content={title} />
 <meta name="description" content={description} />
 <meta name="author" content="Teri Eyenike" />
-<meta
-  name="keywords"
-  content="software engineer, DevOps engineer, cloud computing, developer tools, AWS, JavaScript, Node.js, Python, PostgreSQL, technical writing, open source"
-/>
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
+<meta property="og:type" content={pageType} />
+<meta property="og:locale" content="en_NG" />
 <meta property="og:url" content={finalCanonicalURL} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
-<meta
-  property="og:site_name"
-  content="Teri Eyenike | Software, systems & stories"
-/>
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:alt" content={description} />
+<meta property="og:site_name" content={SITE_TITLE} />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={finalCanonicalURL} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+<meta property="twitter:image" content={imageUrl} />
+<meta property="twitter:image:alt" content={description} />
 <meta name="twitter:creator" content="@terieyenike" />
 
 <!-- Additional Meta Tags -->
 <meta name="theme-color" content="#F4F2E9" />
-<meta name="robots" content="index, follow" />
+<meta name="robots" content={noIndex ? "noindex,follow" : "index,follow,max-image-preview:large"} />
 
 <!-- Structured Data -->
-<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+<script type="application/ld+json" set:html={structuredData} />

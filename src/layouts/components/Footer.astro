@@ -21,7 +21,7 @@ const links = [
     </div>
 
     <nav aria-label="Footer navigation">
-      <h2 class="site-kicker mb-4 opacity-60">Explore</h2>
+      <h2 class="site-kicker mb-4 opacity-90">Explore</h2>
       <ul class="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
         {links.map((link) => <li><a class="site-footer-link" href={link.href}>{link.label}</a></li>)}
         <li><a class="site-footer-link" href="/tags/">Topics</a></li>
@@ -29,7 +29,7 @@ const links = [
     </nav>
 
     <div>
-      <h2 class="site-kicker mb-4 opacity-60">Say hello</h2>
+      <h2 class="site-kicker mb-4 opacity-90">Say hello</h2>
       <a class="site-footer-link text-sm" href="mailto:developedbyteri@gmail.com">developedbyteri@gmail.com</a>
       <div class="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm">
         <a class="site-footer-link" href="https://github.com/terieyenike" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
@@ -38,7 +38,7 @@ const links = [
       </div>
     </div>
   </div>
-  <div class="container mx-auto flex flex-col gap-2 border-t px-4 py-5 text-xs opacity-65 sm:flex-row sm:items-center sm:justify-between sm:px-6" style="border-color:color-mix(in srgb,var(--paper) 22%,transparent)">
+  <div class="container mx-auto flex flex-col gap-2 border-t px-4 py-5 text-xs opacity-90 sm:flex-row sm:items-center sm:justify-between sm:px-6" style="border-color:color-mix(in srgb,var(--paper) 35%,transparent)">
     <span>© {year} Teri Eyenike</span>
     <span>Made with care in Nigeria · Built with Astro</span>
   </div>
@@ -50,5 +50,6 @@ const links = [
   .site-footer-monogram { background: var(--acid); color: #171b16; }
   .site-footer-link { color: inherit; text-decoration-color: var(--acid); text-underline-offset: 4px; }
   .site-footer-link:hover { color: var(--acid); text-decoration: underline; }
+  .dark .site-footer-link:hover { color: #506814; text-decoration-color: #506814; }
   .site-footer > .container:last-child { border-color: color-mix(in srgb, var(--paper) 22%, transparent); }
 </style>

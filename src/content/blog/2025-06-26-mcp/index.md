@@ -1,11 +1,11 @@
 ---
-title: "How to Scrape Any Website Using Bright Data MCP Server and AI Agents"
-description: "Learn how to scrape websites like Nike.com using Bright Data's MCP Server and AI agents. This guide shows how to build a real-time web scraper with LangChain, Claude, FastAPI, and Next.js. No scraping blocks, no complex infrastructure."
+title: "Build a Nike Sneaker Tracker with Bright Data MCP and AI Agents"
+description: "Follow a project that combines Bright Data MCP, LangChain, Claude, FastAPI, and Next.js to collect and display public sneaker product details."
 slug: "bright-data-mcp"
 tags: ["mcp", "case study"]
 pubDate: 2025-06-26
 coverImage: ./mcp.png
-tldr: Built a real-time sneaker scraper using Bright Data’s MCP Server, LangChain, Claude, and FastAPI. This tool bypasses scraping blocks and extracts live Nike product data like price, availability, and links. Code is open-source.
+tldr: This project combines Bright Data MCP, LangChain, Claude, FastAPI, and Next.js to collect public sneaker product details such as names, prices, availability, and links. Review the target site's terms and permitted access before collecting data. The source code is available on GitHub.
 ---
 
 I came across the Bright Data MCP (model context protocol) server from [Noah Kalson](https://www.linkedin.com/in/noahkalson/) and decided to try my hands on this incredible tool.

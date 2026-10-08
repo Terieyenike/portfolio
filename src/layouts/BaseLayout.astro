@@ -6,13 +6,13 @@ import BackToTop from '../components/BackToTop.astro';
 import { loadEnv } from 'vite';
 
 const { GTAG_MEASUREMENT_ID } = loadEnv(process.env.NODE_ENV || 'production', process.cwd(), '');
-const { title, description, image, canonicalUrl } = Astro.props;
+const { title, description, image, canonicalUrl, pageSchema, noIndex, pageType } = Astro.props;
 ---
 
 <!doctype html>
 <html lang='en'>
 	<head>
-		<BaseHead title={title} description={description} image={image} canonicalUrl={canonicalUrl} />
+		<BaseHead title={title} description={description} image={image} canonicalUrl={canonicalUrl} pageSchema={pageSchema} noIndex={noIndex} pageType={pageType} />
 	</head>
 	<body
 		class="site-body"
