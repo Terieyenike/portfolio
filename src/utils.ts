@@ -1,7 +1,3 @@
-import { loadEnv } from 'vite';
-
-const { GITHUB_PERSONAL_ACCESS_TOKEN } = loadEnv(process.env.NODE_ENV || 'production', process.cwd(), '');
-
 export const slugify = (input: string) => {
     if (!input) return '';
 
@@ -25,26 +21,6 @@ export const unslugify = (slug: string) =>
 
 export const kFormatter = (num: number) => {
     return Math.abs(num) > 999 ? (Math.sign(num) * (Math.abs(num) / 1000)).toFixed(1) + 'k' : Math.sign(num) * Math.abs(num);
-};
-
-export const getRepositoryDetails = async (repositoryFullname: string) => {
-    try {
-        const response = await fetch('https://api.github.com/repos/' + repositoryFullname, {
-            method: 'GET',
-            headers: {
-                Authorization: `Bearer ${GITHUB_PERSONAL_ACCESS_TOKEN}`,
-                'X-GitHub-Api-Version': '2022-11-28'
-            }
-        });
-        if (!response.ok) {
-            console.error(`GitHub API error: ${response.status} ${response.statusText}`);
-            return {};
-        }
-        return await response.json();
-    } catch (error) {
-        console.error('Fetch failed:', error);
-        return {};
-    }
 };
 
 export function calculateReadingTime(content: string): number {
