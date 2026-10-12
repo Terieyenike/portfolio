@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectList from '../../components/ProjectList.astro';
-import { getProjects } from './projects';
+import { getProjects } from '../../data/projects';
 
 const projects = await getProjects();
 const featured = projects.filter((project) => project.featured);

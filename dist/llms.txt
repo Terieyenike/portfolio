@@ -1,0 +1,41 @@
+# Teri Eyenike
+
+> Personal portfolio of Teri Eyenike, a software engineer in Nigeria. The site shares selected software projects, technical writing, résumé, and contact information.
+
+Teri builds web pages, applications, and developer tools. Teri is open to software engineering roles and collaboration in technical writing, consulting, and building company web pages.
+
+## About
+
+- [Homepage](https://www.iamteri.tech/): Overview of Teri's work and current opportunities.
+- [About](https://www.iamteri.tech/about/): Background, focus areas, and tools.
+- [Résumé](https://www.iamteri.tech/resume/): Experience, education, and selected work.
+- [Contact](https://www.iamteri.tech/contact/): Contact options for roles and collaboration.
+
+## Selected work
+
+- [Projects](https://www.iamteri.tech/projects/): Portfolio projects and links to their demos or source code.
+- [Waitlist App](https://waitlist-app-vert.vercel.app/): Xata hackathon-winning Next.js waitlist project. [Source code](https://github.com/Terieyenike/xata-with-nextjs).
+- [Track Trips](https://tracktrips-app.vercel.app/): Travel journal and trip planner. [Source code](https://github.com/Terieyenike/track-trips).
+- [Smart Shopping List](https://github.com/the-collab-lab/tcl-49-smart-shopping-list): Team-built shopping list application.
+- [Caption Image](https://caption-image-gamma.vercel.app/): AI-assisted image captioning application. [Client source](https://github.com/Terieyenike/caption-image-client) and [server source](https://github.com/Terieyenike/caption-image-server).
+- [File Organizer](https://pypi.org/project/py-file-organizer/): Python command-line tool published on PyPI. [Source code](https://github.com/Terieyenike/py-file-organizer).
+
+## Documentation and technical writing
+
+- [Blog](https://www.iamteri.tech/blog/): Technical articles and practical guides.
+- [How to Build a Quiz App With Nuxt and Xata](https://thenewstack.io/how-to-build-a-quiz-app-with-nuxt-and-xata/): Hands-on guide published by The New Stack.
+- [Display AI-Generated Images in a Jupyter Notebook](https://thenewstack.io/display-ai-generated-images-in-a-jupyter-notebook/): Tutorial published by The New Stack.
+- [Building an AI Voice Application in Streamlit using OpenAI](https://dev.to/terieyenike/building-a-voice-transcription-and-translation-app-with-openai-whisper-and-streamlit-43mm): Tutorial published on DEV Community.
+
+There is no separate documentation portal on this portfolio. For implementation details and project-specific documentation, use the source repositories linked under Selected work.
+
+## Contact
+
+- Email: [developedbyteri@gmail.com](mailto:developedbyteri@gmail.com)
+- [LinkedIn](https://www.linkedin.com/in/terieyenike)
+- [GitHub](https://github.com/Terieyenike)
+
+## Site information
+
+- [Sitemap](https://www.iamteri.tech/sitemap.xml)
+- [RSS feed](https://www.iamteri.tech/rss.xml)

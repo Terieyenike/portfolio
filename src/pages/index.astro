@@ -5,7 +5,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import Teri from "@src/assets/img/teri.png";
-import { getProjects } from "./projects/projects";
+import { getProjects } from "../data/projects";
 import ProjectList from "../components/ProjectList.astro";
 import PostItem from "../components/PostItem.astro";
 import { publications } from "../data/publications";
@@ -18,13 +18,13 @@ const posts = (await getCollection("blog"))
   .slice(0, 3);
 ---
 
-<BaseLayout title={`${SITE_TITLE} | Software Engineer`} description={SITE_DESCRIPTION}>
+<BaseLayout title={`${SITE_TITLE} | Software Engineer & Developer Advocate`} description={SITE_DESCRIPTION}>
   <main class="site-home mx-auto max-w-6xl px-4 sm:px-6">
     <section class="home-hero" aria-labelledby="home-title">
       <div class="home-copy">
-        <p class="site-kicker text-[var(--olive)]">Open to software engineering roles and collaboration <span class="mx-2 text-[var(--muted)]">/</span> Nigeria</p>
-        <h1 id="home-title">Software engineer building useful web products.</h1>
-        <p class="home-intro">I’m Teri Eyenike, a software engineer in Nigeria. I build web pages, applications, and developer tools. I also collaborate with teams on technical writing and consulting.</p>
+        <p class="site-kicker text-[var(--olive)]">Software engineer · Developer advocate <span class="mx-2 text-[var(--muted)]">/</span> Nigeria</p>
+        <h1 id="home-title">I build useful software and make technology easier to use.</h1>
+        <p class="home-intro">I’m 'Teri, a software engineer and developer advocate in Nigeria. I build web applications and developer tools, and create practical technical content that helps people understand and use technology. I’m open to engineering roles and collaboration.</p>
         <div class="home-actions">
           <a class="button-primary" href="/projects/">Explore my work <span aria-hidden="true">↗</span></a>
           <a class="button-text" href="/contact/">Hire or collaborate <span aria-hidden="true">→</span></a>
@@ -67,7 +67,7 @@ const posts = (await getCollection("blog"))
   .home-actions { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 2rem; }
   .button-primary, .button-text { display: inline-flex; align-items: center; gap: .8rem; text-decoration: none; font-weight: 650; }
   .button-primary { padding: .95rem 1.2rem; background: var(--ink); color: var(--paper); }
-  .button-primary:hover { background: var(--olive); color: #fff; }
+  .button-primary:hover { background: var(--acid); color: #171b16; }
   .button-text { color: var(--ink); border-bottom: 1px solid var(--line); padding: .6rem 0; }
   .button-text:hover { color: var(--olive); border-color: var(--olive); }
   .home-meta { border-top: 1px solid var(--line); margin-top: 3rem; padding-top: 1rem; display: grid; gap: .35rem; font-size: .8rem; }

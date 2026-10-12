@@ -1,10 +1,9 @@
 ---
 interface Props {
   text: string;
-  delay?: number;
 }
 
-const { text, delay = 100 } = Astro.props;
+const { text } = Astro.props;
 ---
 
 <div class="typing-container">
