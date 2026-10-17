@@ -53,6 +53,13 @@ const links = [
   .site-footer-monogram { background: var(--acid); color: #171b16; }
   .site-footer-link { color: inherit; text-decoration-color: var(--acid); text-underline-offset: 4px; }
   .site-footer-link:hover { color: var(--acid); text-decoration: underline; }
-  .dark .site-footer-link:hover { color: #506814; text-decoration-color: #506814; }
+  .dark .site-footer-link:hover {
+    color: #506814;
+    background: var(--acid);
+    box-shadow: 0 0 0 .15rem var(--acid);
+    text-decoration-color: #506814;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
   .site-footer > .container:last-child { border-color: color-mix(in srgb, var(--paper) 22%, transparent); }
 </style>
