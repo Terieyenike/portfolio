@@ -62,3 +62,13 @@ export const focusAreas = [
   "Technical writing and documentation",
   "Developer community and engagement",
 ];
+
+export const talks = [
+  {
+    title: "No more Node: Build APIs with Flask and test it with Postman",
+    organization: "WeAreDevelopers LIVE",
+    date: "2023",
+    description: "A practical walkthrough of building APIs with Flask and testing them with Postman.",
+    url: "https://www.wearedevelopers.com/en/videos/563/no-more-node-build-apis-with-flask-and-test-it-with-postman",
+  },
+];

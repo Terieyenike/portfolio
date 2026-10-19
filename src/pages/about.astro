@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Teri from "@src/assets/img/profile.png";
 import { SITE_TITLE } from "../consts";
+import { talks } from "../data/resume";
 
 const aboutDescription = "Learn about Teri Eyenike, a software engineer and developer advocate in Nigeria who builds web applications, developer tools, and practical technical content.";
 const aboutUrl = new URL("/about/", Astro.site!).href;
@@ -26,8 +27,17 @@ const profileSchema = {
       <article><span class="focus-number">01</span><h3>Software that helps</h3><p>Building useful applications and developer tools with an emphasis on clear interfaces, maintainable code, and solving a real problem.</p></article>
       <article><span class="focus-number">02</span><h3>Knowledge shared</h3><p>Writing practical technical guides that make tools and concepts easier to understand, try, and apply.</p></article>
     </div></section>
-    <section class="about-section toolkit"><div><p class="site-kicker text-[var(--olive)]">Tools I use / 03</p><h2>A practical toolkit</h2></div><ul>{['Python', 'JavaScript', 'AWS', 'Git', 'Node.js', 'PostgreSQL', 'OpenAI', 'Codex', 'Claude'].map((technology) => <li>{technology}</li>)}</ul></section>
-    <section class="about-contact site-grid-pattern"><div><p class="site-kicker text-[var(--olive)]">The next chapter / 04</p><h2>Have a challenge worth solving?</h2><p>I’m open to software engineering roles and collaborations in technical writing, consulting, and building company web pages.</p></div><a class="about-primary" href="/contact/">Discuss a role or project ↗</a></section>
+    <section class="about-section speaking" aria-labelledby="speaking-title">
+      <div><p class="site-kicker text-[var(--olive)]">Speaking / 03</p><h2 id="speaking-title">Sharing what I learn</h2></div>
+      {talks.map((talk) => <article class="talk-card">
+        <p class="talk-meta">{talk.organization} <span aria-hidden="true">·</span> {talk.date}</p>
+        <h3>{talk.title}</h3>
+        <p>{talk.description}</p>
+        <a href={talk.url} target="_blank" rel="noopener noreferrer">Watch the talk <span aria-hidden="true">↗</span></a>
+      </article>)}
+    </section>
+    <section class="about-section toolkit"><div><p class="site-kicker text-[var(--olive)]">Tools I use / 04</p><h2>A practical toolkit</h2></div><ul>{['Python', 'JavaScript', 'AWS', 'Git', 'Node.js', 'PostgreSQL', 'OpenAI', 'Codex', 'Claude'].map((technology) => <li>{technology}</li>)}</ul></section>
+    <section class="about-contact site-grid-pattern"><div><p class="site-kicker text-[var(--olive)]">The next chapter / 05</p><h2>Have a challenge worth solving?</h2><p>I’m open to software engineering roles and collaborations in technical writing, consulting, and building company web pages.</p></div><a class="about-primary" href="/contact/">Discuss a role or project ↗</a></section>
   </main>
 </BaseLayout>
 
@@ -52,6 +62,14 @@ const profileSchema = {
   .focus-number { color: var(--olive); font: .78rem ui-monospace, monospace; }
   .focus-grid h3 { margin: 2rem 0 .5rem; font-size: 1.2rem; }
   .focus-grid p, .about-contact p:not(.site-kicker) { color: var(--muted); line-height: 1.7; }
+  .speaking { display: grid; grid-template-columns: .8fr 1.2fr; align-items: start; gap: 2rem; }
+  .speaking h2 { max-width: 18rem; }
+  .talk-card { border: 1px solid var(--line); padding: clamp(1.25rem, 3vw, 2rem); }
+  .talk-meta { margin: 0 0 1rem; color: var(--olive); font: .75rem ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; }
+  .talk-card h3 { max-width: 38rem; margin: 0; font-size: clamp(1.35rem, 2.8vw, 2rem); line-height: 1.2; letter-spacing: -.035em; }
+  .talk-card > p:not(.talk-meta) { color: var(--muted); line-height: 1.7; }
+  .talk-card a { display: inline-flex; gap: .5rem; align-items: center; margin-top: .5rem; color: var(--ink); font-weight: 650; text-decoration: underline; text-decoration-color: var(--olive); text-underline-offset: .25em; }
+  .talk-card a:hover { color: var(--olive); }
   .toolkit { display: grid; grid-template-columns: .8fr 1.2fr; align-items: start; gap: 2rem; }
   .toolkit h2 { margin-bottom: 0; }
   .toolkit ul { display: flex; min-width: 0; flex-wrap: wrap; gap: .6rem; margin: 0; padding: 0; list-style: none; }
@@ -59,6 +77,6 @@ const profileSchema = {
   .about-contact { display: flex; align-items: center; justify-content: space-between; gap: 2rem; margin: 0 0 3rem; padding: clamp(2rem, 6vw, 4rem); border: 1px solid var(--line); background-size: 24px 24px; }
   .about-contact h2 { margin-bottom: .8rem; }
   .about-contact p:not(.site-kicker) { max-width: 36rem; margin: 0; }
-  @media(max-width: 760px) { .about-hero, .toolkit { grid-template-columns: 1fr; } .about-photo { width: min(80%, 340px); margin: 0 auto; } .focus-grid { grid-template-columns: 1fr; } .focus-grid h3 { margin-top: 1rem; } .about-contact { align-items: flex-start; flex-direction: column; } }
+  @media(max-width: 760px) { .about-hero, .toolkit, .speaking { grid-template-columns: 1fr; } .about-photo { width: min(80%, 340px); margin: 0 auto; } .focus-grid { grid-template-columns: 1fr; } .focus-grid h3 { margin-top: 1rem; } .about-contact { align-items: flex-start; flex-direction: column; } }
   @media(max-width: 480px) { .about-hero h1 { font-size: clamp(2.6rem, 11.5vw, 3.5rem); } }
 </style>

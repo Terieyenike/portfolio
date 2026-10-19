@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { experience, education, focusAreas } from "../data/resume";
+import { experience, education, focusAreas, talks } from "../data/resume";
 import { publications } from "../data/publications";
 import { getProjects } from "../data/projects";
 
@@ -70,6 +70,19 @@ const featuredProjects = projects.filter((project) => project.featured);
                   {entry.details.map((detail) => <p class="mt-1 text-zinc-700 dark:text-zinc-300">{detail}</p>)}
                 </article>
               ))}
+          </div>
+        </section>}
+
+        {talks.length > 0 && <section aria-labelledby="talks-title">
+          <h2 id="talks-title" class="mb-3 text-xl font-bold text-zinc-900 dark:text-white">Talks &amp; presentations</h2>
+          <div class="space-y-4">
+            {talks.map((talk) => (
+              <article>
+                <h3 class="font-semibold text-zinc-900 dark:text-white"><a class="underline decoration-[#667F20] underline-offset-4 dark:decoration-[#D8F16A]" href={talk.url} target="_blank" rel="noopener noreferrer">{talk.title}</a></h3>
+                <p class="text-sm text-zinc-600 dark:text-zinc-400">{talk.organization} · {talk.date}</p>
+                <p class="mt-1 text-zinc-700 dark:text-zinc-300">{talk.description}</p>
+              </article>
+            ))}
           </div>
         </section>}
 
