@@ -4,7 +4,7 @@ import Prose from "../components/Prose.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 import FormattedDate from "../components/FormattedDate.astro";
-import AboutTheAuthor from "../components/widgets/AboutTheAuthor.astro";
+import Author from "../components/Author.astro";
 import TableOfContent from "../components/widgets/TableOfContent.astro";
 import TLDR from "../components/widgets/TLDR.astro";
 import { slugify, calculateReadingTime } from "../utils";
@@ -63,12 +63,14 @@ const articleSchema = {
   pageSchema={articleSchema}
   pageType="article"
 >
-  <div class="container lg:flex gap-10">
-    <main class="overflow-hidden grow">
+  <div class="article-layout">
+    <main class="article-main min-w-0">
       <article>
+        <a class="article-back" href="/blog/"><span aria-hidden="true">←</span> All articles</a>
         <Prose>
           <div>
-            <h1 class="!my-1 leading-tight">{title}</h1>
+            <p class="article-eyebrow">FIELD NOTES <span aria-hidden="true">/</span> {pubDate.getFullYear()}</p>
+            <h1 class="article-title !my-1 leading-tight">{title}</h1>
 
             <!-- Post metadata -->
             <div
@@ -126,6 +128,17 @@ const articleSchema = {
               </div>
             </div>
 
+            <div class="article-author-line">
+              <Author picSize="sm" />
+            </div>
+
+            {headings.length > 0 && <details class="article-mobile-toc">
+              <summary>On this page <span aria-hidden="true">＋</span></summary>
+              <nav aria-label="Article contents"><ul>
+                {headings.filter((heading) => heading.depth === 2 || heading.depth === 3).map((heading) => <li class:list={{ "article-mobile-toc-subheading": heading.depth === 3 }}><a href={`#${heading.slug}`}>{heading.text}</a></li>)}
+              </ul></nav>
+            </details>}
+
             <!-- Canonical URL -->
             {
               canonicalUrl && (
@@ -146,7 +159,7 @@ const articleSchema = {
             <!-- Cover Image -->
             {
               coverImage && (
-                <div class="mb-6">
+                <div class="article-cover mb-6">
                   <Image
                     class="rounded-2xl w-full"
                     src={coverImage}
@@ -160,6 +173,9 @@ const articleSchema = {
             <!-- Content -->
             <TLDR summary={tldr} />
             <Content />
+            <div class="article-end not-prose">
+              <a href="/blog/">Browse all articles <span aria-hidden="true">↗</span></a>
+            </div>
           </div>
         </Prose>
 
@@ -189,51 +205,11 @@ const articleSchema = {
       </article>
     </main>
 
-    <div class="shrink-0 w-[280px] hidden md:block">
-      <div class="mb-4">
-        <AboutTheAuthor />
-      </div>
+    <aside class="article-sidebar hidden lg:block" aria-label="Article navigation">
       <TableOfContent headings={headings} />
-    </div>
+    </aside>
   </div>
 </BaseLayout>
-
-<script>
-  function observeToc() {
-    const anchors = document.querySelectorAll(".prose h2[id], .prose h3[id]");
-    const links = document.querySelectorAll("nav.toc ul li a");
-
-    if (anchors && links) {
-      let scrollTop = window.scrollY;
-
-      // highlight the last scrolled-to: set everything inactive first
-      for (const link of links) {
-        link.classList.add("border-transparent", "text-inherit");
-        link.classList.remove(
-          "bg-[var(--background-surface-color)]",
-          "border-[var(--soft-border-color)]",
-          "text-[var(--link-color)]"
-        );
-      }
-      // then iterate backwards, on the first match highlight it and break
-      for (var i = anchors.length - 1; i >= 0; i--) {
-        const anchor = anchors[i] as HTMLElement;
-        if (scrollTop > anchor.offsetTop - 80) {
-          links[i].classList.remove("border-transparent", "text-inherit");
-          links[i].classList.add(
-            "bg-[var(--background-surface-color)]",
-            "border-[var(--soft-border-color)]",
-            "text-[var(--link-color)]"
-          );
-          break;
-        }
-      }
-    }
-  }
-
-  window.addEventListener("scroll", observeToc);
-  window.addEventListener("hashchange", observeToc);
-</script>
 
 <!-- Copy-to-Clipboard for Code Blocks (Blog Posts Only) -->
 <script is:inline>
@@ -274,6 +250,29 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 
 <style>
+.article-layout { display: grid; width: min(100% - 2rem, 80rem); grid-template-columns: minmax(0, 52rem) minmax(12rem, 15rem); align-items: start; justify-content: center; gap: clamp(2.5rem, 5vw, 5rem); margin: 0 auto; }
+.article-main { min-width: 0; }
+.article-back { display: inline-flex; min-height: 44px; align-items: center; gap: .5rem; margin: 0 0 1rem; color: var(--muted); font-size: .9rem; font-weight: 650; text-decoration: none; }
+.article-back:hover { color: var(--ink); }
+.article-main :global(.prose) { max-width: none; color: var(--ink); font-size: 1.04rem; line-height: 1.8; }
+.article-main :global(.prose h1.article-title) { max-width: 19ch; margin: .25rem 0 1.35rem; color: var(--ink); font-size: clamp(2.35rem, 4.8vw, 4.15rem); font-weight: 800; line-height: 1.04; letter-spacing: -.06em; text-wrap: balance; }
+.article-eyebrow { margin: 0 0 .8rem !important; color: var(--olive); font: 700 .7rem/1.4 ui-monospace, SFMono-Regular, Menlo, monospace !important; letter-spacing: .14em; text-transform: uppercase; }
+.article-eyebrow span { padding: 0 .25rem; color: var(--muted); }
+.article-main :global(.prose > div > .flex.flex-wrap.items-center.justify-between) { justify-content: flex-start; gap: .75rem 1.25rem; margin: 1.25rem 0 1rem; }
+.article-author-line { margin: 1.1rem 0 1.5rem; padding: .9rem 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.article-author-line :global(.flex.gap-4) { gap: .75rem; }
+.article-author-line :global(.w-12.h-12) { width: 2.75rem; height: 2.75rem; }
+.article-author-line :global(.avatar__subtitle) { color: var(--muted); font-size: .75rem; }
+.article-sidebar { min-width: 0; padding-top: 5rem; }
+.article-sidebar :global(.toc) { position: sticky; top: 5rem; margin: 0; padding: .75rem 0; }
+.article-sidebar :global(.toc h3) { margin-bottom: .6rem; padding-left: .75rem; color: var(--muted); font-size: .68rem; letter-spacing: .12em; }
+.article-sidebar :global(.toc-list) { max-height: calc(100vh - 8rem); }
+.article-main :global(.article-mobile-toc) { display: none; }
+.article-main :global(.article-cover) { display: grid; place-items: center; margin: 0 0 2rem; overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+.article-main :global(.article-cover img) { display: block; width: 100%; max-height: 34rem; object-fit: contain; }
+.article-main :global(.article-end) { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.5rem; margin: 3rem 0 2rem; padding: 1rem 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.article-main :global(.article-end a) { color: var(--ink); font-size: .9rem; font-weight: 700; text-decoration-color: var(--olive); text-underline-offset: .25em; }
+.article-main :global(.article-end a:hover) { color: var(--olive); }
 .pre-wrapper { position: relative; }
 .copy-btn {
   position: absolute;
@@ -297,4 +296,24 @@ document.addEventListener('DOMContentLoaded', function () {
   color: #fff;
 }
 article pre { position: relative; }
+@media(max-width: 1140px) {
+  .article-layout { width: min(100% - 2rem, 52rem); grid-template-columns: minmax(0, 1fr); }
+  .article-sidebar { display: none; }
+  .article-main :global(.prose > div > .article-mobile-toc) { display: block; margin: 1.5rem 0; border: 1px solid var(--line); background: var(--surface); }
+  .article-main :global(.article-mobile-toc summary) { display: flex; min-height: 48px; align-items: center; justify-content: space-between; padding: .7rem .9rem; color: var(--ink); font-size: .9rem; font-weight: 700; cursor: pointer; list-style: none; }
+  .article-main :global(.article-mobile-toc summary::-webkit-details-marker) { display: none; }
+  .article-main :global(.article-mobile-toc[open] summary span) { transform: rotate(45deg); }
+  .article-main :global(.article-mobile-toc nav) { padding: 0 .9rem .8rem; }
+  .article-main :global(.article-mobile-toc ul) { display: grid; gap: .15rem; margin: 0; padding: 0; list-style: none; }
+  .article-main :global(.article-mobile-toc a) { display: block; padding: .35rem 0; color: var(--muted); font-size: .86rem; text-decoration: none; }
+  .article-main :global(.article-mobile-toc a:hover) { color: var(--ink); text-decoration: underline; text-decoration-color: var(--olive); }
+  .article-main :global(.article-mobile-toc-subheading) { padding-left: .9rem; }
+}
+@media(max-width: 600px) {
+  .article-layout { width: min(100% - 1.5rem, 52rem); }
+  .article-main :global(.prose h1.article-title) { font-size: clamp(2.1rem, 10vw, 3.25rem); }
+  .article-main :global(.prose > div > .flex.flex-wrap.items-center.justify-between) { align-items: flex-start; }
+  .article-main :global(.prose > div > .flex.flex-wrap.items-center.justify-between > div:last-child) { justify-content: flex-start; }
+  .article-main :global(.article-cover img) { max-height: 24rem; }
+}
 </style>
