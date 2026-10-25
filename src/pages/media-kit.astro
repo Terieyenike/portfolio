@@ -1,0 +1,144 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Eyenike1 from "@src/assets/img/media-kit/eyenike1.png";
+import Eyenike3 from "@src/assets/img/media-kit/eyenike3.png";
+import Eyenike5 from "@src/assets/img/media-kit/eyenike5.png";
+
+const description = "Media kit for Teri Eyenike, featuring technology videos and downloadable photos.";
+const pageUrl = new URL("/media-kit/", Astro.site!).href;
+const pageSchema = {
+  "@type": "ProfilePage",
+  "@id": `${pageUrl}#profile`,
+  url: pageUrl,
+  name: "Media Kit | Teri Eyenike",
+  description,
+  mainEntity: { "@id": `${new URL("/", Astro.site!).href}#person` },
+};
+
+const bio = "Teri Eyenike is a software engineer and technical writer who makes videos about technology products and topics. His YouTube channel includes a Bright Data MCP Server walkthrough and a video on LLMs.";
+const videos = [
+  { id: "MyqapmW76N4", label: "Scrape website using Bright Data MCP Server AI Agent" },
+  { id: "rNcJEvVeeIc", label: "Steaming in LLMs and How to Use It" },
+];
+const portraits = [
+  { image: Eyenike1, name: "eyenike1.png", description: "Standing portrait, turned slightly to the side" },
+  { image: Eyenike3, name: "eyenike3.png", description: "Portrait with arms folded" },
+  { image: Eyenike5, name: "eyenike5.png", description: "Smiling standing portrait" },
+];
+---
+
+<BaseLayout title="Media Kit | Teri Eyenike" description={description} image={Eyenike5.src} pageSchema={pageSchema}>
+  <main class="media-kit container mx-auto max-w-6xl px-4 sm:px-6">
+    <header class="kit-hero">
+      <div class="kit-hero-copy">
+        <p class="site-kicker kit-kicker">Official assets <span aria-hidden="true">/</span> Teri Eyenike</p>
+        <h1>Media kit<span>.</span></h1>
+        <div class="kit-hero-detail">
+          <p class="kit-lede">Videos and photos for press, speaking, and brand coverage.</p>
+          <a class="kit-jump" href="#videos">Watch the videos <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+    </header>
+
+    <section class="kit-bio" aria-labelledby="bio-title">
+      <div class="kit-section-label"><span>01</span><h2 id="bio-title">Bio</h2></div>
+      <div class="kit-bio-content">
+        <p>{bio}</p>
+      </div>
+    </section>
+
+    <section id="videos" class="kit-videos" aria-labelledby="videos-title">
+      <div class="kit-section-label"><span>02</span><h2 id="videos-title">Videos</h2></div>
+      <div class="kit-video-content">
+        <div class="kit-video-grid">
+          {videos.map((video) => (
+            <figure class="kit-video-card">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${video.id}`}
+                title={`${video.label} by Teri Eyenike`}
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+              <figcaption>
+                <span>{video.label}</span>
+                <a href={`https://youtu.be/${video.id}`} target="_blank" rel="noopener noreferrer">Watch on YouTube <span aria-hidden="true">↗</span></a>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="portraits" class="kit-portraits" aria-labelledby="portraits-title">
+      <div class="kit-section-label"><span>03</span><h2 id="portraits-title">Photos</h2></div>
+      <div class="kit-photo-grid">
+        {portraits.map((portrait, index) => (
+          <figure class="kit-photo-card">
+            <a class="kit-photo-link" href={portrait.image.src} target="_blank" rel="noopener noreferrer" aria-label={`Open full-resolution portrait ${index + 1}`}>
+              <Image src={portrait.image} alt={portrait.description} width={820} height={1070} format="webp" quality={82} loading="lazy" />
+              <span class="kit-photo-open" aria-hidden="true">↗</span>
+            </a>
+            <figcaption>
+              <a href={portrait.image.src} download={portrait.name}>Download high-res <span aria-hidden="true">↓</span></a>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+      <p class="kit-photo-note">You’re welcome to use these photos for press, speaking, and brand coverage.</p>
+    </section>
+
+    <footer class="kit-footer">
+      <div><p class="site-kicker kit-kicker">Get in touch</p><h2>Need a different format or a brand brief?</h2></div>
+      <div class="kit-footer-links">
+        <a href="mailto:developedbyteri@gmail.com?subject=Media%20kit%20inquiry">Email Teri <span aria-hidden="true">↗</span></a>
+        <a href="https://calendly.com/terieyenike/talk-with-teri" target="_blank" rel="noopener noreferrer">Book a call <span aria-hidden="true">↗</span></a>
+      </div>
+    </footer>
+  </main>
+</BaseLayout>
+
+<style>
+  .media-kit { --kit-rule: var(--line); }
+  .kit-hero { padding: clamp(2.5rem, 7vw, 6rem) 0; border-bottom: 1px solid var(--kit-rule); }
+  .kit-hero-copy { display: grid; grid-template-columns: minmax(0, 1fr) minmax(17rem, .68fr); align-items: end; gap: clamp(2rem, 6vw, 5rem); }
+  .kit-kicker { color: var(--olive); }
+  .kit-kicker span { padding: 0 .4rem; color: var(--muted); }
+  .kit-hero h1 { grid-column: 1; margin: .9rem 0 0; font-size: clamp(4rem, 10vw, 8.5rem); font-weight: 750; line-height: .9; letter-spacing: -.085em; }
+  .kit-hero h1 span { color: var(--olive); }
+  .kit-hero-detail { grid-column: 2; grid-row: 2; padding-bottom: .35rem; }
+  .kit-lede { max-width: 35rem; color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.25rem); line-height: 1.75; }
+  .kit-jump { display: inline-flex; gap: .65rem; align-items: center; margin-top: 1.75rem; color: var(--ink); font-size: .9rem; font-weight: 700; text-decoration-color: var(--olive); text-underline-offset: .3em; }
+  .kit-jump:hover, .kit-video-card figcaption a:hover, .kit-photo-card figcaption a:hover, .kit-footer-links a:hover { color: var(--olive); }
+  .kit-bio, .kit-portraits { display: grid; grid-template-columns: minmax(9rem, .34fr) minmax(0, 1fr); gap: clamp(1.5rem, 6vw, 5rem); border-top: 1px solid var(--kit-rule); padding: clamp(2.25rem, 5vw, 4rem) 0; }
+  .kit-videos { display: grid; grid-template-columns: minmax(9rem, .34fr) minmax(0, 1fr); gap: clamp(1.5rem, 6vw, 5rem); border-top: 1px solid var(--kit-rule); padding: clamp(2.25rem, 5vw, 4rem) 0; }
+  .kit-section-label { display: flex; align-items: baseline; gap: .8rem; }
+  .kit-section-label > span { color: var(--olive); font: 700 .72rem ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .kit-section-label h2 { margin: 0; font-size: 1rem; font-weight: 700; }
+  .kit-bio-content p { max-width: 48rem; margin: 0; font-size: clamp(1.2rem, 2.3vw, 1.7rem); line-height: 1.65; letter-spacing: -.025em; }
+  .kit-video-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  .kit-video-card { min-width: 0; margin: 0; }
+  .kit-video-card iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; background: var(--surface); }
+  .kit-video-card figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .4rem 1rem; padding-top: .65rem; color: var(--muted); font-size: .78rem; line-height: 1.5; }
+  .kit-video-card figcaption a { color: var(--ink); font-weight: 700; text-decoration-color: var(--olive); text-underline-offset: .22em; }
+  .kit-photo-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; }
+  .kit-photo-card { min-width: 0; margin: 0; }
+  .kit-photo-link { position: relative; display: block; overflow: hidden; aspect-ratio: 1; background: var(--surface); }
+  .kit-photo-link img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 28%; transition: transform .35s ease; }
+  .kit-photo-link:hover img { transform: scale(1.025); }
+  .kit-photo-open { position: absolute; right: .75rem; bottom: .75rem; display: grid; width: 2.25rem; height: 2.25rem; place-items: center; background: var(--acid); color: #171b16; font-size: 1rem; }
+  .kit-photo-card figcaption { display: flex; justify-content: flex-end; padding-top: .65rem; color: var(--muted); font-size: .75rem; line-height: 1.5; }
+  .kit-photo-card figcaption a { width: fit-content; color: var(--ink); font-weight: 700; text-decoration-color: var(--olive); text-underline-offset: .22em; }
+  .kit-photo-note { grid-column: 2; margin: 1.25rem 0 0; color: var(--muted); font-size: .8rem; line-height: 1.6; }
+  .kit-footer { display: flex; align-items: center; justify-content: space-between; gap: 2rem; border-top: 1px solid var(--kit-rule); padding: clamp(2rem, 5vw, 3.5rem) 0; }
+  .kit-footer h2 { max-width: 23ch; margin: .5rem 0 0; font-size: clamp(1.5rem, 3vw, 2.5rem); line-height: 1.1; letter-spacing: -.05em; }
+  .kit-footer-links { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; }
+  .kit-footer-links a { display: inline-flex; min-height: 44px; align-items: center; gap: .45rem; color: var(--ink); font-size: .9rem; font-weight: 700; text-decoration-color: var(--olive); text-underline-offset: .25em; }
+  .kit-jump:focus-visible, .kit-video-card figcaption a:focus-visible, .kit-photo-link:focus-visible, .kit-photo-card figcaption a:focus-visible, .kit-footer-links a:focus-visible { outline: 3px solid var(--olive); outline-offset: 4px; }
+  @media(max-width: 900px) { .kit-photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media(max-width: 760px) { .kit-hero-copy { grid-template-columns: 1fr; gap: 1rem; } .kit-hero h1, .kit-hero-detail { grid-column: 1; } .kit-hero-detail { grid-row: auto; } .kit-bio, .kit-videos, .kit-portraits { grid-template-columns: 1fr; gap: 1rem; } .kit-photo-note { grid-column: 1; } }
+  @media(max-width: 560px) { .kit-video-grid, .kit-photo-grid { grid-template-columns: 1fr; gap: 1.5rem; } .kit-photo-card { max-width: 26rem; } .kit-footer { align-items: flex-start; flex-direction: column; } }
+  @media(prefers-reduced-motion: reduce) { .kit-photo-link img { transition: none; } }
+</style>
