@@ -10,7 +10,7 @@ export const GET: APIRoute = async ({ site }) => {
 
   const posts = await getCollection("blog");
   const siteOrigin = site.origin;
-  const staticPaths = ["/", "/about/", "/projects/", "/blog/", "/contact/", "/resume/"];
+  const staticPaths = ["/", "/about/", "/projects/", "/blog/", "/contact/", "/resume/", "/media-kit/"];
   const postCountsByTag = new Map<string, number>();
 
   for (const post of posts) {

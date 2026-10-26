@@ -9,6 +9,7 @@ Teri builds web pages, applications, and developer tools. Teri is open to softwa
 - [Homepage](https://www.iamteri.tech/): Overview of Teri's work and current opportunities.
 - [About](https://www.iamteri.tech/about/): Background, focus areas, and tools.
 - [Résumé](https://www.iamteri.tech/resume/): Experience, education, and selected work.
+- [Media kit](https://www.iamteri.tech/media-kit/): Bio, technology videos, and downloadable photos for press, speaking, and brand coverage.
 - [Contact](https://www.iamteri.tech/contact/): Contact options for roles and collaboration.
 
 ## Selected work

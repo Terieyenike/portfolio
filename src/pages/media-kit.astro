@@ -5,13 +5,14 @@ import Eyenike1 from "@src/assets/img/media-kit/eyenike1.png";
 import Eyenike3 from "@src/assets/img/media-kit/eyenike3.png";
 import Eyenike5 from "@src/assets/img/media-kit/eyenike5.png";
 
-const description = "Media kit for Teri Eyenike, featuring technology videos and downloadable photos.";
+const title = "Teri Eyenike Media Kit | Technology Videos & Press Photos";
+const description = "Official media kit for Teri Eyenike, a software engineer and technical writer. Watch technology videos and download photos for press, speaking, and brand coverage.";
 const pageUrl = new URL("/media-kit/", Astro.site!).href;
 const pageSchema = {
   "@type": "ProfilePage",
   "@id": `${pageUrl}#profile`,
   url: pageUrl,
-  name: "Media Kit | Teri Eyenike",
+  name: title,
   description,
   mainEntity: { "@id": `${new URL("/", Astro.site!).href}#person` },
 };
@@ -28,7 +29,7 @@ const portraits = [
 ];
 ---
 
-<BaseLayout title="Media Kit | Teri Eyenike" description={description} image={Eyenike5.src} pageSchema={pageSchema}>
+<BaseLayout title={title} description={description} image={Eyenike5.src} pageSchema={pageSchema}>
   <main class="media-kit container mx-auto max-w-6xl px-4 sm:px-6">
     <header class="kit-hero">
       <div class="kit-hero-copy">
