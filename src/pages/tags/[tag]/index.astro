@@ -34,7 +34,7 @@ const description = `Articles tagged ${readableTag}.`;
   <main class="container mx-auto max-w-4xl px-4 py-12 sm:px-6">
     <header class="mb-10">
       <a href="/tags/" class="site-kicker text-[var(--olive)]">← All topics</a>
-      <h1 class="mt-3 text-4xl font-semibold tracking-tight text-[var(--ink)] sm:text-5xl">{title}</h1>
+      <h1 class="mt-3 max-w-[22ch] text-[clamp(2.25rem,6vw,3.25rem)] font-semibold leading-[1.08] tracking-tight text-[var(--ink)]">{title}</h1>
       <p class="mt-2 text-[var(--muted)]">{taggedPosts.length} {taggedPosts.length === 1 ? "post" : "posts"} filed under this topic</p>
     </header>
     <PostsByYear posts={taggedPosts}/>

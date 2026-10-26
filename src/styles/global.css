@@ -34,6 +34,8 @@ body.site-body {
 	background-color: var(--paper);
 	color: var(--ink);
 	font-family: "Avenir Next", Avenir, "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+	font-size: clamp(1rem, 0.97rem + 0.14vw, 1.1rem);
+	line-height: 1.6;
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -61,7 +63,13 @@ table {
 }
 
 :where(a, p, li, h1, h2, h3) {
-	overflow-wrap: anywhere;
+	/* Keep normal word wrapping; only break a long token when it would overflow. */
+	overflow-wrap: break-word;
+	word-break: normal;
+}
+
+:where(h1, h2, h3) {
+	text-wrap: balance;
 }
 
 body.menu-open { overflow: hidden; }
@@ -78,9 +86,9 @@ body.menu-open { overflow: hidden; }
 
 .site-kicker {
 	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-	font-size: .72rem;
+	font-size: .75rem;
 	font-weight: 700;
-	letter-spacing: .16em;
+	letter-spacing: .12em;
 	line-height: 1.4;
 	text-transform: uppercase;
 }
@@ -116,6 +124,12 @@ body.menu-open { overflow: hidden; }
 	:focus-visible {
 		outline: 2px solid var(--olive);
 		outline-offset: 3px;
+	}
+}
+
+@media (max-width: 380px) {
+	.site-kicker {
+		letter-spacing: .1em;
 	}
 }
 

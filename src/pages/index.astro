@@ -82,6 +82,8 @@ const posts = (await getCollection("blog"))
   .portrait-stamp span { color: var(--olive); }
   .home-section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; border-top: 1px solid var(--line); }
   .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 1rem; margin-bottom: 2rem; }
+  .section-heading > div { min-width: 0; }
+  .section-heading > a { flex: 0 0 auto; white-space: nowrap; }
   .section-heading h2, .home-contact h2 { margin: .5rem 0 0; font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.05; letter-spacing: -.055em; }
   .publication-list { border-top: 1px solid var(--line); }
   .publication-row { display: grid; grid-template-columns: 3.5rem 1fr auto; gap: 1rem; align-items: center; padding: 1.2rem .25rem; border-bottom: 1px solid var(--line); color: var(--ink); text-decoration: none; }
@@ -92,6 +94,6 @@ const posts = (await getCollection("blog"))
   .publication-row small { margin-top: .35rem; color: var(--muted); }
   .publication-arrow { font-size: 1.25rem; }
   .home-contact { display: flex; align-items: center; justify-content: space-between; gap: 2rem; margin: 2rem 0 4rem; padding: clamp(2rem, 6vw, 4rem); border: 1px solid var(--line); background-size: 24px 24px; }
-  @media (max-width: 760px) { .home-hero { grid-template-columns: 1fr; gap: 2.5rem; padding-top: 2rem; } .home-portrait-wrap { width: min(82%, 360px); } .section-heading { align-items: start; } .home-contact { align-items: flex-start; flex-direction: column; } }
+  @media (max-width: 760px) { .home-hero { grid-template-columns: 1fr; gap: 2.5rem; padding-top: 2rem; } .home-portrait-wrap { width: min(82%, 360px); } .section-heading { align-items: flex-start; flex-direction: column; gap: .6rem; } .section-heading > a { align-self: flex-start; } .home-contact { align-items: flex-start; flex-direction: column; } }
   @media (max-width: 480px) { .home-copy h1 { font-size: clamp(2.7rem, 12vw, 3.5rem); } .home-actions { display: grid; grid-template-columns: minmax(0, 1fr); gap: .75rem; } .home-actions .button-primary, .home-actions .button-text { width: 100%; min-height: 3.25rem; justify-content: space-between; padding: .9rem 1.1rem; } .home-actions .button-text { border: 1px solid var(--line); } .publication-row { grid-template-columns: 2rem minmax(0, 1fr) auto; gap: .65rem; } }
 </style>

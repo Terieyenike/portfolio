@@ -107,7 +107,7 @@ const portraits = [
   .kit-hero-copy { display: grid; grid-template-columns: minmax(0, 1fr) minmax(17rem, .68fr); align-items: end; gap: clamp(2rem, 6vw, 5rem); }
   .kit-kicker { color: var(--olive); }
   .kit-kicker span { padding: 0 .4rem; color: var(--muted); }
-  .kit-hero h1 { grid-column: 1; margin: .9rem 0 0; font-size: clamp(4rem, 10vw, 8.5rem); font-weight: 750; line-height: .9; letter-spacing: -.085em; }
+  .kit-hero h1 { grid-column: 1; margin: .9rem 0 0; font-size: clamp(3.5rem, 9vw, 8.5rem); font-weight: 750; line-height: .96; letter-spacing: -.075em; }
   .kit-hero h1 span { color: var(--olive); }
   .kit-hero-detail { grid-column: 2; grid-row: 2; padding-bottom: .35rem; }
   .kit-lede { max-width: 35rem; color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.25rem); line-height: 1.75; }
@@ -116,8 +116,8 @@ const portraits = [
   .kit-bio, .kit-portraits { display: grid; grid-template-columns: minmax(9rem, .34fr) minmax(0, 1fr); gap: clamp(1.5rem, 6vw, 5rem); border-top: 1px solid var(--kit-rule); padding: clamp(2.25rem, 5vw, 4rem) 0; }
   .kit-videos { display: grid; grid-template-columns: minmax(9rem, .34fr) minmax(0, 1fr); gap: clamp(1.5rem, 6vw, 5rem); border-top: 1px solid var(--kit-rule); padding: clamp(2.25rem, 5vw, 4rem) 0; }
   .kit-section-label { display: flex; align-items: baseline; gap: .8rem; }
-  .kit-section-label > span { color: var(--olive); font: 700 .72rem ui-monospace, SFMono-Regular, Menlo, monospace; }
-  .kit-section-label h2 { margin: 0; font-size: 1rem; font-weight: 700; }
+  .kit-section-label > span { color: var(--olive); font: 700 .75rem ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .kit-section-label h2 { margin: 0; font-size: 1.05rem; font-weight: 700; }
   .kit-bio-content p { max-width: 48rem; margin: 0; font-size: clamp(1.2rem, 2.3vw, 1.7rem); line-height: 1.65; letter-spacing: -.025em; }
   .kit-video-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
   .kit-video-card { min-width: 0; margin: 0; }
@@ -140,6 +140,6 @@ const portraits = [
   .kit-jump:focus-visible, .kit-video-card figcaption a:focus-visible, .kit-photo-link:focus-visible, .kit-photo-card figcaption a:focus-visible, .kit-footer-links a:focus-visible { outline: 3px solid var(--olive); outline-offset: 4px; }
   @media(max-width: 900px) { .kit-photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media(max-width: 760px) { .kit-hero-copy { grid-template-columns: 1fr; gap: 1rem; } .kit-hero h1, .kit-hero-detail { grid-column: 1; } .kit-hero-detail { grid-row: auto; } .kit-bio, .kit-videos, .kit-portraits { grid-template-columns: 1fr; gap: 1rem; } .kit-photo-note { grid-column: 1; } }
-  @media(max-width: 560px) { .kit-video-grid, .kit-photo-grid { grid-template-columns: 1fr; gap: 1.5rem; } .kit-photo-card { max-width: 26rem; } .kit-footer { align-items: flex-start; flex-direction: column; } }
+  @media(max-width: 560px) { .kit-hero h1 { font-size: clamp(3rem, 13vw, 4.5rem); } .kit-video-grid, .kit-photo-grid { grid-template-columns: 1fr; gap: 1.5rem; } .kit-photo-card { max-width: 26rem; } .kit-footer { align-items: flex-start; flex-direction: column; } }
   @media(prefers-reduced-motion: reduce) { .kit-photo-link img { transition: none; } }
 </style>
