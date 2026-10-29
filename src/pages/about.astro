@@ -29,12 +29,12 @@ const profileSchema = {
     </div></section>
     <section class="about-section speaking" aria-labelledby="speaking-title">
       <div><p class="site-kicker text-[var(--olive)]">Speaking / 03</p><h2 id="speaking-title">Sharing what I learn</h2></div>
-      {talks.map((talk) => <article class="talk-card">
+      <div class="talk-list">{talks.map((talk) => <article class="talk-card">
         <p class="talk-meta">{talk.organization} <span aria-hidden="true">·</span> {talk.date}</p>
         <h3>{talk.title}</h3>
         <p>{talk.description}</p>
-        <a href={talk.url} target="_blank" rel="noopener noreferrer">Watch the talk <span aria-hidden="true">↗</span></a>
-      </article>)}
+        <a href={talk.url} target="_blank" rel="noopener noreferrer">{talk.linkLabel} <span aria-hidden="true">↗</span></a>
+      </article>)}</div>
     </section>
     <section class="about-section toolkit"><div><p class="site-kicker text-[var(--olive)]">Tools I use / 04</p><h2>A practical toolkit</h2></div><ul>{['Python', 'JavaScript', 'AWS', 'Git', 'Node.js', 'PostgreSQL', 'OpenAI', 'Codex', 'Claude'].map((technology) => <li>{technology}</li>)}</ul></section>
     <section class="about-contact site-grid-pattern"><div><p class="site-kicker text-[var(--olive)]">The next chapter / 05</p><h2>Have a challenge worth solving?</h2><p>I’m open to software engineering roles and collaborations in technical writing, consulting, and building company web pages.</p></div><a class="about-primary" href="/contact/">Discuss a role or project ↗</a></section>
@@ -62,9 +62,10 @@ const profileSchema = {
   .focus-number { color: var(--olive); font: .78rem ui-monospace, monospace; }
   .focus-grid h3 { margin: 2rem 0 .5rem; font-size: 1.2rem; }
   .focus-grid p, .about-contact p:not(.site-kicker) { color: var(--muted); line-height: 1.7; }
-  .speaking { display: grid; grid-template-columns: .8fr 1.2fr; align-items: start; gap: 2rem; }
+  .speaking { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); align-items: start; gap: 2rem; }
   .speaking h2 { max-width: 18rem; }
-  .talk-card { border: 1px solid var(--line); padding: clamp(1.25rem, 3vw, 2rem); }
+  .talk-list { display: grid; min-width: 0; gap: 1.25rem; }
+  .talk-card { min-width: 0; overflow-wrap: anywhere; border: 1px solid var(--line); padding: clamp(1.25rem, 3vw, 2rem); }
   .talk-meta { margin: 0 0 1rem; color: var(--olive); font: .75rem ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; }
   .talk-card h3 { max-width: 38rem; margin: 0; font-size: clamp(1.35rem, 2.8vw, 2rem); line-height: 1.2; letter-spacing: -.035em; }
   .talk-card > p:not(.talk-meta) { color: var(--muted); line-height: 1.7; }

@@ -70,5 +70,14 @@ export const talks = [
     date: "2023",
     description: "A practical walkthrough of building APIs with Flask and testing them with Postman.",
     url: "https://www.wearedevelopers.com/en/videos/563/no-more-node-build-apis-with-flask-and-test-it-with-postman",
+    linkLabel: "Watch the talk",
+  },
+  {
+    title: "Raw JSON doesn’t have to stay raw",
+    organization: "Infobip Devs Talk · Lagos",
+    date: "2023",
+    description: "My first talk as a Postman Supernova, demonstrating how to turn JSON into tables, graphs, charts, and other visualizations, and use Postbot to generate code faster with AI.",
+    url: "https://www.linkedin.com/feed/update/urn:li:activity:7118727501878616064/",
+    linkLabel: "Read the event recap",
   },
 ];
