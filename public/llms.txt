@@ -24,6 +24,13 @@ Teri builds web pages, applications, and developer tools. Teri is open to softwa
 ## Documentation and technical writing
 
 - [Blog](https://www.iamteri.tech/blog/): Technical articles and practical guides.
+- [AWS cloud concepts for beginners](https://www.iamteri.tech/cloud-101-guide-to-aws-concepts/): Introductory guide to EC2, S3, RDS, DynamoDB, VPC, and IAM.
+- [Vim for developers](https://www.iamteri.tech/vim-boost-productivity/): Essential Vim modes, motions, editing workflows, and Vim key bindings in VS Code.
+- [Advanced Vim practice](https://www.iamteri.tech/vim-daily-practice/): Practical guide to Vim motions, search, text changes, formatting, and repeatable edits.
+- [Build a Nike sneaker tracker with Bright Data MCP](https://www.iamteri.tech/bright-data-mcp/): Project walkthrough using Bright Data MCP, LangChain, Claude, FastAPI, and Next.js.
+- [Build a content-aware image cropper with Cloudinary and Streamlit](https://www.iamteri.tech/ai-content-aware-cropper-cloudinary/): Tutorial for content-aware image and video crops using Python, Streamlit, and Cloudinary.
+- [Build a serverless distance calculator with AWS](https://www.iamteri.tech/aws-serverless-distance-calculator/): Build walkthrough covering AWS Amplify, Lambda, API Gateway, IAM, and DynamoDB.
+- [Build an AI image captioning app with Cloudinary](https://terieyenike.hashnode.dev/ai-for-photo-captions-with-cloudinary): Cross-published tutorial; this external URL is the article's declared canonical source.
 - [How to Build a Quiz App With Nuxt and Xata](https://thenewstack.io/how-to-build-a-quiz-app-with-nuxt-and-xata/): Hands-on guide published by The New Stack.
 - [Display AI-Generated Images in a Jupyter Notebook](https://thenewstack.io/display-ai-generated-images-in-a-jupyter-notebook/): Tutorial published by The New Stack.
 - [Building an AI Voice Application in Streamlit using OpenAI](https://dev.to/terieyenike/building-a-voice-transcription-and-translation-app-with-openai-whisper-and-streamlit-43mm): Tutorial published on DEV Community.
