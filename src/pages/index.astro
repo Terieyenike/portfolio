@@ -37,6 +37,15 @@ const posts = (await getCollection("blog"))
       </div>
     </section>
 
+    <section class="collaboration-strip" aria-labelledby="collaboration-title">
+      <h2 id="collaboration-title" class="site-kicker text-[var(--olive)]">Companies I’ve collaborated with</h2>
+      <ul class="collaboration-logos">
+        <li><img src="/images/collaborations/appwrite.png" alt="Appwrite" width="300" height="300" loading="lazy" decoding="async" /></li>
+        <li><img src="/images/collaborations/cloudinary.png" alt="Cloudinary" width="590" height="520" loading="lazy" decoding="async" /></li>
+        <li><img src="/images/collaborations/bright-data.png" alt="Bright Data" width="1200" height="269" loading="lazy" decoding="async" /></li>
+      </ul>
+    </section>
+
     <section class="home-section" aria-labelledby="work-title">
       <header class="section-heading"><div><p class="site-kicker text-[var(--olive)]">01 / Things made</p><h2 id="work-title">Selected work</h2></div><a class="button-text" href="/projects/">All projects <span aria-hidden="true">↗</span></a></header>
       <ProjectList projects={featuredProjects} />
@@ -81,6 +90,15 @@ const posts = (await getCollection("blog"))
   .portrait-stamp { position: absolute; right: -1.25rem; top: 1.6rem; display: grid; place-items: center; width: 3.8rem; height: 3.8rem; border: 1px solid var(--ink); border-radius: 50%; background: var(--paper); color: var(--ink); font-family: ui-monospace, monospace; font-weight: 800; }
   .portrait-stamp span { color: var(--olive); }
   .home-section { padding: clamp(3.5rem, 8vw, 6.5rem) 0; border-top: 1px solid var(--line); }
+  .collaboration-strip { display: grid; grid-template-columns: minmax(12rem, .45fr) minmax(0, 1fr); align-items: center; gap: clamp(1rem, 3vw, 2.5rem); margin: 0 0 clamp(2rem, 5vw, 4rem); padding: 1.25rem 0; border-block: 1px solid var(--line); }
+  .collaboration-strip h2 { margin: 0; }
+  .collaboration-logos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; gap: clamp(.75rem, 2vw, 1.5rem); margin: 0; padding: 0; list-style: none; }
+  .collaboration-logos li { display: grid; min-width: 0; height: 3.5rem; place-items: center; }
+  .collaboration-logos img { display: block; width: auto; max-width: 100%; height: 2.75rem; object-fit: contain; background: transparent; }
+  .collaboration-logos li:first-child img { height: 2.75rem; }
+  .collaboration-logos li:nth-child(2) img { height: 3rem; }
+  .collaboration-logos li:last-child img { height: 2.25rem; filter: brightness(.62) saturate(1.08); }
+  .dark .collaboration-logos li:last-child img { filter: none; }
   .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 1rem; margin-bottom: 2rem; }
   .section-heading > div { min-width: 0; }
   .section-heading > a { flex: 0 0 auto; white-space: nowrap; }
@@ -94,6 +112,7 @@ const posts = (await getCollection("blog"))
   .publication-row small { margin-top: .35rem; color: var(--muted); }
   .publication-arrow { font-size: 1.25rem; }
   .home-contact { display: flex; align-items: center; justify-content: space-between; gap: 2rem; margin: 2rem 0 4rem; padding: clamp(2rem, 6vw, 4rem); border: 1px solid var(--line); background-size: 24px 24px; }
-  @media (max-width: 760px) { .home-hero { grid-template-columns: 1fr; gap: 2.5rem; padding-top: 2rem; } .home-portrait-wrap { width: min(82%, 360px); } .section-heading { align-items: flex-start; flex-direction: column; gap: .6rem; } .section-heading > a { align-self: flex-start; } .home-contact { align-items: flex-start; flex-direction: column; } }
+  @media (max-width: 760px) { .home-hero { grid-template-columns: 1fr; gap: 2.5rem; padding-top: 2rem; } .home-portrait-wrap { width: min(82%, 360px); } .collaboration-strip { grid-template-columns: 1fr; gap: .9rem; } .section-heading { align-items: flex-start; flex-direction: column; gap: .6rem; } .section-heading > a { align-self: flex-start; } .home-contact { align-items: flex-start; flex-direction: column; } }
+  @media (max-width: 420px) { .collaboration-logos { gap: .5rem; } .collaboration-logos li { height: 3rem; } .collaboration-logos li:first-child img { height: 2.35rem; } .collaboration-logos li:nth-child(2) img { height: 2.6rem; } .collaboration-logos li:last-child img { height: 1.9rem; } }
   @media (max-width: 480px) { .home-copy h1 { font-size: clamp(2.7rem, 12vw, 3.5rem); } .home-actions { display: grid; grid-template-columns: minmax(0, 1fr); gap: .75rem; } .home-actions .button-primary, .home-actions .button-text { width: 100%; min-height: 3.25rem; justify-content: space-between; padding: .9rem 1.1rem; } .home-actions .button-text { border: 1px solid var(--line); } .publication-row { grid-template-columns: 2rem minmax(0, 1fr) auto; gap: .65rem; } }
 </style>
