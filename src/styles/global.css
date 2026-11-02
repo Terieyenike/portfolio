@@ -59,7 +59,7 @@ table {
 }
 
 .prose :where(p, li, a, code) {
-	overflow-wrap: anywhere;
+	overflow-wrap: break-word;
 }
 
 :where(a, p, li, h1, h2, h3) {
@@ -71,8 +71,6 @@ table {
 :where(h1, h2, h3) {
 	text-wrap: balance;
 }
-
-body.menu-open { overflow: hidden; }
 
 ::selection {
 	background: var(--acid);

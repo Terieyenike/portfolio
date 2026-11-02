@@ -13,13 +13,12 @@ const menu = [
   <div class="container mx-auto flex items-center justify-between gap-4 px-4 py-3 sm:px-6">
     <a href="/" class="site-wordmark flex items-center gap-3" aria-label="Teri Eyenike, home">
       <span class="site-monogram grid h-10 w-10 place-items-center text-sm font-black" aria-hidden="true">TE<span>.</span></span>
-      <span class="hidden sm:block">
+      <span class="site-wordmark-copy">
         <span class="block text-sm font-bold leading-tight">Teri Eyenike</span>
-        <span class="site-kicker mt-1 block text-[.58rem] text-[var(--muted)]">Engineer · Writer</span>
       </span>
     </a>
 
-    <nav aria-label="Primary navigation" class="hidden items-center gap-1 md:flex">
+    <nav aria-label="Primary navigation" class="hidden items-center gap-1 lg:flex">
       {menu.map((item) => (
         <HeaderLink href={item.link} class="site-nav-link rounded-full px-3 py-2 text-sm font-medium">
           {item.label}
@@ -33,13 +32,13 @@ const menu = [
         <svg class="sun h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
         <svg class="moon h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.7 8.7 0 1 0 20.5 14.2Z"/></svg>
       </button>
-      <button id="hamburger" class="site-icon-button grid h-11 w-11 place-items-center rounded-full md:hidden" aria-label="Open navigation menu" aria-controls="mobile-menu" aria-expanded="false">
+      <button id="hamburger" class="site-icon-button grid h-11 w-11 place-items-center rounded-full lg:hidden" aria-label="Open navigation menu" aria-controls="mobile-menu" aria-expanded="false">
         <svg class="hamburger-icon h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
     </div>
   </div>
 
-  <nav id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true" inert class="site-mobile-menu md:hidden">
+  <nav id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true" inert class="site-mobile-menu lg:hidden">
     <div class="container mx-auto flex flex-col gap-1 px-4 pb-5 sm:px-6">
       {menu.map((item, index) => (
         <HeaderLink href={item.link} class="site-mobile-link flex items-baseline gap-3 py-3 text-lg font-semibold">
@@ -57,6 +56,9 @@ const menu = [
     border-color: var(--line);
     backdrop-filter: blur(14px);
   }
+  .site-wordmark-copy { display: block; max-width: 12rem; overflow: hidden; white-space: nowrap; opacity: 1; }
+  .site-header.is-scrolled .site-wordmark-copy { max-width: 0; margin-inline-start: -.75rem; opacity: 0; }
+  .site-header.is-scrolled .site-wordmark { gap: 0; }
   .site-monogram {
     border: 1px solid var(--ink);
     background: var(--acid);
@@ -80,9 +82,9 @@ const menu = [
   .site-mobile-menu.mobile-menu-open { display: block; }
   .site-mobile-link { border-bottom: 1px solid var(--line); color: var(--ink); text-decoration: none; }
   .site-mobile-link:hover, .site-mobile-link[aria-current="page"] { color: var(--olive); }
-  .menu-backdrop { position: fixed; inset: 0; z-index: 900; background: rgb(15 18 13 / .42); }
   @media (prefers-reduced-motion: no-preference) {
     .site-icon-button, .site-nav-link, .site-contact-link { transition: background-color .18s ease, color .18s ease; }
+    .site-wordmark, .site-wordmark-copy { transition: gap .22s ease, max-width .22s ease, margin-inline-start .22s ease, opacity .16s ease; }
   }
 </style>
 
@@ -111,14 +113,13 @@ const menu = [
 
   const hamburger = document.getElementById("hamburger");
   const mobileMenu = document.getElementById("mobile-menu");
+  const siteHeader = document.getElementById("site-header");
   const closeMenu = () => {
     mobileMenu?.classList.remove("mobile-menu-open");
     mobileMenu?.setAttribute("aria-hidden", "true");
     mobileMenu?.setAttribute("inert", "");
     hamburger?.setAttribute("aria-expanded", "false");
     hamburger?.setAttribute("aria-label", "Open navigation menu");
-    document.body.classList.remove("menu-open");
-    document.querySelector(".menu-backdrop")?.remove();
   };
   hamburger?.addEventListener("click", () => {
     if (mobileMenu?.classList.contains("mobile-menu-open")) {
@@ -130,19 +131,36 @@ const menu = [
     mobileMenu?.removeAttribute("inert");
     hamburger?.setAttribute("aria-expanded", "true");
     hamburger?.setAttribute("aria-label", "Close navigation menu");
-    document.body.classList.add("menu-open");
-    const backdrop = document.createElement("button");
-    backdrop.type = "button";
-    backdrop.className = "menu-backdrop";
-    backdrop.setAttribute("aria-label", "Close navigation menu");
-    backdrop.addEventListener("click", closeMenu);
-    document.body.append(backdrop);
   });
   mobileMenu?.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
+  document.addEventListener("pointerdown", (event) => {
+    if (
+      mobileMenu?.classList.contains("mobile-menu-open") &&
+      event.target instanceof Node &&
+      !document.getElementById("site-header")?.contains(event.target)
+    ) closeMenu();
+  });
+  window.matchMedia("(min-width: 1024px)").addEventListener("change", (event) => {
+    if (event.matches) closeMenu();
+  });
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && mobileMenu?.classList.contains("mobile-menu-open")) {
       closeMenu();
       hamburger?.focus();
     }
   });
+
+  let wordmarkHidden = false;
+  let headerScrollFrame = 0;
+  const updateWordmark = () => {
+    if (headerScrollFrame) return;
+    headerScrollFrame = requestAnimationFrame(() => {
+      if (!wordmarkHidden && window.scrollY > 72) wordmarkHidden = true;
+      else if (wordmarkHidden && window.scrollY <= 16) wordmarkHidden = false;
+      siteHeader?.classList.toggle("is-scrolled", wordmarkHidden);
+      headerScrollFrame = 0;
+    });
+  };
+  updateWordmark();
+  window.addEventListener("scroll", updateWordmark, { passive: true });
 </script>
